@@ -7,16 +7,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\MainTheme\**" />
+    <Content Remove="wwwroot\MainTheme\**" />
+    <EmbeddedResource Remove="wwwroot\MainTheme\**" />
+    <None Remove="wwwroot\MainTheme\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\0_Framework\0_Framework.csproj" />
+    <ProjectReference Include="..\DiscountManagement.Infrastructure.Configuration\DiscountManagement.Infrastructure.Configuration.csproj" />
     <ProjectReference Include="..\ShopManagement.Infrastructure.Configuration\ShopManagement.Infrastructure.Configuration.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\MainTheme\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.1">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

@@ -1,4 +1,5 @@
 using _0_Framework.Application;
+using DiscountManagement.Infrastructure.Configuration;
 using ServiceHost;
 using ShopManagement.Infrastructure.Configuration;
 
@@ -12,7 +13,7 @@ var connectionString = builder.Configuration.GetConnectionString("MyKalaShop");
 builder.Services.AddTransient<IFileUploader, FileUploader>();
 
 ShopManagementBootstrapper.Configure(builder.Services, connectionString);
-
+DiscountManagementBootstrapper.Configure(builder.Services, connectionString);
 
 
 
