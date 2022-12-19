@@ -13,5 +13,10 @@
         public const int SearchProducts = 111;
         public const int CreateProduct = 112;
         public const int EditProduct = 113;
+
+        public const int ListProductPictures = 120;
+        public const int SearchProductPictures = 121;
+        public const int CreateProductPicture = 122;
+        public const int EditProductPicture = 123;
     }
 }

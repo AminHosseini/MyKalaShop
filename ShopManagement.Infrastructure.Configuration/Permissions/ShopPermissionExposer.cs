@@ -32,6 +32,15 @@ namespace ShopManagement.Infrastructure.Configuration.Permissions
                         new PermissionDto(ShopPermissions.EditProduct, "ویرایش_محصولات")
                     }
                 },
+                {
+                    "عکس_محصولات", new List<PermissionDto>
+                    {
+                        new PermissionDto(ShopPermissions.ListProductPictures, "لیست_عکس_محصولات"),
+                        new PermissionDto(ShopPermissions.SearchProductPictures, "جستوجو_عکس_محصولات"),
+                        new PermissionDto(ShopPermissions.CreateProductPicture, "ایجاد_عکس_محصول"),
+                        new PermissionDto(ShopPermissions.EditProductPicture, "ویرایش_عکس_محصول")
+                    }
+                },
             };
         }
     }

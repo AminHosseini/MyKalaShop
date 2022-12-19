@@ -1,5 +1,6 @@
 ﻿using _0_Framework.Domain;
 using ShopManagement.Domain.ProductCategoryAgg;
+using ShopManagement.Domain.ProductPictureAgg;
 
 namespace ShopManagement.Domain.ProductAgg
 {
@@ -17,6 +18,7 @@ namespace ShopManagement.Domain.ProductAgg
         public string MetaDescription { get; private set; }
         public long ProductCategoryId { get; private set; }
         public ProductCategory ProductCategory { get; private set; }
+        public List<ProductPicture> ProductPictures { get; private set; }
 
         public Product(string name, string code, string picturePath,
             string pictureAlt, string pictureTitle, string shortDescription,
@@ -34,6 +36,7 @@ namespace ShopManagement.Domain.ProductAgg
             Slug = slug;
             MetaDescription = metaDescription;
             ProductCategoryId = productCategoryId;
+            ProductPictures = new List<ProductPicture>();
         }
 
         public void Edit(string name, string code, string picturePath,

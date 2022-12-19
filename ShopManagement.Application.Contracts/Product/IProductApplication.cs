@@ -8,5 +8,6 @@ namespace ShopManagement.Application.Contracts.Product
         OperationResult Edit(EditProduct model);
         List<ProductViewModel> Search(SearchProduct model);
         EditProduct GetDetails(long id);
+        List<ProductViewModel> GetProducts();
     }
 }
