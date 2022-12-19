@@ -41,6 +41,14 @@ namespace ShopManagement.Infrastructure.Configuration.Permissions
                         new PermissionDto(ShopPermissions.EditProductPicture, "ویرایش_عکس_محصول")
                     }
                 },
+                {
+                    "اسلایدها", new List<PermissionDto>
+                    {
+                        new PermissionDto(ShopPermissions.ListSlides, "لیست_اسلایدها"),
+                        new PermissionDto(ShopPermissions.CreateSlide, "ایجاد_اسلاید"),
+                        new PermissionDto(ShopPermissions.EditSlide, "ویرایش_اسلاید")
+                    }
+                },
             };
         }
     }

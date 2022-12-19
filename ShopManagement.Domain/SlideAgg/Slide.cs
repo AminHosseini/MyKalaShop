@@ -42,12 +42,12 @@ namespace ShopManagement.Domain.SlideAgg
             Link = link;
         }
 
-        public void Delete(long id)
+        public void Delete()
         {
             IsDeleted = true;
         }
 
-        public void Restore(long id)
+        public void Restore()
         {
             IsDeleted = false;
         }
