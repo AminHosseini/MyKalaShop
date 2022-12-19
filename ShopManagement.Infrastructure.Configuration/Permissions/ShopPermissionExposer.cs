@@ -19,8 +19,17 @@ namespace ShopManagement.Infrastructure.Configuration.Permissions
                     {
                         new PermissionDto(ShopPermissions.ListProductCategories, "لیست_گروه_محصولی"),
                         new PermissionDto(ShopPermissions.SearchProductCategories, "جستوجو_گروه_محصولی"),
-                        new PermissionDto(ShopPermissions.CreateProductCategory, "ساخت_گروه_محصولی"),
+                        new PermissionDto(ShopPermissions.CreateProductCategory, "ایجاد_گروه_محصولی"),
                         new PermissionDto(ShopPermissions.EditProductCategory, "ویرایش_گروه_محصولی")
+                    }
+                },
+                {
+                    "محصولات", new List<PermissionDto>
+                    {
+                        new PermissionDto(ShopPermissions.ListProducts, "لیست_محصولات"),
+                        new PermissionDto(ShopPermissions.SearchProducts, "جستوجو_محصولات"),
+                        new PermissionDto(ShopPermissions.CreateProduct, "ایجاد_محصولات"),
+                        new PermissionDto(ShopPermissions.EditProduct, "ویرایش_محصولات")
                     }
                 },
             };

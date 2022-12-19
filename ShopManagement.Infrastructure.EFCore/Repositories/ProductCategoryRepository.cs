@@ -33,12 +33,17 @@ namespace ShopManagement.Infrastructure.EFCore.Repositories
         public List<ProductCategoryViewModel> GetProductCategories()
         {
             return _context.ProductCategories.Select(x => new ProductCategoryViewModel()
-            {
+            { 
                 Id = x.Id,
-                PicturePath = x.PicturePath,
-                Name = x.Name,
-                CreationDate = x.CreationDate.ToFarsi()
-            }).OrderByDescending(x => x.Id).ToList();
+                Name = x.Name
+            }).ToList();
+        }
+
+        public string GetProductCategorySlug(long id)
+        {
+            return _context.ProductCategories
+                .Select(x => new { x.Id, x.Slug })
+                .FirstOrDefault(x => x.Id == id).Slug;
         }
 
         public List<ProductCategoryViewModel> Search(SearchProductCategory model)
