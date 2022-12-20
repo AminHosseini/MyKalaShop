@@ -3,7 +3,7 @@ using _0_Framework.Infrastructure;
 using DiscountManagement.Application.Contracts.ColleagueDiscount;
 using DiscountManagement.Domain.ColleagueDiscountAgg;
 using DiscountManagement.Infrastructure.EFCore.Data;
-using ShopManagement.Infrastructure.EFCore.Data;
+using InventoryManagement.Infrastructure.EFCore.Data;
 
 namespace DiscountManagement.Infrastructure.EFCore.Repositories
 {

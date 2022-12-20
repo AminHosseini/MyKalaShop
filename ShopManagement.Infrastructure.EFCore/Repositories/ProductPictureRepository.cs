@@ -1,11 +1,11 @@
 ﻿using _0_Framework.Application;
 using _0_Framework.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using ShopManagement.Application.Contracts.ProductPicture;
-using ShopManagement.Domain.ProductPictureAgg;
-using ShopManagement.Infrastructure.EFCore.Data;
+using InventoryManagement.Application.Contracts.ProductPicture;
+using InventoryManagement.Domain.ProductPictureAgg;
+using InventoryManagement.Infrastructure.EFCore.Data;
 
-namespace ShopManagement.Infrastructure.EFCore.Repositories
+namespace InventoryManagement.Infrastructure.EFCore.Repositories
 {
     public class ProductPictureRepository : RepositoryBase<long, ProductPicture>, IProductPictureRepository
     {

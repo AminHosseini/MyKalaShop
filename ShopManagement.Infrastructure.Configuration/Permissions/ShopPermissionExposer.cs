@@ -1,6 +1,6 @@
 ﻿using _0_Framework.Infrastructure;
 
-namespace ShopManagement.Infrastructure.Configuration.Permissions
+namespace InventoryManagement.Infrastructure.Configuration.Permissions
 {
     public class ShopPermissionExposer : IPermissionExposer
     {

@@ -5,12 +5,12 @@ namespace InventoryManagement.Domain.InventoryAgg
     public class Inventory : EntityBase
     {
         public long ProductId { get; private set; }
-        public int UnitPrice { get; private set; }
+        public double UnitPrice { get; private set; }
         public string Color { get; private set; }
         public bool IsAvailable { get; private set; }
         public List<InventoryOperation> Operations { get; private set; }
 
-        public Inventory(long productId, int unitPrice, string color)
+        public Inventory(long productId, double unitPrice, string color)
         {
             ProductId = productId;
             UnitPrice = unitPrice;
@@ -19,7 +19,7 @@ namespace InventoryManagement.Domain.InventoryAgg
             Operations = new List<InventoryOperation>();
         }
 
-        public void Edit(long productId, int unitPrice, string color)
+        public void Edit(long productId, double unitPrice, string color)
         {
             ProductId = productId;
             UnitPrice = unitPrice;

@@ -1,7 +1,7 @@
 ﻿using DiscountManagement.Application.Contracts.CustomerDiscount;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using ShopManagement.Application.Contracts.Product;
+using InventoryManagement.Application.Contracts.Product;
 
 namespace ServiceHost.Areas.Administration.Controllers
 {

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
-namespace ShopManagement.Application.Contracts.ProductPicture
+namespace InventoryManagement.Application.Contracts.ProductPicture
 {
     public class CreateProductPicture
     {

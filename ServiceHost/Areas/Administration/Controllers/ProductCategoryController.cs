@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ShopManagement.Application.Contracts.ProductCategory;
+using InventoryManagement.Application.Contracts.ProductCategory;
 
 namespace ServiceHost.Areas.Administration.Controllers
 {

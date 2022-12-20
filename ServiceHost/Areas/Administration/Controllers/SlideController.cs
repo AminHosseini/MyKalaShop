@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ShopManagement.Application.Contracts.Slide;
+using InventoryManagement.Application.Contracts.Slide;
 
 namespace ServiceHost.Areas.Administration.Controllers
 {

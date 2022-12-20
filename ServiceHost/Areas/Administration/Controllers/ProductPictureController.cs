@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using ShopManagement.Application.Contracts.Product;
-using ShopManagement.Application.Contracts.ProductPicture;
+using InventoryManagement.Application.Contracts.Product;
+using InventoryManagement.Application.Contracts.ProductPicture;
 
 namespace ServiceHost.Areas.Administration.Controllers
 {

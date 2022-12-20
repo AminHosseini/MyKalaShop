@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ShopManagement.Domain.SlideAgg;
+using InventoryManagement.Domain.SlideAgg;
 
-namespace ShopManagement.Infrastructure.EFCore.Data
+namespace InventoryManagement.Infrastructure.EFCore.Data
 {
     public class SlideMapping : IEntityTypeConfiguration<Slide>
     {

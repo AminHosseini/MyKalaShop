@@ -1,4 +1,4 @@
-﻿namespace ShopManagement.Application.Contracts.Slide
+﻿namespace InventoryManagement.Application.Contracts.Slide
 {
     public class SlideViewModel
     {

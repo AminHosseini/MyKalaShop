@@ -1,18 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using ShopManagement.Application;
-using ShopManagement.Application.Contracts.Product;
-using ShopManagement.Application.Contracts.ProductCategory;
-using ShopManagement.Application.Contracts.ProductPicture;
-using ShopManagement.Application.Contracts.Slide;
-using ShopManagement.Domain.ProductAgg;
-using ShopManagement.Domain.ProductCategoryAgg;
-using ShopManagement.Domain.ProductPictureAgg;
-using ShopManagement.Domain.SlideAgg;
-using ShopManagement.Infrastructure.EFCore.Data;
-using ShopManagement.Infrastructure.EFCore.Repositories;
+using InventoryManagement.Application;
+using InventoryManagement.Application.Contracts.Product;
+using InventoryManagement.Application.Contracts.ProductCategory;
+using InventoryManagement.Application.Contracts.ProductPicture;
+using InventoryManagement.Application.Contracts.Slide;
+using InventoryManagement.Domain.ProductAgg;
+using InventoryManagement.Domain.ProductCategoryAgg;
+using InventoryManagement.Domain.ProductPictureAgg;
+using InventoryManagement.Domain.SlideAgg;
+using InventoryManagement.Infrastructure.EFCore.Data;
+using InventoryManagement.Infrastructure.EFCore.Repositories;
 
-namespace ShopManagement.Infrastructure.Configuration
+namespace InventoryManagement.Infrastructure.Configuration
 {
     public static class ShopManagementBootstrapper
     {

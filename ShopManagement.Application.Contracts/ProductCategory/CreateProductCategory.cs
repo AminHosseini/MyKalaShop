@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
-namespace ShopManagement.Application.Contracts.ProductCategory
+namespace InventoryManagement.Application.Contracts.ProductCategory
 {
     public class CreateProductCategory
     {

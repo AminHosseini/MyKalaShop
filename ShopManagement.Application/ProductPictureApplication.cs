@@ -1,10 +1,10 @@
 ﻿using _0_Framework.Application;
-using ShopManagement.Application.Contracts.ProductPicture;
-using ShopManagement.Domain.ProductAgg;
-using ShopManagement.Domain.ProductCategoryAgg;
-using ShopManagement.Domain.ProductPictureAgg;
+using InventoryManagement.Application.Contracts.ProductPicture;
+using InventoryManagement.Domain.ProductAgg;
+using InventoryManagement.Domain.ProductCategoryAgg;
+using InventoryManagement.Domain.ProductPictureAgg;
 
-namespace ShopManagement.Application
+namespace InventoryManagement.Application
 {
     public class ProductPictureApplication : IProductPictureApplication
     {

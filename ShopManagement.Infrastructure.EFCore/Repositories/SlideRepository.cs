@@ -1,10 +1,10 @@
 ﻿using _0_Framework.Application;
 using _0_Framework.Infrastructure;
-using ShopManagement.Application.Contracts.Slide;
-using ShopManagement.Domain.SlideAgg;
-using ShopManagement.Infrastructure.EFCore.Data;
+using InventoryManagement.Application.Contracts.Slide;
+using InventoryManagement.Domain.SlideAgg;
+using InventoryManagement.Infrastructure.EFCore.Data;
 
-namespace ShopManagement.Infrastructure.EFCore.Repositories
+namespace InventoryManagement.Infrastructure.EFCore.Repositories
 {
     public class SlideRepository : RepositoryBase<long, Slide>, ISlideRepository
     {

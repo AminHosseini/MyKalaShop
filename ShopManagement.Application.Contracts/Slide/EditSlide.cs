@@ -1,7 +1,7 @@
 ﻿using _0_Framework.Application;
 using Microsoft.AspNetCore.Http;
 
-namespace ShopManagement.Application.Contracts.Slide
+namespace InventoryManagement.Application.Contracts.Slide
 {
     public class EditSlide
     {

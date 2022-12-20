@@ -1,7 +1,7 @@
 ﻿using _0_Framework.Domain;
-using ShopManagement.Application.Contracts.Slide;
+using InventoryManagement.Application.Contracts.Slide;
 
-namespace ShopManagement.Domain.SlideAgg
+namespace InventoryManagement.Domain.SlideAgg
 {
     public interface ISlideRepository : IRepository<long, Slide>
     {

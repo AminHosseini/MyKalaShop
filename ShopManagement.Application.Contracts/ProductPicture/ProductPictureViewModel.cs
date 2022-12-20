@@ -1,4 +1,4 @@
-﻿namespace ShopManagement.Application.Contracts.ProductPicture
+﻿namespace InventoryManagement.Application.Contracts.ProductPicture
 {
     public class ProductPictureViewModel
     {

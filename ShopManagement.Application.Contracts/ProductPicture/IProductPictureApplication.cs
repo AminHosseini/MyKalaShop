@@ -1,6 +1,6 @@
 ﻿using _0_Framework.Application;
 
-namespace ShopManagement.Application.Contracts.ProductPicture
+namespace InventoryManagement.Application.Contracts.ProductPicture
 {
     public interface IProductPictureApplication
     {

@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ShopManagement.Domain.ProductAgg;
-using ShopManagement.Domain.ProductCategoryAgg;
-using ShopManagement.Domain.ProductPictureAgg;
-using ShopManagement.Domain.SlideAgg;
+using InventoryManagement.Domain.ProductAgg;
+using InventoryManagement.Domain.ProductCategoryAgg;
+using InventoryManagement.Domain.ProductPictureAgg;
+using InventoryManagement.Domain.SlideAgg;
 
-namespace ShopManagement.Infrastructure.EFCore.Data
+namespace InventoryManagement.Infrastructure.EFCore.Data
 {
     public class ShopContext : DbContext
     {

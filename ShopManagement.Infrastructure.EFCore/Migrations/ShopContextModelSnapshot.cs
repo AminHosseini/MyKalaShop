@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ShopManagement.Infrastructure.EFCore.Data;
+using InventoryManagement.Infrastructure.EFCore.Data;
 
 #nullable disable
 
-namespace ShopManagement.Infrastructure.EFCore.Migrations
+namespace InventoryManagement.Infrastructure.EFCore.Migrations
 {
     [DbContext(typeof(ShopContext))]
     partial class ShopContextModelSnapshot : ModelSnapshot

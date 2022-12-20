@@ -1,0 +1,97 @@
+﻿@using InventoryManagement.Application.Contracts.Inventory
+@using _0_Framework.Application
+@model List<InventoryViewModel>
+
+@{
+    ViewData["Title"] = "مدیریت انبار";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <h4 class="page-title pull-right">@ViewData["Title"]</h4>
+        <p class="pull-left">
+            <a class="btn btn-success btn-lg" href="#showmodal=@Url.Action("Create")">ایجاد انبار جدید</a>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">جستجو در انبار</h3>
+            </div>
+            <div class="panel-body">
+                <partial name="_IndexSearchSection" model="new SearchInventory()" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="ProductCategoriesDiv">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">لیست انبارها (@Model.Count)</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <table id="datatable" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>محصول</th>
+                                    <th>قیمت</th>
+                                    <th>رنگ</th>
+                                    <th>وضعیت موجودی</th>
+                                    <th>تعداد در انبار</th>
+                                    <th>تاریخ تولید</th>
+                                    <th>عملیات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Id</td>
+                                        <td>@item.ProductName</td>
+                                        <td>@item.UnitPrice.ToMoney()</td>
+                                        <td>@item.Color</td>
+                                        <td class="text-center">
+                                            @if (item.IsAvailable)
+                                            {
+                                                <i class="fa fa-check fa-2x text-success"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="fa fa-remove fa-2x text-danger"></i>
+                                            }
+                                        </td>
+                                        <td>@item.CurrentCount</td>
+                                        <td>@item.CreationDate</td>
+                                        <td>
+                                            <a class="btn btn-warning pull-right m-rl-5" href="#showmodal=@Url.Action("Edit", new { id = item.Id})">
+                                                <i class="fa fa-edit"></i> ویرایش
+                                            </a>
+                                            <a class="btn btn-success pull-right m-rl-5" href="#showmodal=@Url.Action("Increase", new { id = item.Id})">
+                                                <i class="fa fa-plus"></i> افزایش موجودی
+                                            </a>
+                                            <a class="btn btn-danger pull-right m-rl-5" href="#showmodal=@Url.Action("Decrease", new { id = item.Id})">
+                                                <i class="fa fa-minus"></i> کاهش موجودی
+                                            </a>
+                                            <a class="btn btn-primary pull-right m-rl-5" href="#showmodal=@Url.Action("OperationsLog", new { id = item.Id})"
+                                           onclick="$('.modal-dialog').css('width', '60%')">
+                                                <i class="fa fa-recycle"></i> مشاهده گردش انبار
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

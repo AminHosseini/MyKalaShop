@@ -1,4 +1,4 @@
-﻿namespace ShopManagement.Application.Contracts.ProductCategory
+﻿namespace InventoryManagement.Application.Contracts.ProductCategory
 {
     public class ProductCategoryViewModel
     {

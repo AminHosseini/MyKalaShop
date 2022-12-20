@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace ShopManagement.Infrastructure.EFCore.Migrations
+namespace InventoryManagement.Infrastructure.EFCore.Migrations
 {
     /// <inheritdoc />
     public partial class ProductCategoryAdded : Migration

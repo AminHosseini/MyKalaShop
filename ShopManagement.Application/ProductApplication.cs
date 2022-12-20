@@ -1,9 +1,9 @@
 ﻿using _0_Framework.Application;
-using ShopManagement.Application.Contracts.Product;
-using ShopManagement.Domain.ProductAgg;
-using ShopManagement.Domain.ProductCategoryAgg;
+using InventoryManagement.Application.Contracts.Product;
+using InventoryManagement.Domain.ProductAgg;
+using InventoryManagement.Domain.ProductCategoryAgg;
 
-namespace ShopManagement.Application
+namespace InventoryManagement.Application
 {
     public class ProductApplication : IProductApplication
     {

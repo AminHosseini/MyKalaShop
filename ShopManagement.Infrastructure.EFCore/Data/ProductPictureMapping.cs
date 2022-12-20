@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using ShopManagement.Domain.ProductPictureAgg;
+using InventoryManagement.Domain.ProductPictureAgg;
 
-namespace ShopManagement.Infrastructure.EFCore.Data
+namespace InventoryManagement.Infrastructure.EFCore.Data
 {
     public class ProductPictureMapping : IEntityTypeConfiguration<ProductPicture>
     {
