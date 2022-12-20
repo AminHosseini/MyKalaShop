@@ -23,6 +23,15 @@ namespace DiscountManagement.Infrastructure.Configuration.Permissions
                         new PermissionDto(DiscountPermissions.EditCustomerDiscount, "ویرایش_تخفیف_مشتری")
                     }
                 },
+                {
+                    "تخفیفات_همکاری", new List<PermissionDto>
+                    {
+                        new PermissionDto(DiscountPermissions.ListColleagueDiscounts, "لیست_تخفیفات_همکاری"),
+                        new PermissionDto(DiscountPermissions.SearchColleagueDiscounts, "جستوجو_تخفیفات_همکاری"),
+                        new PermissionDto(DiscountPermissions.CreateColleagueDiscount, "ایجاد_تخفیف_همکاری"),
+                        new PermissionDto(DiscountPermissions.EditColleagueDiscount, "ویرایش_تخفیف_همکاری")
+                    }
+                },
             };
         }
     }

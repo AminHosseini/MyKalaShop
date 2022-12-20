@@ -29,8 +29,7 @@ namespace ShopManagement.Application
 
             var product = _productRepository.Get(model.ProductId);
             var productCategorySlug = _productCategoryRepository.GetProductCategorySlug(product.ProductCategoryId);
-            var productSlug = product.Slug;
-            var pictureRoot = $"UploadedPictures/{productCategorySlug}/{productSlug}";
+            var pictureRoot = $"UploadedPictures/{productCategorySlug}/{product.Slug}";
             var picturePath = _fileUploader.Upload(model.PicturePath, pictureRoot);
 
             var productPicture = new ProductPicture(picturePath, model.PictureAlt, model.PictureTitle, model.ProductId);
@@ -52,8 +51,7 @@ namespace ShopManagement.Application
 
             var product = _productRepository.Get(productPicture.ProductId);
             var productCategorySlug = _productCategoryRepository.GetProductCategorySlug(product.ProductCategoryId);
-            var productSlug = product.Slug;
-            var pictureRoot = $"UploadedPictures/{productCategorySlug}/{productSlug}";
+            var pictureRoot = $"UploadedPictures/{productCategorySlug}/{product.Slug}";
             var picturePath = _fileUploader.Upload(model.PicturePath, pictureRoot);
 
             productPicture.Edit(picturePath, model.PictureAlt, model.PictureTitle, model.ProductId);

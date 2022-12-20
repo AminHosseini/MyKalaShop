@@ -1,5 +1,7 @@
 ﻿using DiscountManagement.Application;
+using DiscountManagement.Application.Contracts.ColleagueDiscount;
 using DiscountManagement.Application.Contracts.CustomerDiscount;
+using DiscountManagement.Domain.ColleagueDiscountAgg;
 using DiscountManagement.Domain.CustomerDiscountAgg;
 using DiscountManagement.Infrastructure.EFCore.Data;
 using DiscountManagement.Infrastructure.EFCore.Repositories;
@@ -16,6 +18,9 @@ namespace DiscountManagement.Infrastructure.Configuration
 
             services.AddTransient<ICustomerDiscountRepository, CustomerDiscountRepository>();
             services.AddTransient<ICustomerDiscountApplication, CustomerDiscountApplication>();
+
+            services.AddTransient<IColleagueDiscountRepository, ColleagueDiscountRepository>();
+            services.AddTransient<IColleagueDiscountApplication, ColleagueDiscountApplication>();
         }
     }
 }

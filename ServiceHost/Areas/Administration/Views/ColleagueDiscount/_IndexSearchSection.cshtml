@@ -1,0 +1,13 @@
+﻿@using DiscountManagement.Application.Contracts.ColleagueDiscount
+@model SearchColleagueDiscount
+
+<form class="form-inline" role="form" method="get">
+    <div class="form-group">
+        <label asp-for="ProductId" class="sr-only"></label>
+        <select asp-for="ProductId" class="form-control" asp-items="@ViewBag.Products">
+            <option value="0">انتخاب محصول...</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-success waves-effect waves-light m-l-10">جستجو</button>
+    <a class="btn btn-primary waves-effect waves-light m-l-10" asp-action="Index">مشاهده همه</a>
+</form>
