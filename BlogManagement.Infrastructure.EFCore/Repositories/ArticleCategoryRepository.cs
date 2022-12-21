@@ -3,6 +3,7 @@ using _0_Framework.Infrastructure;
 using BlogManagement.Application.Contracts.ArticleCategory;
 using BlogManagement.Domain.ArticleCategoryAgg;
 using BlogManagement.Infrastructure.EFCore.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlogManagement.Infrastructure.EFCore.Repositories
 {
@@ -13,6 +14,15 @@ namespace BlogManagement.Infrastructure.EFCore.Repositories
         public ArticleCategoryRepository(BlogContext context) : base(context)
         {
             _context = context;
+        }
+
+        public List<ArticleCategoryViewModel> GetArticleCategories()
+        {
+            return _context.ArticleCategories.Select(x => new ArticleCategoryViewModel()
+            {
+                Id = x.Id,
+                Name = x.Name
+            }).ToList();
         }
 
         public EditArticleCategory GetDetails(long id)
@@ -32,18 +42,25 @@ namespace BlogManagement.Infrastructure.EFCore.Repositories
             }).FirstOrDefault(x => x.Id == id);
         }
 
+        public string GetSlugById(long id)
+        {
+            return _context.ArticleCategories.FirstOrDefault(x => x.Id == id)?.Slug;
+        }
+
         public List<ArticleCategoryViewModel> Search(SearchArticleCategory model)
         {
-            var query = _context.ArticleCategories.Select(x => new ArticleCategoryViewModel()
-            {
-                Id = x.Id,
-                Name = x.Name,
-                DisplayOrder = x.DisplayOrder,
-                Description = x.Description,
-                PicturePath = x.PicturePath,
-                ArticlesCount = 0,
-                CreationDate = x.CreationDate.ToFarsi()
-            });
+            var query = _context.ArticleCategories
+                .Include(x => x.Articles)
+                .Select(x => new ArticleCategoryViewModel()
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    DisplayOrder = x.DisplayOrder,
+                    Description = x.Description,
+                    PicturePath = x.PicturePath,
+                    ArticlesCount = x.Articles.Count,
+                    CreationDate = x.CreationDate.ToFarsi()
+                });
 
             if (!string.IsNullOrWhiteSpace(model.Name))
                 query = query.Where(x => x.Name.Contains(model.Name));

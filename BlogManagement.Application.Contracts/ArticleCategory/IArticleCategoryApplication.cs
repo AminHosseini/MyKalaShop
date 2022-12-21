@@ -8,5 +8,6 @@ namespace BlogManagement.Application.Contracts.ArticleCategory
         OperationResult Edit(EditArticleCategory model);
         List<ArticleCategoryViewModel> Search(SearchArticleCategory model);
         EditArticleCategory GetDetails(long id);
+        List<ArticleCategoryViewModel> GetArticleCategories();
     }
 }

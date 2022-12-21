@@ -14,6 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Areas\Administration\Views\Article\Create.cshtml" />
+    <None Include="Areas\Administration\Views\Article\Edit.cshtml" />
+    <None Include="Areas\Administration\Views\Article\Index.cshtml" />
+    <None Include="Areas\Administration\Views\Article\_IndexSearchSection.cshtml" />
     <None Include="Areas\Administration\Views\Inventory\Index.cshtml" />
     <None Include="Areas\Administration\Views\Inventory\_Create.cshtml" />
     <None Include="Areas\Administration\Views\Inventory\_Decrease.cshtml" />
