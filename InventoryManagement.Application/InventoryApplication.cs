@@ -17,8 +17,7 @@ namespace InventoryManagement.Application
         {
             var operationResult = new OperationResult();
 
-            if (_repository.Exists(x => x.ProductId == model.ProductId && x.Color == model.Color
-                && x.UnitPrice == model.UnitPrice))
+            if (_repository.Exists(x => x.ProductId == model.ProductId))
                 return operationResult.Failed();
 
             var inventory = new Inventory(model.ProductId, model.UnitPrice, model.Color);
@@ -50,8 +49,7 @@ namespace InventoryManagement.Application
             if (inventory == null)
                 return operationResult.Failed(ValidationMessage.RecordNotFound);
 
-            if (_repository.Exists(x => x.ProductId == model.ProductId && x.Color == model.Color
-                && x.UnitPrice == model.UnitPrice))
+            if (_repository.Exists(x => x.ProductId == model.ProductId && x.Id != model.Id))
                 return operationResult.Failed();
 
             inventory.Edit(model.ProductId, model.UnitPrice, model.Color);

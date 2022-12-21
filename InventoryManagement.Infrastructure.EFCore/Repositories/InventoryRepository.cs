@@ -4,7 +4,6 @@ using InventoryManagement.Application.Contracts.Inventory;
 using InventoryManagement.Domain.InventoryAgg;
 using InventoryManagement.Infrastructure.EFCore.Data;
 using Microsoft.EntityFrameworkCore;
-using InventoryManagement.Infrastructure.EFCore.Data;
 
 namespace InventoryManagement.Infrastructure.EFCore.Repositories
 {
