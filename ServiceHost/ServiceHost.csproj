@@ -14,6 +14,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Areas\Administration\Views\Account\Index.cshtml" />
+    <None Include="Areas\Administration\Views\Account\_ChangePassword.cshtml" />
+    <None Include="Areas\Administration\Views\Account\_Create.cshtml" />
+    <None Include="Areas\Administration\Views\Account\_Edit.cshtml" />
+    <None Include="Areas\Administration\Views\Account\_IndexSearchSection.cshtml" />
     <None Include="Areas\Administration\Views\Article\Create.cshtml" />
     <None Include="Areas\Administration\Views\Article\Edit.cshtml" />
     <None Include="Areas\Administration\Views\Article\Index.cshtml" />
@@ -29,6 +34,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\0_Framework\0_Framework.csproj" />
+    <ProjectReference Include="..\AccountManagement.Infrastructure.Configuration\AccountManagement.Infrastructure.Configuration.csproj" />
     <ProjectReference Include="..\BlogManagement.Infrastructure.Configuration\BlogManagement.Infrastructure.Configuration.csproj" />
     <ProjectReference Include="..\CommentManagement.Infrastructure.Configuration\CommentManagement.Infrastructure.Configuration.csproj" />
     <ProjectReference Include="..\DiscountManagement.Infrastructure.Configuration\DiscountManagement.Infrastructure.Configuration.csproj" />
