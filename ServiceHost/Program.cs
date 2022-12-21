@@ -3,6 +3,7 @@ using DiscountManagement.Infrastructure.Configuration;
 using ServiceHost;
 using InventoryManagement.Infrastructure.Configuration;
 using CommentManagement.Infrastructure.Configuration;
+using BlogManagement.Infrastructure.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,7 @@ ShopManagementBootstrapper.Configure(builder.Services, connectionString);
 DiscountManagementBootstrapper.Configure(builder.Services, connectionString);
 InventoryManagementBootstrapper.Configure(builder.Services, connectionString);
 CommentManagementBootstrapper.Configure(builder.Services, connectionString);
+BlogManagementBootstrapper.Configure(builder.Services, connectionString);
 
 
 

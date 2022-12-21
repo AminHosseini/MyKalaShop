@@ -1,0 +1,11 @@
+﻿@using BlogManagement.Application.Contracts.ArticleCategory
+@model SearchArticleCategory
+
+<form class="form-inline" role="form" method="get">
+    <div class="form-group">
+        <label asp-for="Name" class="sr-only"></label>
+        <input asp-for="Name" class="form-control" placeholder="نام گروه مقالات">
+    </div>
+    <button type="submit" class="btn btn-success waves-effect waves-light m-l-10">جستجو</button>
+    <a class="btn btn-primary waves-effect waves-light m-l-10" asp-action="Index">مشاهده همه</a>
+</form>
