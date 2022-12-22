@@ -30,6 +30,9 @@
     <None Include="Areas\Administration\Views\Inventory\_Increase.cshtml" />
     <None Include="Areas\Administration\Views\Inventory\_IndexSearchSection.cshtml" />
     <None Include="Areas\Administration\Views\Inventory\_OperationLog.cshtml" />
+    <None Include="Areas\Administration\Views\Role\Create.cshtml" />
+    <None Include="Areas\Administration\Views\Role\Edit.cshtml" />
+    <None Include="Areas\Administration\Views\Role\Index.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

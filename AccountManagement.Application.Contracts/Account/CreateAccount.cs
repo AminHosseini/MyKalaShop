@@ -24,6 +24,8 @@ namespace AccountManagement.Application.Contracts.Account
 
         public IFormFile? PicturePath { get; set; }
         public string? UserName { get; set; }
-        public long? RoleId { get; set; }
+
+        [Required(ErrorMessage = ValidationMessage.IsRequired)]
+        public long RoleId { get; set; }
     }
 }

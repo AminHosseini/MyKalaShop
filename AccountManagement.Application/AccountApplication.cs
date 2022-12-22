@@ -29,7 +29,7 @@ namespace AccountManagement.Application
             var pciturePath = _fileUploader.Upload(model.PicturePath, pictureRoot);
             var password = _passwordHasher.Hash(model.Password);
 
-            var account = new Account(model.FullName, model.UserName, model.Mobile, password, pciturePath);
+            var account = new Account(model.FullName, model.UserName, model.Mobile, password, pciturePath, model.RoleId);
 
             _repository.Create(account);
             _repository.Save();
@@ -51,7 +51,7 @@ namespace AccountManagement.Application
             var pictureRoot = $"UploadedPictures/AccountPhotos/{model.Mobile}";
             var pciturePath = _fileUploader.Upload(model.PicturePath, pictureRoot);
 
-            account.Edit(model.FullName, model.UserName, model.Mobile, pciturePath);
+            account.Edit(model.FullName, model.UserName, model.Mobile, pciturePath, model.RoleId);
 
             _repository.Save();
             return operationResult.Succeeded();

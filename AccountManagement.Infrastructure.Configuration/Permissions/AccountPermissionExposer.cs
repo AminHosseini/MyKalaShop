@@ -23,6 +23,14 @@ namespace AccountManagement.Infrastructure.Configuration.Permissions
                         new PermissionDto(AccountPermissions.EditAccount, "ویرایش_کاربر")
                     }
                 },
+                {
+                    "نقش_ها", new List<PermissionDto>
+                    {
+                        new PermissionDto(AccountPermissions.ListRoles, "لیست_نقش_ها"),
+                        new PermissionDto(AccountPermissions.CreateRole, "ایجاد_نقش_"),
+                        new PermissionDto(AccountPermissions.EditRole, "ویرایش_نقش")
+                    }
+                },
             };
         }
     }

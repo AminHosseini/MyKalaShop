@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Domain;
+using AccountManagement.Domain.RoleAgg;
 
 namespace AccountManagement.Domain.AccountAgg
 {
@@ -9,32 +10,36 @@ namespace AccountManagement.Domain.AccountAgg
         public string Mobile { get; private set; }
         public string Password { get; private set; }
         public string PicturePath { get; private set; }
+        public long RoleId { get; private set; }
+        public Role Role { get; private set; }
 
         protected Account()
         {
         }
 
-        public Account(string fullname, string username, string mobile, string password, string picturePath)
+        public Account(string fullname, string username, string mobile, string password, string picturePath, long roleId)
         {
             FullName = fullname;
             UserName = username;
             Mobile = mobile;
             Password = password;
             PicturePath = picturePath;
+            RoleId = roleId;
         }
 
-        public void Edit(string fullname, string username, string mobile, string picturePath)
+        public void Edit(string fullname, string username, string mobile, string picturePath, long roleId)
         {
             FullName = fullname;
             UserName = username;
             Mobile = mobile;
             if (!string.IsNullOrWhiteSpace(picturePath))
                 PicturePath = picturePath;
+            RoleId = roleId;
         }
 
-        public void ChangePassword(string newPassword)
+        public void ChangePassword(string password)
         {
-            Password = newPassword;
+            Password = password;
         }
     }
 }

@@ -16,6 +16,10 @@ namespace AccountManagement.Infrastructure.EFCore.Data
             builder.Property(x => x.Mobile).HasMaxLength(20).IsRequired();
             builder.Property(x => x.Password).HasMaxLength(225).IsRequired();
             builder.Property(x => x.PicturePath).HasMaxLength(1000).IsRequired(required: false);
+
+            builder.HasOne(x => x.Role)
+                .WithMany(x => x.Accounts)
+                .HasForeignKey(x => x.RoleId);
         }
     }
 }

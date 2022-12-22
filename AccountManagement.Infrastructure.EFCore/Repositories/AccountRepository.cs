@@ -3,6 +3,7 @@ using _0_Framework.Infrastructure;
 using AccountManagement.Application.Contracts.Account;
 using AccountManagement.Domain.AccountAgg;
 using AccountManagement.Infrastructure.EFCore.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace AccountManagement.Infrastructure.EFCore.Repositories
 {
@@ -23,23 +24,24 @@ namespace AccountManagement.Infrastructure.EFCore.Repositories
                 FullName = x.FullName,
                 UserName = x.UserName,
                 Mobile = x.Mobile,
-                RoleId = 0
+                RoleId = x.RoleId
             }).FirstOrDefault(x => x.Id == id);
         }
 
         public List<AccountViewModel> Search(SearchAccount model)
         {
-            var query = _context.Accounts.Select(x => new AccountViewModel()
-            {
-                Id = x.Id,
-                FullName = x.FullName,
-                UserName = x.UserName,
-                Mobile = x.Mobile,
-                PicturePath = x.PicturePath,
-                RoleId = 0,
-                Role = "فعلا هیچی",
-                CreationDate = x.CreationDate.ToFarsi()
-            });
+            var query = _context.Accounts.Include(x => x.Role)
+                .Select(x => new AccountViewModel()
+                {
+                    Id = x.Id,
+                    FullName = x.FullName,
+                    UserName = x.UserName,
+                    Mobile = x.Mobile,
+                    PicturePath = x.PicturePath,
+                    RoleId = x.RoleId,
+                    Role = x.Role.Name,
+                    CreationDate = x.CreationDate.ToFarsi()
+                });
 
             if (!string.IsNullOrWhiteSpace(model.FullName))
                 query = query.Where(x => x.FullName.Contains(model.FullName));
