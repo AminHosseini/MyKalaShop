@@ -4,12 +4,12 @@
     {
         public const int AccessToInventoryManagement = 300;
 
-        public const int ListInventory = 301;
-        public const int SearchInventory = 302;
-        public const int CreateInventory = 303;
-        public const int EditInventory = 304;
-        public const int IncreaseInventory = 305;
-        public const int DecreaseInventory = 306;
-        public const int GetInventoryOperationsLog = 307;
+        public const int ListInventory = 310;
+        public const int SearchInventory = 311;
+        public const int CreateInventory = 312;
+        public const int EditInventory = 313;
+        public const int IncreaseInventory = 314;
+        public const int DecreaseInventory = 315;
+        public const int GetInventoryOperationsLog = 316;
     }
 }

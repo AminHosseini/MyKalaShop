@@ -9,16 +9,16 @@ namespace InventoryManagement.Infrastructure.Configuration.Permissions
             return new Dictionary<string, List<PermissionDto>>()
             {
                 {
-                    "انبار", new List<PermissionDto>
+                    "انبارها", new List<PermissionDto>
                     {
-                        new PermissionDto(InventoryPermissions.AccessToInventoryManagement, "دسترسی_به_سیستم_انبارداری"),
-                        new PermissionDto(InventoryPermissions.ListInventory, "لیست_انبار"),
-                        new PermissionDto(InventoryPermissions.SearchInventory, "جستوجو_انبار"),
-                        new PermissionDto(InventoryPermissions.CreateInventory, "ایجاد_انبار"),
-                        new PermissionDto(InventoryPermissions.EditInventory, "ویرایش_انبار"),
-                        new PermissionDto(InventoryPermissions.IncreaseInventory, "افزایش_انبار"),
-                        new PermissionDto(InventoryPermissions.DecreaseInventory, "کاهش_انبار"),
-                        new PermissionDto(InventoryPermissions.GetInventoryOperationsLog, "لاگ_عملیاتهای_انبار")
+                        new PermissionDto(InventoryPermissions.AccessToInventoryManagement, "دسترسی به منو سیستم انبارداری"),
+                        new PermissionDto(InventoryPermissions.ListInventory, "لیست کردن انبارها"),
+                        new PermissionDto(InventoryPermissions.SearchInventory, "جستوجو در انبارها"),
+                        new PermissionDto(InventoryPermissions.CreateInventory, "ایجاد انبار"),
+                        new PermissionDto(InventoryPermissions.EditInventory, "ویرایش انبار"),
+                        new PermissionDto(InventoryPermissions.IncreaseInventory, "افزایش تعداد در انبار"),
+                        new PermissionDto(InventoryPermissions.DecreaseInventory, "کاهش تعداد در انبار"),
+                        new PermissionDto(InventoryPermissions.GetInventoryOperationsLog, "گرفتن لاگ عملیات های انبار")
                     }
                 },
             };

@@ -1,8 +1,10 @@
-﻿using AccountManagement.Application;
+﻿using _0_Framework.Infrastructure;
+using AccountManagement.Application;
 using AccountManagement.Application.Contracts.Account;
 using AccountManagement.Application.Contracts.Role;
 using AccountManagement.Domain.AccountAgg;
 using AccountManagement.Domain.RoleAgg;
+using AccountManagement.Infrastructure.Configuration.Permissions;
 using AccountManagement.Infrastructure.EFCore.Data;
 using AccountManagement.Infrastructure.EFCore.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +23,8 @@ namespace AccountManagement.Infrastructure.Configuration
 
             services.AddTransient<IRoleRepository, RoleRepository>();
             services.AddTransient<IRoleApplication, RoleApplication>();
+
+            services.AddTransient<IPermissionExposer, AccountPermissionExposer>();
         }
     }
 }

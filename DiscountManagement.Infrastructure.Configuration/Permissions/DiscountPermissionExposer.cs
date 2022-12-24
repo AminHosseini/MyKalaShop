@@ -9,27 +9,29 @@ namespace DiscountManagement.Infrastructure.Configuration.Permissions
             return new Dictionary<string, List<PermissionDto>>()
             {
                 {
-                    "سیستم_تخفیفات", new List<PermissionDto>
+                    "مدیریت سیستم تخفیفات", new List<PermissionDto>
                     {
-                        new PermissionDto(DiscountPermissions.AccessToDiscountManagement, "دسترسی_به_سیستم_مدیریت_تخفیفات")
+                        new PermissionDto(DiscountPermissions.AccessToDiscountManagement, "دسترسی به منو سیستم مدیریت تخفیفات")
                     }
                 },
                 {
-                    "تخفیفات_مشتری", new List<PermissionDto>
+                    "تخفیفات مشتریان", new List<PermissionDto>
                     {
-                        new PermissionDto(DiscountPermissions.ListCustomerDiscounts, "لیست_تخفیفات_مشتری"),
-                        new PermissionDto(DiscountPermissions.SearchCustomerDiscounts, "جستوجو_تخفیفات_مشتری"),
-                        new PermissionDto(DiscountPermissions.CreateCustomerDiscount, "ایجاد_تخفیف_مشتری"),
-                        new PermissionDto(DiscountPermissions.EditCustomerDiscount, "ویرایش_تخفیف_مشتری")
+                        new PermissionDto(DiscountPermissions.AccessToCustomerDiscounts, "دسترسی به منو تخفیفات مشتریان"),
+                        new PermissionDto(DiscountPermissions.ListCustomerDiscounts, "لیست کردن تخفیفات مشتریان"),
+                        new PermissionDto(DiscountPermissions.SearchCustomerDiscounts, "جستوجو در تخفیفات مشتریان"),
+                        new PermissionDto(DiscountPermissions.CreateCustomerDiscount, "ایجاد تخفیف مشتری"),
+                        new PermissionDto(DiscountPermissions.EditCustomerDiscount, "ویرایش تخفیف مشتری")
                     }
                 },
                 {
-                    "تخفیفات_همکاری", new List<PermissionDto>
+                    "تخفیفات همکاران", new List<PermissionDto>
                     {
-                        new PermissionDto(DiscountPermissions.ListColleagueDiscounts, "لیست_تخفیفات_همکاری"),
-                        new PermissionDto(DiscountPermissions.SearchColleagueDiscounts, "جستوجو_تخفیفات_همکاری"),
-                        new PermissionDto(DiscountPermissions.CreateColleagueDiscount, "ایجاد_تخفیف_همکاری"),
-                        new PermissionDto(DiscountPermissions.EditColleagueDiscount, "ویرایش_تخفیف_همکاری")
+                        new PermissionDto(DiscountPermissions.AccessToColleagueDiscounts, "دسترسی به منو تخفیفات همکاران"),
+                        new PermissionDto(DiscountPermissions.ListColleagueDiscounts, "لیست کردن تخفیفات همکاران"),
+                        new PermissionDto(DiscountPermissions.SearchColleagueDiscounts, "جستوجو در تخفیفات همکاران"),
+                        new PermissionDto(DiscountPermissions.CreateColleagueDiscount, "ایجاد تخفیف همکاری"),
+                        new PermissionDto(DiscountPermissions.EditColleagueDiscount, "ویرایش تخفیف همکاری")
                     }
                 },
             };

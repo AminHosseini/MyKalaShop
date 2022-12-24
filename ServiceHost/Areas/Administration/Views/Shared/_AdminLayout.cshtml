@@ -34,6 +34,9 @@
     <!-- Persian Date Picker -->
     <link href="~/AdminTheme/assets/css/persian-datepicker.css" rel="stylesheet" />
 
+    <!-- Rendering Css -->
+    @RenderSection("Css", required: false)
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -202,7 +205,7 @@
         });
     </script>
 
-    <!-- Custom -->
+    <!-- Rendering Scripts -->
     @RenderSection("Scripts", required: false)
 
 </body>

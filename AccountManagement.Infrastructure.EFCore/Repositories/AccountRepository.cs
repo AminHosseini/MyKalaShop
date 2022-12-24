@@ -28,6 +28,24 @@ namespace AccountManagement.Infrastructure.EFCore.Repositories
             }).FirstOrDefault(x => x.Id == id);
         }
 
+        public SpecifyAccountPermissions GetPermissions(long id)
+        {
+            var permissions = _context.Accounts.Include(x => x.Permissions).Select(x => new SpecifyAccountPermissions()
+            {
+                Id = x.Id,
+                Name = x.FullName,
+                MappedPermissions = MapPermissions(x.Permissions)
+            }).AsNoTracking().FirstOrDefault(x => x.Id == id);
+
+            permissions.Permissions = permissions.MappedPermissions.Select(x => x.Code).ToList();
+            return permissions;
+        }
+
+        private static List<PermissionDto> MapPermissions(List<Permission> permissions)
+        {
+            return permissions.Select(x => new PermissionDto(x.Code, x.Name)).ToList();
+        }
+
         public List<AccountViewModel> Search(SearchAccount model)
         {
             var query = _context.Accounts.Include(x => x.Role)

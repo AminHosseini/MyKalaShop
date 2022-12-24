@@ -81,5 +81,26 @@ namespace AccountManagement.Application
         {
             return _repository.Search(model);
         }
+
+        public SpecifyAccountPermissions GetPermissions(long id)
+        {
+            return _repository.GetPermissions(id);
+        }
+
+        public OperationResult SpecifyPermissions(SpecifyAccountPermissions model)
+        {
+            var operationResult = new OperationResult();
+            var account = _repository.Get(model.Id);
+
+            if (account == null)
+                return operationResult.Failed(ValidationMessage.RecordNotFound);
+
+            var permissions = new List<Permission>();
+            model.Permissions.ForEach(code => permissions.Add(new Permission(code)));
+
+            account.SpecifyPermissions(permissions);
+            _repository.Save();
+            return operationResult.Succeeded();
+        }
     }
 }

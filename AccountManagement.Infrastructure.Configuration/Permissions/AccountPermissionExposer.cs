@@ -9,26 +9,29 @@ namespace AccountManagement.Infrastructure.Configuration.Permissions
             return new Dictionary<string, List<PermissionDto>>()
             {
                 {
-                    "دسترسی_به_سیستم_کاربران", new List<PermissionDto>
+                    " مدیریت سیستم کاربران", new List<PermissionDto>
                     {
-                        new PermissionDto(AccountPermissions.AccessToAccountManagement, "دسترسی_به_سیستم_مدیریت_کاربران")
+                        new PermissionDto(AccountPermissions.AccessToAccountManagement, "دسترسی به منو سیستم کاربران")
                     }
                 },
                 {
                     "کاربران", new List<PermissionDto>
                     {
-                        new PermissionDto(AccountPermissions.ListAccounts, "لیست_کاربران"),
-                        new PermissionDto(AccountPermissions.SearchAccounts, "جستوجو_کاربران"),
-                        new PermissionDto(AccountPermissions.CreateAccount, "ایجاد_کاربر"),
-                        new PermissionDto(AccountPermissions.EditAccount, "ویرایش_کاربر")
+                        new PermissionDto(AccountPermissions.AccessToAccounts, "دسترسی به منو کاربران"),
+                        new PermissionDto(AccountPermissions.ListAccounts, "دیدن لیست کاربران"),
+                        new PermissionDto(AccountPermissions.SearchAccounts, "جستوجو در کاربران"),
+                        new PermissionDto(AccountPermissions.CreateAccount, "ایجاد کاربر"),
+                        new PermissionDto(AccountPermissions.EditAccount, "ویرایش کاربر"),
+                        new PermissionDto(AccountPermissions.SpecifyAccountPermissions, "دادن دسترسی ها به کاربر")
                     }
                 },
                 {
-                    "نقش_ها", new List<PermissionDto>
+                    "نقش ها", new List<PermissionDto>
                     {
-                        new PermissionDto(AccountPermissions.ListRoles, "لیست_نقش_ها"),
-                        new PermissionDto(AccountPermissions.CreateRole, "ایجاد_نقش_"),
-                        new PermissionDto(AccountPermissions.EditRole, "ویرایش_نقش")
+                        new PermissionDto(AccountPermissions.AccessToRoles, "دسترسی به منو نقش ها"),
+                        new PermissionDto(AccountPermissions.ListRoles, "لیست کردن نقش ها"),
+                        new PermissionDto(AccountPermissions.CreateRole, "ایجاد نقش"),
+                        new PermissionDto(AccountPermissions.EditRole, "ویرایش نقش")
                     }
                 },
             };

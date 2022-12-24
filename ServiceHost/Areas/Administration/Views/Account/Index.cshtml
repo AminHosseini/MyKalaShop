@@ -27,6 +27,11 @@
     </div>
 </div>
 
+@if (!string.IsNullOrWhiteSpace(ViewBag.ErrorMessage))
+{
+    <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+}
+
 <div class="row" id="ProductCategoriesDiv">
     <div class="col-md-12">
         <div class="panel panel-default">
@@ -68,6 +73,9 @@
                                             </a>
                                             <a class="btn btn-primary pull-right m-rl-5" href="#showmodal=@Url.Action("ChangePassword", new { id = item.Id})">
                                                 <i class="fa fa-key"></i> تغییر رمز
+                                            </a>
+                                            <a class="btn btn-purple pull-right m-rl-5" asp-action="SpecifyPermissions" asp-route-id="@item.Id">
+                                                <i class="fa fa-android"></i> دسترسی ها
                                             </a>
                                         </td>
                                     </tr>

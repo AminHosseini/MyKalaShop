@@ -9,27 +9,29 @@ namespace BlogManagement.Infrastructure.Configuration.Permissions
             return new Dictionary<string, List<PermissionDto>>()
             {
                 {
-                    "دسترسی_به_گروه_مقالات", new List<PermissionDto>
+                    "مدیریت سیستم بلاگینگ", new List<PermissionDto>
                     {
-                        new PermissionDto(BlogPermissions.AccessToBlogManagement, "دسترسی_به_سیستم_مدیریت_گروه_مقالات")
+                        new PermissionDto(BlogPermissions.AccessToBlogManagement, "دسترسی به منو سیستم بلاگینگ")
                     }
                 },
                 {
-                    "گروه_مقالات", new List<PermissionDto>
+                    "گروه مقالات", new List<PermissionDto>
                     {
-                        new PermissionDto(BlogPermissions.ListArticleCategories, "لیست_گروه_مقالات"),
-                        new PermissionDto(BlogPermissions.SearchArticleCategories, "جستوجو_گروه_مقالات"),
-                        new PermissionDto(BlogPermissions.CreateArticleCategory, "ایجاد_گروه_مقاله"),
-                        new PermissionDto(BlogPermissions.EditArticleCategory, "ویرایش_گروه_مقاله")
+                        new PermissionDto(BlogPermissions.AccessToArticleCategories, "دسترسی به منو گروه مقالات"),
+                        new PermissionDto(BlogPermissions.ListArticleCategories, "لیست کردن گروه مقالات"),
+                        new PermissionDto(BlogPermissions.SearchArticleCategories, "جستوجو در گروه مقالات"),
+                        new PermissionDto(BlogPermissions.CreateArticleCategory, "ایجاد گروه مقاله"),
+                        new PermissionDto(BlogPermissions.EditArticleCategory, "ویرایش گروه مقاله")
                     }
                 },
                 {
                     "مقالات", new List<PermissionDto>
                     {
-                        new PermissionDto(BlogPermissions.ListArticles, "لیست_مقالات"),
-                        new PermissionDto(BlogPermissions.SearchArticles, "جستوجو_مقالات"),
-                        new PermissionDto(BlogPermissions.CreateArticle, "ایجاد_مقاله"),
-                        new PermissionDto(BlogPermissions.EditArticle, "ویرایش_مقاله")
+                        new PermissionDto(BlogPermissions.AccessToArticles, "دسترسی به منو مقالات"),
+                        new PermissionDto(BlogPermissions.ListArticles, "لیست کردن مقالات"),
+                        new PermissionDto(BlogPermissions.SearchArticles, "جستوجو در مقالات"),
+                        new PermissionDto(BlogPermissions.CreateArticle, "ایجاد مقاله"),
+                        new PermissionDto(BlogPermissions.EditArticle, "ویرایش مقاله")
                     }
                 },
             };

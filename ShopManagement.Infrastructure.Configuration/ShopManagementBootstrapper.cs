@@ -11,6 +11,8 @@ using InventoryManagement.Domain.ProductPictureAgg;
 using InventoryManagement.Domain.SlideAgg;
 using InventoryManagement.Infrastructure.EFCore.Data;
 using InventoryManagement.Infrastructure.EFCore.Repositories;
+using InventoryManagement.Infrastructure.Configuration.Permissions;
+using _0_Framework.Infrastructure;
 
 namespace InventoryManagement.Infrastructure.Configuration
 {
@@ -31,6 +33,8 @@ namespace InventoryManagement.Infrastructure.Configuration
 
             services.AddTransient<ISlideRepository, SlideRepository>();
             services.AddTransient<ISlideApplication, SlideApplication>();
+
+            services.AddTransient<IPermissionExposer, ShopPermissionExposer>();
         }
     }
 }

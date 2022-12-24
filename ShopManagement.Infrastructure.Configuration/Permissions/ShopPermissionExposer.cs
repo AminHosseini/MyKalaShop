@@ -9,44 +9,48 @@ namespace InventoryManagement.Infrastructure.Configuration.Permissions
             return new Dictionary<string, List<PermissionDto>>()
             {
                 {
-                    "فروشگاه", new List<PermissionDto>
+                    "مدیریت سیستم فروشگاه", new List<PermissionDto>
                     {
-                        new PermissionDto(ShopPermissions.AccessToShopManagement, "دسترسی_به_سیستم_مدیریت_فروشگاه")
+                        new PermissionDto(ShopPermissions.AccessToShopManagement, "دسترسی به منو سیستم مدیریت فروشگاه")
                     }
                 },
                 {
-                    "گروه_محصولی", new List<PermissionDto>
+                    "گروه محصولات", new List<PermissionDto>
                     {
-                        new PermissionDto(ShopPermissions.ListProductCategories, "لیست_گروه_محصولی"),
-                        new PermissionDto(ShopPermissions.SearchProductCategories, "جستوجو_گروه_محصولی"),
-                        new PermissionDto(ShopPermissions.CreateProductCategory, "ایجاد_گروه_محصولی"),
-                        new PermissionDto(ShopPermissions.EditProductCategory, "ویرایش_گروه_محصولی")
+                        new PermissionDto(ShopPermissions.AccessToProductCategories, "دسترسی به منو گروه محصولات"),
+                        new PermissionDto(ShopPermissions.ListProductCategories, "لیست کردن گروه محصولات"),
+                        new PermissionDto(ShopPermissions.SearchProductCategories, "جستوجو در گروه محصولات"),
+                        new PermissionDto(ShopPermissions.CreateProductCategory, "ایجاد گروه محصولی"),
+                        new PermissionDto(ShopPermissions.EditProductCategory, "ویرایش گروه محصولی")
                     }
                 },
                 {
                     "محصولات", new List<PermissionDto>
                     {
-                        new PermissionDto(ShopPermissions.ListProducts, "لیست_محصولات"),
-                        new PermissionDto(ShopPermissions.SearchProducts, "جستوجو_محصولات"),
-                        new PermissionDto(ShopPermissions.CreateProduct, "ایجاد_محصولات"),
-                        new PermissionDto(ShopPermissions.EditProduct, "ویرایش_محصولات")
+                        new PermissionDto(ShopPermissions.AccessToProducts, "دسترسی به منو محصولات"),
+                        new PermissionDto(ShopPermissions.ListProducts, "لیست کردن محصولات"),
+                        new PermissionDto(ShopPermissions.SearchProducts, "جستوجو در محصولات"),
+                        new PermissionDto(ShopPermissions.CreateProduct, "ایجاد محصول"),
+                        new PermissionDto(ShopPermissions.EditProduct, "ویرایش محصول")
                     }
                 },
                 {
-                    "عکس_محصولات", new List<PermissionDto>
+                    "عکس محصولات", new List<PermissionDto>
                     {
-                        new PermissionDto(ShopPermissions.ListProductPictures, "لیست_عکس_محصولات"),
-                        new PermissionDto(ShopPermissions.SearchProductPictures, "جستوجو_عکس_محصولات"),
-                        new PermissionDto(ShopPermissions.CreateProductPicture, "ایجاد_عکس_محصول"),
-                        new PermissionDto(ShopPermissions.EditProductPicture, "ویرایش_عکس_محصول")
+                        new PermissionDto(ShopPermissions.AccessToProductPictures, "دسترسی به منو عکس های محصولات"),
+                        new PermissionDto(ShopPermissions.ListProductPictures, "لیست کردن عکس های محصولات"),
+                        new PermissionDto(ShopPermissions.SearchProductPictures, "جستوجو در عکس های محصولات"),
+                        new PermissionDto(ShopPermissions.CreateProductPicture, "ایجاد عکس محصول"),
+                        new PermissionDto(ShopPermissions.EditProductPicture, "ویرایش عکس محصول")
                     }
                 },
                 {
                     "اسلایدها", new List<PermissionDto>
                     {
-                        new PermissionDto(ShopPermissions.ListSlides, "لیست_اسلایدها"),
-                        new PermissionDto(ShopPermissions.CreateSlide, "ایجاد_اسلاید"),
-                        new PermissionDto(ShopPermissions.EditSlide, "ویرایش_اسلاید")
+                        new PermissionDto(ShopPermissions.AccessToSlides, "دسترسی به منو اسلایدها"),
+                        new PermissionDto(ShopPermissions.ListSlides, "لیست کردن اسلایدها"),
+                        new PermissionDto(ShopPermissions.CreateSlide, "ایجاد اسلاید"),
+                        new PermissionDto(ShopPermissions.EditSlide, "ویرایش اسلاید")
                     }
                 },
             };

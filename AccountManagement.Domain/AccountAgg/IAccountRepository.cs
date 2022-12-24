@@ -7,5 +7,6 @@ namespace AccountManagement.Domain.AccountAgg
     {
         List<AccountViewModel> Search(SearchAccount model);
         EditAccount GetDetails(long id);
+        SpecifyAccountPermissions GetPermissions(long id);
     }
 }

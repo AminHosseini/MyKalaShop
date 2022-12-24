@@ -20,6 +20,15 @@ namespace AccountManagement.Infrastructure.EFCore.Data
             builder.HasOne(x => x.Role)
                 .WithMany(x => x.Accounts)
                 .HasForeignKey(x => x.RoleId);
+
+            builder.OwnsMany(x => x.Permissions, modelBuilder =>
+            {
+                modelBuilder.ToTable("AccountPermissions");
+                modelBuilder.HasKey(x => x.Id);
+                modelBuilder.Ignore(x => x.Name);
+
+                modelBuilder.WithOwner(x => x.Account).HasForeignKey(x => x.AccountId);
+            });
         }
     }
 }

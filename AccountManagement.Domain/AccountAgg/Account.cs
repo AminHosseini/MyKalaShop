@@ -12,6 +12,7 @@ namespace AccountManagement.Domain.AccountAgg
         public string PicturePath { get; private set; }
         public long RoleId { get; private set; }
         public Role Role { get; private set; }
+        public List<Permission> Permissions { get; private set; }
 
         protected Account()
         {
@@ -25,6 +26,7 @@ namespace AccountManagement.Domain.AccountAgg
             Password = password;
             PicturePath = picturePath;
             RoleId = roleId;
+            Permissions = new List<Permission>();
         }
 
         public void Edit(string fullname, string username, string mobile, string picturePath, long roleId)
@@ -40,6 +42,11 @@ namespace AccountManagement.Domain.AccountAgg
         public void ChangePassword(string password)
         {
             Password = password;
+        }
+
+        public void SpecifyPermissions(List<Permission> permissions)
+        {
+            Permissions = permissions;
         }
     }
 }

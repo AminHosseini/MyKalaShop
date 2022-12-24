@@ -7,7 +7,9 @@ namespace AccountManagement.Application.Contracts.Account
         OperationResult Create(CreateAccount model);
         OperationResult Edit(EditAccount model);
         OperationResult ChangePassword(AccountChangePassword model);
+        OperationResult SpecifyPermissions(SpecifyAccountPermissions model);
         List<AccountViewModel> Search(SearchAccount model);
         EditAccount GetDetails(long id);
+        SpecifyAccountPermissions GetPermissions(long id);
     }
 }

@@ -9,12 +9,12 @@ namespace CommentManagement.Infrastructure.Configuration.Permissions
             return new Dictionary<string, List<PermissionDto>>()
             {
                 {
-                    "کامنت_ها", new List<PermissionDto>
+                    "کامنت ها", new List<PermissionDto>
                     {
-                        new PermissionDto(CommentPermissions.AccessToCommentManagement, "دسترسی_به_سیستم_کامنت_ها"),
-                        new PermissionDto(CommentPermissions.ListComments, "لیست_کامنت_ها"),
-                        new PermissionDto(CommentPermissions.ConfirmComment, "تایید_کامنت"),
-                        new PermissionDto(CommentPermissions.CancelComment, "کنسلـکامنت"),
+                        new PermissionDto(CommentPermissions.AccessToCommentManagement, "دسترسی به منو کامنت ها"),
+                        new PermissionDto(CommentPermissions.ListComments, "لیست کردن کامنت ها"),
+                        new PermissionDto(CommentPermissions.ConfirmComment, "تایید کردن کامنت"),
+                        new PermissionDto(CommentPermissions.CancelComment, "کنسل کردن کامنت"),
                     }
                 },
             };

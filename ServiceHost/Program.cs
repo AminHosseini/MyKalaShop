@@ -5,6 +5,8 @@ using InventoryManagement.Infrastructure.Configuration;
 using CommentManagement.Infrastructure.Configuration;
 using BlogManagement.Infrastructure.Configuration;
 using AccountManagement.Infrastructure.Configuration;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +24,8 @@ AccountManagementBootstrapper.Configure(builder.Services, connectionString);
 
 builder.Services.AddTransient<IFileUploader, FileUploader>();
 builder.Services.AddSingleton<IPasswordHasher, PasswordHasher>();
+//builder.Services.AddSingleton(HtmlEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Arabic));
+
 
 
 
