@@ -7,13 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="wwwroot\MainTheme\**" />
-    <Content Remove="wwwroot\MainTheme\**" />
-    <EmbeddedResource Remove="wwwroot\MainTheme\**" />
-    <None Remove="wwwroot\MainTheme\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="Areas\Administration\Views\Account\Index.cshtml" />
     <None Include="Areas\Administration\Views\Account\_ChangePassword.cshtml" />
     <None Include="Areas\Administration\Views\Account\_Create.cshtml" />
