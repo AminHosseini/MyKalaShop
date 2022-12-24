@@ -13,7 +13,7 @@ namespace InventoryManagement.Application
         private readonly IProductCategoryRepository _productCategoryRepository;
         private readonly IProductRepository _productRepository;
 
-        public ProductPictureApplication(IProductPictureRepository repository, 
+        public ProductPictureApplication(IProductPictureRepository repository,
             IFileUploader fileUploader, IProductCategoryRepository productCategoryRepository,
             IProductRepository productRepository)
         {
@@ -46,7 +46,7 @@ namespace InventoryManagement.Application
             if (productPicture == null)
                 return operationResult.Failed(ValidationMessage.RecordNotFound);
 
-            if (productPicture.Id != model.Id)
+            if (_repository.Exists(x => x.PictureTitle == model.PictureTitle && x.Id != model.Id))
                 return operationResult.Failed();
 
             var product = _productRepository.Get(productPicture.ProductId);

@@ -21,7 +21,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         [HttpGet]
         public IActionResult Index(SearchInventory model)
         {
-            ViewBag.Products = new SelectList(_productApplication.GetProducts(), "Id", "Name");
+            ViewBag.Products = GetProducts();
             var inventoryList = _inventoryApplication.Search(model);
             return View(inventoryList);
         }
@@ -29,7 +29,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            ViewBag.Products = new SelectList(_productApplication.GetProducts(), "Id", "Name");
+            ViewBag.Products = GetProducts();
             return PartialView("_Create", new CreateInventory());
         }
 
@@ -43,7 +43,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         [HttpGet]
         public IActionResult Edit(long id)
         {
-            ViewBag.Products = new SelectList(_productApplication.GetProducts(), "Id", "Name");
+            ViewBag.Products = GetProducts();
             var model = _inventoryApplication.GetDetails(id);
             return PartialView("_Edit", model);
         }
@@ -86,6 +86,11 @@ namespace ServiceHost.Areas.Administration.Controllers
         {
             var log = _inventoryApplication.GetLog(id);
             return PartialView("_OperationLog", log);
+        }
+
+        private SelectList GetProducts()
+        {
+            return new SelectList(_productApplication.GetProducts(), "Id", "Name");
         }
     }
 }

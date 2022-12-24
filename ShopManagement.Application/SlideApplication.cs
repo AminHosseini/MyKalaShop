@@ -38,6 +38,9 @@ namespace InventoryManagement.Application
             if (slide == null)
                 return operationResult.Failed(ValidationMessage.RecordNotFound);
 
+            if (_repository.Exists(x => x.Title == model.Title && x.Id != model.Id))
+                return operationResult.Failed();
+
             var pictureRoot = "UploadedPictures/Slides";
             var picturePath = _fileUploader.Upload(model.PicturePath, pictureRoot);
 

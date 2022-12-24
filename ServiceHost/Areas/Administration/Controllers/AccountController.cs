@@ -25,7 +25,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         [HttpGet]
         public IActionResult Index(SearchAccount model)
         {
-            ViewBag.Roles = new SelectList(_roleApplication.GetRoles(), "Id", "Name");
+            ViewBag.Roles = GetRoles();
             var accounts = _accountApplication.Search(model);
             return View(accounts);
         }
@@ -33,7 +33,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            ViewBag.Roles = new SelectList(_roleApplication.GetRoles(), "Id", "Name");
+            ViewBag.Roles = GetRoles();
             return PartialView("_Create", new CreateAccount());
         }
 
@@ -47,7 +47,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         [HttpGet]
         public IActionResult Edit(long id)
         {
-            ViewBag.Roles = new SelectList(_roleApplication.GetRoles(), "Id", "Name");
+            ViewBag.Roles = GetRoles();
             var model = _accountApplication.GetDetails(id);
             return PartialView("_Edit", model);
         }
@@ -120,6 +120,11 @@ namespace ServiceHost.Areas.Administration.Controllers
             }
 
             return selectList;
+        }
+
+        private SelectList GetRoles()
+        {
+            return new SelectList(_roleApplication.GetRoles(), "Id", "Name");
         }
     }
 }

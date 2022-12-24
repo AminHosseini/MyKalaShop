@@ -22,7 +22,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         [HttpGet]
         public IActionResult Index(SearchCustomerDiscount model)
         {
-            ViewBag.Products = new SelectList(_productApplication.GetProducts(), "Id", "Name");
+            ViewBag.Products = GetProducts();
             var customerDiscounts = _customerDiscountApplication.Search(model);
             return View(customerDiscounts);
         }
@@ -30,7 +30,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            ViewBag.Products = new SelectList(_productApplication.GetProducts(), "Id", "Name");
+            ViewBag.Products = GetProducts();
             return PartialView("_Create", new CreateCustomerDiscount());
         }
 
@@ -44,7 +44,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         [HttpGet]
         public IActionResult Edit(long id)
         {
-            ViewBag.Products = new SelectList(_productApplication.GetProducts(), "Id", "Name");
+            ViewBag.Products = GetProducts();
             var model = _customerDiscountApplication.GetDetails(id);
             return PartialView("_Edit", model);
         }
@@ -54,6 +54,11 @@ namespace ServiceHost.Areas.Administration.Controllers
         {
             var operationResult = _customerDiscountApplication.Edit(model);
             return new JsonResult(operationResult);
+        }
+
+        private SelectList GetProducts()
+        {
+            return new SelectList(_productApplication.GetProducts(), "Id", "Name");
         }
     }
 }

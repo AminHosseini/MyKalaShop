@@ -22,7 +22,7 @@ namespace DiscountManagement.Infrastructure.EFCore.Repositories
         {
             return _context.CustomerDiscounts.Select(x => new EditCustomerDiscount()
             {
-                Id = id,
+                Id = x.Id,
                 DiscountRate = x.DiscountRate,
                 Reason = x.Reason,
                 ProductId = x.ProductId,
@@ -39,7 +39,7 @@ namespace DiscountManagement.Infrastructure.EFCore.Repositories
             {
                 Id = x.Id,
                 DiscountRate = x.DiscountRate,
-                Reason = x.Reason,
+                Reason = x.Reason.Substring(0, Math.Min(x.Reason.Length, 50)) + "...",
                 StartDate = x.StartDate.ToFarsi(),
                 EndDate = x.EndDate.ToFarsi(),
                 CreationDate = x.CreationDate.ToFarsi(),

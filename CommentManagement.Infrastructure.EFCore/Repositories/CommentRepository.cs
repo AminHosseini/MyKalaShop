@@ -21,7 +21,7 @@ namespace CommentManagement.Infrastructure.EFCore.Repositories
             {
                 Id = x.Id,
                 Name = x.Name,
-                Message = x.Message,
+                Message = x.Message.Substring(0, Math.Min(x.Message.Length, 50)) + "...",
                 Email = x.Email,
                 IsConfirmed = x.IsConfirmed,
                 IsCanceled = x.IsCanceled,

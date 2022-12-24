@@ -19,7 +19,7 @@ namespace InventoryManagement.Infrastructure.EFCore.Repositories
         {
             return _context.Slides.Select(x => new EditSlide()
             {
-                Id = id,
+                Id = x.Id,
                 PictureAlt = x.PictureAlt,
                 PictureTitle = x.PictureTitle,
                 Heading = x.Heading,

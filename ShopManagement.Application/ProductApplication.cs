@@ -49,7 +49,7 @@ namespace InventoryManagement.Application
             if (product == null)
                 return operationResult.Failed(ValidationMessage.RecordNotFound);
 
-            if (product.Name == model.Name && product.Id != model.Id)
+            if (_repository.Exists(x => x.Name == model.Name && x.Id != model.Id))
                 return operationResult.Failed();
 
             var productCategoryateorySlug = _productCategoryRepository

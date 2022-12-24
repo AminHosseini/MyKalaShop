@@ -56,7 +56,7 @@ namespace BlogManagement.Infrastructure.EFCore.Repositories
                     Id = x.Id,
                     Name = x.Name,
                     DisplayOrder = x.DisplayOrder,
-                    Description = x.Description,
+                    Description = x.Description.Substring(0, Math.Min(x.Description.Length, 50)) + "...",
                     PicturePath = x.PicturePath,
                     ArticlesCount = x.Articles.Count,
                     CreationDate = x.CreationDate.ToFarsi()

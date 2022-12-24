@@ -9,7 +9,7 @@
     <div class="col-sm-12">
         <h4 class="page-title pull-right">@ViewData["Title"]</h4>
         <p class="pull-left">
-            <a class="btn btn-success btn-lg" asp-action="Create">ایجاد نقش جدید</a>
+            <a class="btn btn-success btn-lg disabled" asp-action="Create">ایجاد نقش جدید</a>
         </p>
     </div>
 </div>
@@ -45,7 +45,7 @@
                                         <td>@item.Name</td>
                                         <td>@item.CreationDate</td>
                                         <td>
-                                            <a class="btn btn-warning pull-right m-rl-5" asp-action="Edit" asp-route-id="@item.Id">
+                                            <a class="btn btn-warning pull-right m-rl-5 disabled" asp-action="Edit" asp-route-id="@item.Id">
                                                 <i class="fa fa-edit"></i> ویرایش
                                             </a>
                                         </td>
