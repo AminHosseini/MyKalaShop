@@ -13,6 +13,10 @@ using InventoryManagement.Infrastructure.EFCore.Data;
 using InventoryManagement.Infrastructure.EFCore.Repositories;
 using InventoryManagement.Infrastructure.Configuration.Permissions;
 using _0_Framework.Infrastructure;
+using MyKalaShopQuery.Query;
+using MyKalaShopQuery.Contracts.Slide;
+using MyKalaShopQuery.Contracts.ProductCategory;
+using MyKalaShopQuery.Contracts.Product;
 
 namespace InventoryManagement.Infrastructure.Configuration
 {
@@ -24,15 +28,18 @@ namespace InventoryManagement.Infrastructure.Configuration
 
             services.AddTransient<IProductCategoryRepository, ProductCategoryRepository>();
             services.AddTransient<IProductCategoryApplication, ProductCategoryApplication>();
+            services.AddTransient<IProductCategoryQuery, ProductCategoryQuery>();
 
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IProductApplication, ProductApplication>();
+            services.AddTransient<IProductQuery, ProductQuery>();
 
             services.AddTransient<IProductPictureRepository, ProductPictureRepository>();
             services.AddTransient<IProductPictureApplication, ProductPictureApplication>();
 
             services.AddTransient<ISlideRepository, SlideRepository>();
             services.AddTransient<ISlideApplication, SlideApplication>();
+            services.AddTransient<ISlideQuery, SlideQuery>();
 
             services.AddTransient<IPermissionExposer, ShopPermissionExposer>();
         }

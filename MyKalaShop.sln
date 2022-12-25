@@ -105,15 +105,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AM.Application", "AM.Applic
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AM.Infrastructure", "AM.Infrastructure", "{54AEC6BF-EDDA-4095-8E86-B6765E2496F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountManagement.Domain", "AccountManagement.Domain\AccountManagement.Domain.csproj", "{111EC779-1D03-4090-BF95-46E43720C307}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountManagement.Domain", "AccountManagement.Domain\AccountManagement.Domain.csproj", "{111EC779-1D03-4090-BF95-46E43720C307}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountManagement.Application", "AccountManagement.Application\AccountManagement.Application.csproj", "{4764C5CC-CC61-4BE6-9D49-F87A94462FE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountManagement.Application", "AccountManagement.Application\AccountManagement.Application.csproj", "{4764C5CC-CC61-4BE6-9D49-F87A94462FE5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountManagement.Application.Contracts", "AccountManagement.Application.Contracts\AccountManagement.Application.Contracts.csproj", "{005F58AF-6EDA-4BD5-B4A5-452108806402}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountManagement.Application.Contracts", "AccountManagement.Application.Contracts\AccountManagement.Application.Contracts.csproj", "{005F58AF-6EDA-4BD5-B4A5-452108806402}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountManagement.Infrastructure.EFCore", "AccountManagement.Infrastructure.EFCore\AccountManagement.Infrastructure.EFCore.csproj", "{B806EE63-9E06-4A62-8E2B-FB2B9DE874B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountManagement.Infrastructure.EFCore", "AccountManagement.Infrastructure.EFCore\AccountManagement.Infrastructure.EFCore.csproj", "{B806EE63-9E06-4A62-8E2B-FB2B9DE874B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountManagement.Infrastructure.Configuration", "AccountManagement.Infrastructure.Configuration\AccountManagement.Infrastructure.Configuration.csproj", "{33C69E89-A1B4-4D6E-9132-E02774033D60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountManagement.Infrastructure.Configuration", "AccountManagement.Infrastructure.Configuration\AccountManagement.Infrastructure.Configuration.csproj", "{33C69E89-A1B4-4D6E-9132-E02774033D60}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyKalaShopQuery", "MyKalaShopQuery\MyKalaShopQuery.csproj", "{86C6FC0F-C13C-4D5C-BFB9-AB88FCF4F05A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -249,6 +251,10 @@ Global
 		{33C69E89-A1B4-4D6E-9132-E02774033D60}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33C69E89-A1B4-4D6E-9132-E02774033D60}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33C69E89-A1B4-4D6E-9132-E02774033D60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86C6FC0F-C13C-4D5C-BFB9-AB88FCF4F05A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86C6FC0F-C13C-4D5C-BFB9-AB88FCF4F05A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86C6FC0F-C13C-4D5C-BFB9-AB88FCF4F05A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86C6FC0F-C13C-4D5C-BFB9-AB88FCF4F05A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
