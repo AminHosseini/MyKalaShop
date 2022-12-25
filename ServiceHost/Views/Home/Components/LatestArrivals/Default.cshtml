@@ -1,0 +1,90 @@
+﻿@using MyKalaShopQuery.Contracts.Product
+@using _0_Framework.Application
+@model List<ProductQueryView>
+
+<div class="single-row-slider-area section-space">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <!--=======  section title  =======-->
+                <div class="section-title-wrapper text-center section-space--half">
+                    <h2 class="section-title">جدیدترین ها</h2>
+                </div>
+                <!--=======  End of section title  =======-->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <!--=======  single row slider wrapper  =======-->
+                <div class="single-row-slider-wrapper">
+                    <div class="ht-slick-slider" data-slick-setting='{
+                        "slidesToShow": 4,
+                        "slidesToScroll": 1,
+                        "arrows": true,
+                        "autoplay": false,
+                        "autoplaySpeed": 5000,
+                        "speed": 1000,
+                        "infinite": false,
+                        "rtl": true,
+                        "prevArrow": {"buttonClass": "slick-prev", "iconClass": "ion-chevron-left" },
+                        "nextArrow": {"buttonClass": "slick-next", "iconClass": "ion-chevron-right" }
+                    }' data-slick-responsive='[
+                        {"breakpoint":1501, "settings": {"slidesToShow": 4} },
+                        {"breakpoint":1199, "settings": {"slidesToShow": 4, "arrows": false} },
+                        {"breakpoint":991, "settings": {"slidesToShow": 3, "arrows": false} },
+                        {"breakpoint":767, "settings": {"slidesToShow": 2, "arrows": false} },
+                        {"breakpoint":575, "settings": {"slidesToShow": 2, "arrows": false} },
+                        {"breakpoint":479, "settings": {"slidesToShow": 1, "arrows": false} }
+                    ]'>
+                        @foreach (var product in Model)
+                        {
+                            <div class="col">
+                                <!--=======  single grid product  =======-->
+                                <div class="single-grid-product">
+                                    <div class="single-grid-product__image">
+                                        <div class="single-grid-product__label">
+                                            @if (product.HasDiscount)
+                                            {
+                                                <span class="sale">-@product.DiscountRate %</span>
+                                            }
+                                        </div>
+                                        <a asp-controller="Product" asp-action="Details" asp-route-slug="@product.Slug">
+                                            <img src="~/UploadedFiles/@product.PicturePath" class="img-fluid" alt="@product.PictureAlt" title="@product.PictureTitle">
+                                        </a>
+                                    </div>
+                                    <div class="single-grid-product__content">
+                                        <div class="single-grid-product__category-rating">
+                                            <span class="category">
+                                                <a asp-controller="ProductCategory" asp-action="Index" asp-route-slug="@product.ProductCategorySlug">
+                                                    @product.ProductCategory
+                                                </a>
+                                            </span>
+                                        </div>
+                                        <h3 class="single-grid-product__title">
+                                            <a asp-controller="Product" asp-action="GetDetails" asp-route-slug="@product.Slug">
+                                                @product.Name
+                                            </a>
+                                        </h3>
+                                        <p class="single-grid-product__price">
+                                            @if (product.HasDiscount)
+                                            {
+                                                <span class="discounted-price">@product.PriceWithDiscount.ToMoney() تومان</span>
+                                                <span class="main-price discounted">@product.UnitPrice.ToMoney() تومان</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="main-price">@product.UnitPrice.ToMoney() تومان</span>
+                                            }
+                                        </p>
+                                    </div>
+                                </div>
+                                <!--=======  End of single grid product  =======-->
+                            </div>
+                        }
+                    </div>
+                </div>
+                <!--=======  End of single row slider wrapper  =======-->
+            </div>
+        </div>
+    </div>
+</div>

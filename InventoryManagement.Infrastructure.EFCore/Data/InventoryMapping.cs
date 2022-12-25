@@ -13,7 +13,6 @@ namespace InventoryManagement.Infrastructure.EFCore.Data
 
             builder.Property(x => x.ProductId).IsRequired();
             builder.Property(x => x.UnitPrice).IsRequired();
-            builder.Property(x => x.Color).IsRequired(required: false);
 
             builder.OwnsMany(x => x.Operations, modelBuilder =>
             {

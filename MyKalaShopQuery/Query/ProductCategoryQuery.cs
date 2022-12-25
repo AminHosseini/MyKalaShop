@@ -1,9 +1,5 @@
-﻿using _0_Framework.Application;
-using DiscountManagement.Infrastructure.EFCore.Data;
-using InventoryManagement.Domain.ProductAgg;
-using InventoryManagement.Infrastructure.EFCore.Data;
+﻿using InventoryManagement.Infrastructure.EFCore.Data;
 using Microsoft.EntityFrameworkCore;
-using MyKalaShopQuery.Contracts.Product;
 using MyKalaShopQuery.Contracts.ProductCategory;
 
 namespace MyKalaShopQuery.Query
@@ -11,15 +7,10 @@ namespace MyKalaShopQuery.Query
     public class ProductCategoryQuery : IProductCategoryQuery
     {
         private readonly ShopContext _context;
-        private readonly InventoryContext _inventoryContext;
-        private readonly DiscountContext _discountContext;
 
-        public ProductCategoryQuery(ShopContext context,
-            InventoryContext inventoryContext, DiscountContext discountContext)
+        public ProductCategoryQuery(ShopContext context)
         {
             _context = context;
-            _inventoryContext = inventoryContext;
-            _discountContext = discountContext;
         }
 
         public List<ProductCategoryQueryView> GetProductCategories()
@@ -32,69 +23,6 @@ namespace MyKalaShopQuery.Query
                 PictureTitle = x.PictureTitle,
                 PicturePath = x.PicturePath
             }).AsNoTracking().ToList(); ;
-        }
-
-        public List<ProductCategoryQueryView> GetProductCategoryWithProducts()
-        {
-            var customerDiscounts = _discountContext.CustomerDiscounts
-                .Where(x => x.StartDate <= DateTime.Now && x.EndDate >= DateTime.Now)
-                .Select(x => new { x.ProductId, x.DiscountRate, x.EndDate })
-                .AsNoTracking().ToList();
-
-            var inventory = _inventoryContext.Inventory
-                .Select(x => new { x.ProductId, x.UnitPrice, x.IsAvailable })
-                .AsNoTracking().ToList();
-
-            var productCategories = _context.ProductCategories
-                .Include(x => x.Products)
-                .ThenInclude(x => x.ProductCategory)
-                .Select(x => new ProductCategoryQueryView()
-                {
-                    Id = x.Id,
-                    Name = x.Name,
-                    Slug = x.Slug,
-                    Products = MapProducts(x.Products)
-                }).AsNoTracking().ToList();
-
-            foreach (var productCategory in productCategories)
-            {
-                foreach (var product in productCategory.Products)
-                {
-                    var price = inventory.FirstOrDefault(x => x.ProductId == product.Id);
-                    var discount = customerDiscounts.FirstOrDefault(x => x.ProductId == product.Id);
-
-                    if (price != null)
-                    {
-                        product.UnitPrice = price.UnitPrice;
-                        product.IsAvailable = price.IsAvailable;
-
-                        if (discount != null)
-                        {
-                            product.DiscountRate = discount.DiscountRate;
-                            product.DiscountEndDate = discount.EndDate.ToFarsi();
-                            product.HasDiscount = discount.DiscountRate > 0;
-
-                            var discountAmount = Math.Round(product.UnitPrice * product.DiscountRate) / 100;
-                            product.PriceWithDiscount = (product.UnitPrice - discountAmount);
-                        }
-                    }
-                }
-            }
-
-            return productCategories;
-        }
-
-        private static List<ProductQueryView> MapProducts(List<Product> products)
-        {
-            return products.Select(x => new ProductQueryView()
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Slug = x.Slug,
-                PictureAlt = x.PictureAlt,
-                PictureTitle = x.PictureTitle,
-                PicturePath = x.PicturePath,
-            }).ToList();
         }
     }
 }

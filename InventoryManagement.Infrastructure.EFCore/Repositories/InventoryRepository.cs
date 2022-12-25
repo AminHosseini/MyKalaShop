@@ -24,8 +24,7 @@ namespace InventoryManagement.Infrastructure.EFCore.Repositories
             {
                 Id = x.Id,
                 ProductId = x.ProductId,
-                UnitPrice = x.UnitPrice,
-                Color = x.Color
+                UnitPrice = x.UnitPrice
             }).FirstOrDefault(x => x.Id == id);
         }
 
@@ -57,7 +56,6 @@ namespace InventoryManagement.Infrastructure.EFCore.Repositories
                 ProductId = x.ProductId,
                 UnitPrice = x.UnitPrice,
                 IsAvailable = x.IsAvailable,
-                Color = x.Color,
                 CreationDate = x.CreationDate.ToFarsi(),
                 CurrentCount = x.CalculateCurrentCount()
             });

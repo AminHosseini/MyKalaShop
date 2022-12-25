@@ -14,7 +14,7 @@
       enctype="multipart/form-data">
     <div class="modal-body">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div class="form-group">
                     <label asp-for="ProductId" class="control-label">محصول</label>
                     <select class="form-control" asp-for="ProductId" asp-items="@ViewBag.Products">
@@ -23,18 +23,11 @@
                     <span asp-validation-for="ProductId" class="error"></span>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div class="form-group">
                     <label asp-for="UnitPrice" class="control-label">قیمت واحد</label>
                     <input type="text" class="form-control" asp-for="UnitPrice">
                     <span asp-validation-for="UnitPrice" class="error"></span>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label asp-for="Color" class="control-label">رنگ</label>
-                    <input type="text" class="form-control" asp-for="Color">
-                    <span asp-validation-for="Color" class="error"></span>
                 </div>
             </div>
         </div>

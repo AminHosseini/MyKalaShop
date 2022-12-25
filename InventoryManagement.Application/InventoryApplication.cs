@@ -20,7 +20,7 @@ namespace InventoryManagement.Application
             if (_repository.Exists(x => x.ProductId == model.ProductId))
                 return operationResult.Failed();
 
-            var inventory = new Inventory(model.ProductId, model.UnitPrice, model.Color);
+            var inventory = new Inventory(model.ProductId, model.UnitPrice);
 
             _repository.Create(inventory);
             _repository.Save();
@@ -52,7 +52,7 @@ namespace InventoryManagement.Application
             if (_repository.Exists(x => x.ProductId == model.ProductId && x.Id != model.Id))
                 return operationResult.Failed();
 
-            inventory.Edit(model.ProductId, model.UnitPrice, model.Color);
+            inventory.Edit(model.ProductId, model.UnitPrice);
 
             _repository.Save();
             return operationResult.Succeeded();

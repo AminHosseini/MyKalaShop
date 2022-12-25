@@ -2,5 +2,7 @@
 {
     public interface IProductQuery
     {
+        List<ProductQueryView> GetProductsWithProductCategory();
+        List<ProductQueryView> GetLatestArrivals();
     }
 }

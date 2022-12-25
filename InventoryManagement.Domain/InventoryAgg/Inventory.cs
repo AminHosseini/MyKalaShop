@@ -6,24 +6,21 @@ namespace InventoryManagement.Domain.InventoryAgg
     {
         public long ProductId { get; private set; }
         public double UnitPrice { get; private set; }
-        public string Color { get; private set; }
         public bool IsAvailable { get; private set; }
         public List<InventoryOperation> Operations { get; private set; }
 
-        public Inventory(long productId, double unitPrice, string color)
+        public Inventory(long productId, double unitPrice)
         {
             ProductId = productId;
             UnitPrice = unitPrice;
-            Color = color;
             IsAvailable = false;
             Operations = new List<InventoryOperation>();
         }
 
-        public void Edit(long productId, double unitPrice, string color)
+        public void Edit(long productId, double unitPrice)
         {
             ProductId = productId;
             UnitPrice = unitPrice;
-            Color = color;
         }
 
         public int CalculateCurrentCount()
