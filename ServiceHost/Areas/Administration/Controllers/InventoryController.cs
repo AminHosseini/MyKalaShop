@@ -1,5 +1,8 @@
-﻿using InventoryManagement.Application.Contracts.Inventory;
+﻿using _0_Framework.Infrastructure;
+using InventoryManagement.Application.Contracts.Inventory;
 using InventoryManagement.Application.Contracts.Product;
+using InventoryManagement.Infrastructure.Configuration.Permissions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -7,6 +10,7 @@ namespace ServiceHost.Areas.Administration.Controllers
 {
     [Area("Administration")]
     [Route("Administration/[controller]/[action]")]
+    [Authorize(Roles = Roles.Administrator)]
     public class InventoryController : Controller
     {
         private readonly IInventoryApplication _inventoryApplication;
@@ -19,6 +23,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(InventoryPermissions.ListInventory)]
         public IActionResult Index(SearchInventory model)
         {
             ViewBag.Products = GetProducts();
@@ -27,6 +32,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(InventoryPermissions.CreateInventory)]
         public IActionResult Create()
         {
             ViewBag.Products = GetProducts();
@@ -34,6 +40,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpPost]
+        [NeedsPermission(InventoryPermissions.CreateInventory)]
         public JsonResult Create(CreateInventory model)
         {
             var operationResult = _inventoryApplication.Create(model);
@@ -41,6 +48,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(InventoryPermissions.EditInventory)]
         public IActionResult Edit(long id)
         {
             ViewBag.Products = GetProducts();
@@ -49,6 +57,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpPost]
+        [NeedsPermission(InventoryPermissions.EditInventory)]
         public JsonResult Edit(EditInventory model)
         {
             var operationResult = _inventoryApplication.Edit(model);
@@ -56,12 +65,14 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(InventoryPermissions.IncreaseInventory)]
         public IActionResult Increase(long id)
         {
             return PartialView("_Increase", new IncreaseInventory() { Id = id });
         }
 
         [HttpPost]
+        [NeedsPermission(InventoryPermissions.IncreaseInventory)]
         public IActionResult Increase(IncreaseInventory model)
         {
             var operationResult = _inventoryApplication.Increase(model);
@@ -69,12 +80,14 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(InventoryPermissions.DecreaseInventory)]
         public IActionResult Decrease(long id)
         {
             return PartialView("_Decrease", new DecreaseInventory() { Id = id });
         }
 
         [HttpPost]
+        [NeedsPermission(InventoryPermissions.DecreaseInventory)]
         public IActionResult Decrease(DecreaseInventory model)
         {
             var operationResult = _inventoryApplication.Decrease(model);
@@ -82,6 +95,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(InventoryPermissions.GetInventoryOperationsLog)]
         public IActionResult OperationsLog(long id)
         {
             var log = _inventoryApplication.GetLog(id);

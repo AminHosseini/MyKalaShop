@@ -1,10 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using InventoryManagement.Application.Contracts.Slide;
+using Microsoft.AspNetCore.Authorization;
+using _0_Framework.Infrastructure;
+using InventoryManagement.Infrastructure.Configuration.Permissions;
 
 namespace ServiceHost.Areas.Administration.Controllers
 {
     [Area("Administration")]
     [Route("Administration/[controller]/[action]")]
+    [Authorize(Roles = Roles.Administrator)]
     public class SlideController : Controller
     {
         private readonly ISlideApplication _slideApplication;
@@ -15,6 +19,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(ShopPermissions.ListSlides)]
         public IActionResult Index()
         {
             var model = _slideApplication.GetSlides();
@@ -22,12 +27,14 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(ShopPermissions.CreateSlide)]
         public IActionResult Create()
         {
             return PartialView("_Create", new CreateSlide());
         }
 
         [HttpPost]
+        [NeedsPermission(ShopPermissions.CreateSlide)]
         public JsonResult Create(CreateSlide model)
         {
             var operationResult = _slideApplication.Create(model);
@@ -35,6 +42,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(ShopPermissions.EditSlide)]
         public IActionResult Edit(long id)
         {
             var model = _slideApplication.GetDetails(id);
@@ -42,6 +50,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpPost]
+        [NeedsPermission(ShopPermissions.EditSlide)]
         public JsonResult Edit(EditSlide model)
         {
             var operationResult = _slideApplication.Edit(model);
@@ -49,6 +58,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(ShopPermissions.DeleteSlide)]
         public IActionResult Delete(long id)
         {
             var operationResult = _slideApplication.Delete(id);
@@ -61,6 +71,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(ShopPermissions.RestoreSlide)]
         public IActionResult Restore(long id)
         {
             var operationResult = _slideApplication.Restore(id);

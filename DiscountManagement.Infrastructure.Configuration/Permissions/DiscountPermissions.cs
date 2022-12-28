@@ -15,5 +15,7 @@
         public const int SearchColleagueDiscounts = 222;
         public const int CreateColleagueDiscount = 223;
         public const int EditColleagueDiscount = 224;
+        public const int DeleteColleagueDiscount = 225;
+        public const int RestoreColleagueDiscount = 226;
     }
 }

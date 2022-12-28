@@ -1,10 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using InventoryManagement.Application.Contracts.ProductCategory;
+using Microsoft.AspNetCore.Authorization;
+using _0_Framework.Infrastructure;
+using InventoryManagement.Infrastructure.Configuration.Permissions;
 
 namespace ServiceHost.Areas.Administration.Controllers
 {
     [Area("Administration")]
     [Route("Administration/[controller]/[action]")]
+    [Authorize(Roles = Roles.Administrator)]
     public class ProductCategoryController : Controller
     {
         private readonly IProductCategoryApplication _productCategoryApplication;
@@ -15,6 +19,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(ShopPermissions.ListProductCategories)]
         public IActionResult Index(SearchProductCategory searchModel)
         {
             var model = _productCategoryApplication.Search(searchModel);
@@ -22,12 +27,14 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(ShopPermissions.CreateProductCategory)]
         public IActionResult Create()
         {
             return PartialView("_Create", new CreateProductCategory());
         }
 
         [HttpPost]
+        [NeedsPermission(ShopPermissions.CreateProductCategory)]
         public JsonResult Create(CreateProductCategory model)
         {
             var operationResult = _productCategoryApplication.Create(model);
@@ -35,6 +42,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(ShopPermissions.EditProductCategory)]
         public IActionResult Edit(long id)
         {
             var model = _productCategoryApplication.GetDetails(id);
@@ -42,6 +50,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpPost]
+        [NeedsPermission(ShopPermissions.EditProductCategory)]
         public JsonResult Edit(EditProductCategory model)
         {
             var operationResult = _productCategoryApplication.Edit(model);

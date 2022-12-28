@@ -2,11 +2,15 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using InventoryManagement.Application.Contracts.Product;
 using InventoryManagement.Application.Contracts.ProductPicture;
+using Microsoft.AspNetCore.Authorization;
+using _0_Framework.Infrastructure;
+using InventoryManagement.Infrastructure.Configuration.Permissions;
 
 namespace ServiceHost.Areas.Administration.Controllers
 {
     [Area("Administration")]
     [Route("Administration/[controller]/[action]")]
+    [Authorize(Roles = Roles.Administrator)]
     public class ProductPictureController : Controller
     {
         private readonly IProductPictureApplication _productPictureApplication;
@@ -20,6 +24,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(ShopPermissions.ListProductPictures)]
         public IActionResult Index(SearchProductPicture model)
         {
             ViewBag.Products = GetProducts();
@@ -28,6 +33,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(ShopPermissions.CreateProductPicture)]
         public IActionResult Create()
         {
             ViewBag.Products = GetProducts();
@@ -35,6 +41,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpPost]
+        [NeedsPermission(ShopPermissions.CreateProductPicture)]
         public JsonResult Create(CreateProductPicture model)
         {
             var operationResult = _productPictureApplication.Create(model);
@@ -42,6 +49,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(ShopPermissions.EditProductPicture)]
         public IActionResult Edit(long id)
         {
             ViewBag.Products = GetProducts();
@@ -50,6 +58,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpPost]
+        [NeedsPermission(ShopPermissions.EditProductPicture)]
         public JsonResult Edit(EditProductPicture model)
         {
             var operationResult = _productPictureApplication.Edit(model);
@@ -57,6 +66,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(ShopPermissions.DeleteProductPicture)]
         public IActionResult Delete(long id)
         {
             var operationResult = _productPictureApplication.Delete(id);
@@ -69,6 +79,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(ShopPermissions.RestoreProductPicture)]
         public IActionResult Restore(long id)
         {
             var operationResult = _productPictureApplication.Restore(id);

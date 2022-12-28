@@ -2,6 +2,7 @@
 {
     public static class ShopPermissions
     {
+        public const int AccessToAdminDashboard = 99;
         public const int AccessToShopManagement = 100;
 
         public const int AccessToProductCategories = 110;
@@ -21,10 +22,14 @@
         public const int SearchProductPictures = 132;
         public const int CreateProductPicture = 133;
         public const int EditProductPicture = 134;
+        public const int DeleteProductPicture = 135;
+        public const int RestoreProductPicture = 136;
 
         public const int AccessToSlides = 140;
         public const int ListSlides = 141;
         public const int CreateSlide = 142;
         public const int EditSlide = 143;
+        public const int DeleteSlide = 144;
+        public const int RestoreSlide = 145;
     }
 }

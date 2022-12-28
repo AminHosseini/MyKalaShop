@@ -22,6 +22,7 @@ namespace AccountManagement.Infrastructure.Configuration.Permissions
                         new PermissionDto(AccountPermissions.SearchAccounts, "جستوجو در کاربران"),
                         new PermissionDto(AccountPermissions.CreateAccount, "ایجاد کاربر"),
                         new PermissionDto(AccountPermissions.EditAccount, "ویرایش کاربر"),
+                        new PermissionDto(AccountPermissions.ChangeAccountPassword, "تغییر کلمه عبور کاربر"),
                         new PermissionDto(AccountPermissions.SpecifyAccountPermissions, "دادن دسترسی ها به کاربر")
                     }
                 },

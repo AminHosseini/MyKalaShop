@@ -2,11 +2,15 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using InventoryManagement.Application.Contracts.Product;
 using InventoryManagement.Application.Contracts.ProductCategory;
+using Microsoft.AspNetCore.Authorization;
+using _0_Framework.Infrastructure;
+using InventoryManagement.Infrastructure.Configuration.Permissions;
 
 namespace ServiceHost.Areas.Administration.Controllers
 {
     [Area("Administration")]
     [Route("Administration/[controller]/[action]")]
+    [Authorize(Roles = Roles.Administrator)]
     public class ProductController : Controller
     {
         private readonly IProductApplication _productApplication;
@@ -20,6 +24,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(ShopPermissions.ListProducts)]
         public IActionResult Index(SearchProduct searchModel)
         {
             ViewBag.ProductCategories = GetProductCategories();
@@ -28,6 +33,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(ShopPermissions.CreateProduct)]
         public IActionResult Create()
         {
             ViewBag.ProductCategories = GetProductCategories();
@@ -35,6 +41,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpPost]
+        [NeedsPermission(ShopPermissions.CreateProduct)]
         public JsonResult Create(CreateProduct model)
         {
             var operationResult = _productApplication.Create(model);
@@ -42,6 +49,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(ShopPermissions.EditProduct)]
         public IActionResult Edit(long id)
         {
             ViewBag.ProductCategories = GetProductCategories();
@@ -50,6 +58,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpPost]
+        [NeedsPermission(ShopPermissions.EditProduct)]
         public JsonResult Edit(EditProduct model)
         {
             var operationResult = _productApplication.Edit(model);

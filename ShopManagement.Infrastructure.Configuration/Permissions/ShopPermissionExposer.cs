@@ -9,6 +9,12 @@ namespace InventoryManagement.Infrastructure.Configuration.Permissions
             return new Dictionary<string, List<PermissionDto>>()
             {
                 {
+                    "مدیریت سیستم", new List<PermissionDto>
+                    {
+                        new PermissionDto(ShopPermissions.AccessToAdminDashboard, "دسترسی به داشبورد مدیریت سیستم")
+                    }
+                },
+                {
                     "مدیریت سیستم فروشگاه", new List<PermissionDto>
                     {
                         new PermissionDto(ShopPermissions.AccessToShopManagement, "دسترسی به منو سیستم مدیریت فروشگاه")
@@ -41,7 +47,9 @@ namespace InventoryManagement.Infrastructure.Configuration.Permissions
                         new PermissionDto(ShopPermissions.ListProductPictures, "لیست کردن عکس های محصولات"),
                         new PermissionDto(ShopPermissions.SearchProductPictures, "جستوجو در عکس های محصولات"),
                         new PermissionDto(ShopPermissions.CreateProductPicture, "ایجاد عکس محصول"),
-                        new PermissionDto(ShopPermissions.EditProductPicture, "ویرایش عکس محصول")
+                        new PermissionDto(ShopPermissions.EditProductPicture, "ویرایش عکس محصول"),
+                        new PermissionDto(ShopPermissions.DeleteProductPicture, "حذف عکس محصول"),
+                        new PermissionDto(ShopPermissions.RestoreProductPicture, "بازگردانی عکس محصول")
                     }
                 },
                 {
@@ -50,7 +58,9 @@ namespace InventoryManagement.Infrastructure.Configuration.Permissions
                         new PermissionDto(ShopPermissions.AccessToSlides, "دسترسی به منو اسلایدها"),
                         new PermissionDto(ShopPermissions.ListSlides, "لیست کردن اسلایدها"),
                         new PermissionDto(ShopPermissions.CreateSlide, "ایجاد اسلاید"),
-                        new PermissionDto(ShopPermissions.EditSlide, "ویرایش اسلاید")
+                        new PermissionDto(ShopPermissions.EditSlide, "ویرایش اسلاید"),
+                        new PermissionDto(ShopPermissions.DeleteSlide, "حذف اسلاید"),
+                        new PermissionDto(ShopPermissions.RestoreSlide, "بازگردانی اسلاید")
                     }
                 },
             };

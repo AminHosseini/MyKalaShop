@@ -2,11 +2,15 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using InventoryManagement.Application.Contracts.Product;
+using Microsoft.AspNetCore.Authorization;
+using _0_Framework.Infrastructure;
+using DiscountManagement.Infrastructure.Configuration.Permissions;
 
 namespace ServiceHost.Areas.Administration.Controllers
 {
     [Area("Administration")]
     [Route("Administration/[controller]/[action]")]
+    [Authorize(Roles = Roles.Administrator)]
     public class CustomerDiscountController : Controller
     {
         private readonly ICustomerDiscountApplication _customerDiscountApplication;
@@ -20,6 +24,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(DiscountPermissions.ListCustomerDiscounts)]
         public IActionResult Index(SearchCustomerDiscount model)
         {
             ViewBag.Products = GetProducts();
@@ -28,6 +33,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(DiscountPermissions.CreateCustomerDiscount)]
         public IActionResult Create()
         {
             ViewBag.Products = GetProducts();
@@ -35,6 +41,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpPost]
+        [NeedsPermission(DiscountPermissions.CreateCustomerDiscount)]
         public JsonResult Create(CreateCustomerDiscount model)
         {
             var operationResult = _customerDiscountApplication.Create(model);
@@ -42,6 +49,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(DiscountPermissions.EditCustomerDiscount)]
         public IActionResult Edit(long id)
         {
             ViewBag.Products = GetProducts();
@@ -50,6 +58,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpPost]
+        [NeedsPermission(DiscountPermissions.EditCustomerDiscount)]
         public JsonResult Edit(EditCustomerDiscount model)
         {
             var operationResult = _customerDiscountApplication.Edit(model);

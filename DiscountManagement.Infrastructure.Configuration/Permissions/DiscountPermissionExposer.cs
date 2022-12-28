@@ -31,7 +31,9 @@ namespace DiscountManagement.Infrastructure.Configuration.Permissions
                         new PermissionDto(DiscountPermissions.ListColleagueDiscounts, "لیست کردن تخفیفات همکاران"),
                         new PermissionDto(DiscountPermissions.SearchColleagueDiscounts, "جستوجو در تخفیفات همکاران"),
                         new PermissionDto(DiscountPermissions.CreateColleagueDiscount, "ایجاد تخفیف همکاری"),
-                        new PermissionDto(DiscountPermissions.EditColleagueDiscount, "ویرایش تخفیف همکاری")
+                        new PermissionDto(DiscountPermissions.EditColleagueDiscount, "ویرایش تخفیف همکاری"),
+                        new PermissionDto(DiscountPermissions.DeleteColleagueDiscount, "حذف تخفیف همکاری"),
+                        new PermissionDto(DiscountPermissions.RestoreColleagueDiscount, "بازگردانی تخفیف همکاری")
                     }
                 },
             };

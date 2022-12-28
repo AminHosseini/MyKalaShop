@@ -1,10 +1,14 @@
-﻿using CommentManagement.Application.Contracts.Comment;
+﻿using _0_Framework.Infrastructure;
+using CommentManagement.Application.Contracts.Comment;
+using CommentManagement.Infrastructure.Configuration.Permissions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ServiceHost.Areas.Administration.Controllers
 {
     [Area("Administration")]
     [Route("Administration/[controller]/[action]")]
+    [Authorize(Roles = Roles.Administrator)]
     public class CommentController : Controller
     {
         private readonly ICommentApplication _commentApplication;
@@ -15,6 +19,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(CommentPermissions.ListComments)]
         public IActionResult Index(SearchComment model)
         {
             var comments = _commentApplication.Search(model);
@@ -22,6 +27,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(CommentPermissions.ConfirmComment)]
         public IActionResult Confirm(long id)
         {
             var operationResult = _commentApplication.Confirm(id);
@@ -34,6 +40,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(CommentPermissions.CancelComment)]
         public IActionResult Cancel(long id)
         {
             var operationResult = _commentApplication.Cancel(id);

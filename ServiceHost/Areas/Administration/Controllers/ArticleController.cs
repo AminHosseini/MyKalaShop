@@ -1,5 +1,8 @@
-﻿using BlogManagement.Application.Contracts.Article;
+﻿using _0_Framework.Infrastructure;
+using BlogManagement.Application.Contracts.Article;
 using BlogManagement.Application.Contracts.ArticleCategory;
+using BlogManagement.Infrastructure.Configuration.Permissions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -7,6 +10,7 @@ namespace ServiceHost.Areas.Administration.Controllers
 {
     [Area("Administration")]
     [Route("Administration/[controller]/[action]")]
+    [Authorize(Roles = Roles.Administrator)]
     public class ArticleController : Controller
     {
         private readonly IArticleApplication _articleApplication;
@@ -19,6 +23,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(BlogPermissions.ListArticles)]
         public IActionResult Index(SearchArticle model)
         {
             ViewBag.ArticleCategories = GetProductCategories();
@@ -27,6 +32,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(BlogPermissions.CreateArticle)]
         public IActionResult Create()
         {
             ViewBag.ArticleCategories = GetProductCategories();
@@ -34,6 +40,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpPost]
+        [NeedsPermission(BlogPermissions.CreateArticle)]
         public IActionResult Create(CreateArticle model)
         {
             var operationResult = _articleApplication.Create(model);
@@ -46,6 +53,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(BlogPermissions.EditArticle)]
         public IActionResult Edit(long id)
         {
             ViewBag.ArticleCategories = GetProductCategories();
@@ -54,6 +62,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpPost]
+        [NeedsPermission(BlogPermissions.EditArticle)]
         public IActionResult Edit(EditArticle model)
         {
             var operationResult = _articleApplication.Edit(model);

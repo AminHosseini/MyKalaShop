@@ -1,10 +1,14 @@
-﻿using AccountManagement.Application.Contracts.Role;
+﻿using _0_Framework.Infrastructure;
+using AccountManagement.Application.Contracts.Role;
+using AccountManagement.Infrastructure.Configuration.Permissions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ServiceHost.Areas.Administration.Controllers
 {
     [Area("Administration")]
     [Route("Administration/[controller]/[action]")]
+    [Authorize(Roles = Roles.Administrator)]
     public class RoleController : Controller
     {
         private readonly IRoleApplication _roleApplication;
@@ -15,6 +19,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(AccountPermissions.ListRoles)]
         public IActionResult Index()
         {
             var model = _roleApplication.GetRoles();
@@ -22,12 +27,14 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(AccountPermissions.CreateRole)]
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
+        [NeedsPermission(AccountPermissions.CreateRole)]
         public IActionResult Create(CreateRole model)
         {
             var operationResult = _roleApplication.Create(model);
@@ -40,6 +47,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(AccountPermissions.EditRole)]
         public IActionResult Edit(long id)
         {
             var model = _roleApplication.GetDetails(id);
@@ -47,6 +55,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpPost]
+        [NeedsPermission(AccountPermissions.EditRole)]
         public IActionResult Edit(EditRole model)
         {
             var operationResult = _roleApplication.Edit(model);
