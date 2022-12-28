@@ -5,13 +5,15 @@ using InventoryManagement.Infrastructure.Configuration;
 using CommentManagement.Infrastructure.Configuration;
 using BlogManagement.Infrastructure.Configuration;
 using AccountManagement.Infrastructure.Configuration;
-using System.Text.Encodings.Web;
-using System.Text.Unicode;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews()
+    .AddMvcOptions(options => options.Filters.Add<SecurityControllerFilter>());
+
+builder.Services.AddHttpContextAccessor();
 
 var connectionString = builder.Configuration.GetConnectionString("MyKalaShop");
 
@@ -24,7 +26,17 @@ AccountManagementBootstrapper.Configure(builder.Services, connectionString);
 
 builder.Services.AddTransient<IFileUploader, FileUploader>();
 builder.Services.AddSingleton<IPasswordHasher, PasswordHasher>();
+builder.Services.AddSingleton<IAuthHelper, AuthHelper>();
 //builder.Services.AddSingleton(HtmlEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Arabic));
+
+builder.Services
+    .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, x =>
+    {
+        x.LoginPath = new PathString("/Account/Index");
+    });
+
+builder.Services.AddAuthorization();
 
 
 
@@ -42,8 +54,12 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseAuthentication();
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+app.UseCookiePolicy();
 
 app.UseRouting();
 

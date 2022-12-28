@@ -22,6 +22,12 @@
     </div>
 </div>
 <!--==================== end of breadcrumb area ====================-->
+
+@if (!string.IsNullOrWhiteSpace(ViewBag.Message))
+{
+    <div class="alert alert-danger">@ViewBag.Message</div>
+}
+
 <!--====================  page content area ====================-->
 <div class="page-content-area">
     <div class="container">
@@ -31,7 +37,7 @@
                     <div class="page-content-wrapper">
                         <div class="row">
                             <partial name="_Login" model="new LoginViewModel()" />
-                            <partial name="_Register" model="new RegisterViewModel()" />
+                            <partial name="_Register" model="new CreateAccount()" />
                         </div>
                     </div>
                 </div>

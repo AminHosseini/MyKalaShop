@@ -8,5 +8,6 @@
         public const string WrongFileFormat = "فایل با این فرمت اجازه آپلود ندارد.";
         public const string PasswordsNotMatched = "پسورد ها باید باهم یکی باشند.";
         public const string WrongUserPass = "نام کاربری یا کلمه عبور اشتباه وارد شده است.";
+        public const string SuccessfullyRegistered = "ثبت نام با موفقیت انجام شد.";
     }
 }

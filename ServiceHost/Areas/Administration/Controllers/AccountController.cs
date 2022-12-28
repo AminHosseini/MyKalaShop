@@ -1,6 +1,8 @@
 ﻿using _0_Framework.Infrastructure;
 using AccountManagement.Application.Contracts.Account;
 using AccountManagement.Application.Contracts.Role;
+using AccountManagement.Infrastructure.Configuration.Permissions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -8,6 +10,7 @@ namespace ServiceHost.Areas.Administration.Controllers
 {
     [Area("Administration")]
     [Route("Administration/[controller]/[action]")]
+    [Authorize(Roles = Roles.Administrator)]
     public class AccountController : Controller
     {
         private readonly IAccountApplication _accountApplication;
@@ -23,6 +26,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(AccountPermissions.ListAccounts)]
         public IActionResult Index(SearchAccount model)
         {
             ViewBag.Roles = GetRoles();
@@ -31,6 +35,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(AccountPermissions.CreateAccount)]
         public IActionResult Create()
         {
             ViewBag.Roles = GetRoles();
@@ -38,6 +43,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpPost]
+        [NeedsPermission(AccountPermissions.CreateAccount)]
         public JsonResult Create(CreateAccount model)
         {
             var operationResult = _accountApplication.Create(model);
@@ -45,6 +51,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(AccountPermissions.EditAccount)]
         public IActionResult Edit(long id)
         {
             ViewBag.Roles = GetRoles();
@@ -53,6 +60,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpPost]
+        [NeedsPermission(AccountPermissions.EditAccount)]
         public JsonResult Edit(EditAccount model)
         {
             var operationResult = _accountApplication.Edit(model);
@@ -60,12 +68,14 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(AccountPermissions.ChangeAccountPassword)]
         public IActionResult ChangePassword(long id)
         {
             return PartialView("_ChangePassword", new AccountChangePassword() { Id = id });
         }
 
         [HttpPost]
+        [NeedsPermission(AccountPermissions.ChangeAccountPassword)]
         public JsonResult ChangePassword(AccountChangePassword model)
         {
             var operationResult = _accountApplication.ChangePassword(model);
@@ -73,6 +83,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpGet]
+        [NeedsPermission(AccountPermissions.SpecifyAccountPermissions)]
         public IActionResult SpecifyPermissions(long id)
         {
             var model = _accountApplication.GetPermissions(id);
@@ -81,6 +92,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         }
 
         [HttpPost]
+        [NeedsPermission(AccountPermissions.SpecifyAccountPermissions)]
         public IActionResult SpecifyPermissions(SpecifyAccountPermissions model)
         {
             var operationResult = _accountApplication.SpecifyPermissions(model);

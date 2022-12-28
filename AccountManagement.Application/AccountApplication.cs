@@ -9,13 +9,15 @@ namespace AccountManagement.Application
         private readonly IAccountRepository _repository;
         private readonly IFileUploader _fileUploader;
         private readonly IPasswordHasher _passwordHasher;
+        private readonly IAuthHelper _authHelper;
 
         public AccountApplication(IAccountRepository repository,
-            IFileUploader fileUploader, IPasswordHasher passwordHasher)
+            IFileUploader fileUploader, IPasswordHasher passwordHasher, IAuthHelper authHelper)
         {
             _repository = repository;
             _fileUploader = fileUploader;
             _passwordHasher = passwordHasher;
+            _authHelper = authHelper;
         }
 
         public OperationResult Create(CreateAccount model)
@@ -101,6 +103,30 @@ namespace AccountManagement.Application
             account.SpecifyPermissions(permissions);
             _repository.Save();
             return operationResult.Succeeded();
+        }
+
+        public OperationResult Login(LoginViewModel model)
+        {
+            var operationResult = new OperationResult();
+
+            var account = _repository.GetAccountByUserName(model.UserName);
+            if (account == null)
+                return operationResult.Failed(ValidationMessage.WrongUserPass);
+
+            var password = _passwordHasher.Check(account.Password, model.Password);
+            if (!password.Verified)
+                return operationResult.Failed(ValidationMessage.WrongUserPass);
+
+            var permissions = account.Permissions.Select(x => x.Code).ToList();
+            var authViewModel = new AuthViewModel(account.Id, account.RoleId, account.FullName, account.UserName, account.Mobile, permissions);
+
+            _authHelper.Signin(authViewModel);
+            return operationResult.Succeeded();
+        }
+
+        public void Logout()
+        {
+            _authHelper.SignOut();
         }
     }
 }

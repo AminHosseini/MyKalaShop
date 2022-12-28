@@ -9,7 +9,8 @@
         public const int SearchAccounts = 612;
         public const int CreateAccount = 613;
         public const int EditAccount = 614;
-        public const int SpecifyAccountPermissions = 615;
+        public const int ChangeAccountPassword = 615;
+        public const int SpecifyAccountPermissions = 616;
 
         public const int AccessToRoles = 620;
         public const int ListRoles = 621;

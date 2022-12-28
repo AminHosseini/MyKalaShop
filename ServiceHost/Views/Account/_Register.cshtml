@@ -1,33 +1,33 @@
 ﻿@using AccountManagement.Application.Contracts.Account
-@model RegisterViewModel
+@model CreateAccount
 
 <div class="col-sm-12 col-md-12 col-lg-6 col-xs-12">
     <form asp-controller="Account" asp-action="Register">
         <div class="login-form">
-            <h4 class="login-title">Register</h4>
+            <h4 class="login-title">ثبت نام</h4>
             <div class="row">
                 <div class="col-md-6 col-12 mb-20">
-                    <label>First Name</label>
-                    <input type="text" placeholder="First Name">
+                    <label asp-for="FullName">نام و نام خانوادگی*</label>
+                    <input asp-for="FullName" placeholder="مثال: سیدامین حسینی">
                 </div>
                 <div class="col-md-6 col-12 mb-20">
-                    <label>Last Name</label>
-                    <input type="text" placeholder="Last Name">
+                    <label asp-for="Mobile">موبایل*</label>
+                    <input asp-for="Mobile" placeholder="09** *** **** :مثال">
                 </div>
                 <div class="col-md-12 mb-20">
-                    <label>Email Address*</label>
-                    <input type="email" placeholder="Email Address">
+                    <label asp-for="UserName">نام کاربری*</label>
+                    <input asp-for="UserName" placeholder="نام کاربری خودتان را وارد کنید.">
                 </div>
                 <div class="col-md-6 mb-20">
-                    <label>Password</label>
-                    <input type="password" placeholder="Password">
+                    <label asp-for="Password">رمز عبور*</label>
+                    <input asp-for="Password" placeholder="رمز عبور خود را وارد کنید.">
                 </div>
                 <div class="col-md-6 mb-20">
-                    <label>Confirm Password</label>
-                    <input type="password" placeholder="Confirm Password">
+                    <label asp-for="RePassword">تکرار رمز عبور*</label>
+                    <input asp-for="RePassword" placeholder="رمز عبور خود را مجدد وارد کنید.">
                 </div>
                 <div class="col-12">
-                    <button class="register-button mt-0">Register</button>
+                    <button class="register-button mt-0">ثبت نام</button>
                 </div>
             </div>
         </div>

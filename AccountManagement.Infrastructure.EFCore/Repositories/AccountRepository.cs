@@ -75,5 +75,10 @@ namespace AccountManagement.Infrastructure.EFCore.Repositories
 
             return query.OrderByDescending(x => x.Id).ToList();
         }
+
+        public Account GetAccountByUserName(string userName)
+        {
+            return _context.Accounts.FirstOrDefault(x => x.UserName == userName);
+        }
     }
 }

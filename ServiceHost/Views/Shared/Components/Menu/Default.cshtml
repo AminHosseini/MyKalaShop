@@ -1,6 +1,7 @@
 ﻿@using MyKalaShopQuery
 @using _0_Framework.Application
 @model MenuModel
+@inject IAuthHelper _authHelper
 
 <!-------------------------- desktop ------------------------------>
 <div class="header-area header-sticky">
@@ -43,6 +44,16 @@
                                             </li>
                                         }
                                     </ul>
+                                </li>
+                                <li>
+                                    @if (_authHelper.IsAuthenticated())
+                                    {
+                                        <a asp-controller="Account" asp-action="Logout">خروج</a>
+                                    }
+                                    else
+                                    {
+                                        <a asp-controller="Account" asp-action="Index">ورود/ثبت نام</a>
+                                    }
                                 </li>
                             </ul>
                         </nav>

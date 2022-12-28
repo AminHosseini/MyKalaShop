@@ -2,6 +2,11 @@
     ViewData["Title"] = "صفحه اصلی";
 }
 
+@if (!string.IsNullOrWhiteSpace(ViewBag.ErrorMessage))
+{
+    <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+}
+
 <!--====================  hero slider area  ====================-->
 @await Component.InvokeAsync("Slide")
 <!--====================  End of hero slider area  ====================-->
