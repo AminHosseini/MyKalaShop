@@ -1,0 +1,32 @@
+﻿@using MyKalaShopQuery.Contracts.Comment
+@model List<CommentQueryView>
+
+<h3 class="comment-counter">(@Model.Count) کامنت ها</h3>
+<!--=======  comment container  =======-->
+<div class="comment-container">
+    @foreach (var comment in Model)
+    {
+        <!--=======  single comment  =======-->
+        <div class="single-comment" id="comment-@comment.Id">
+            <span class="reply-btn">
+                <a href="#postComment" onclick='$("#commentParentId").val(@comment.Id)'>پاسخ دادن</a>
+            </span>
+            <div class="image">
+                <img src="~/MainTheme/assets/img/blog/comment-icon.png" alt="">
+            </div>
+            <div class="content">
+                <h3 class="user">
+                    @comment.Name <span class="comment-time">
+                        @comment.CreationDate
+                    </span>
+                </h3>
+                @if (comment.ParentId != 0)
+                {
+                    <p><span>در پاسخ به: </span><a href="#comment-@comment.ParentId">@comment.Parent</a></p>
+                }
+                <p class="comment-text">@comment.Message</p>
+            </div>
+        </div>
+    }
+    <!--=======  End of single comment  =======-->
+</div>

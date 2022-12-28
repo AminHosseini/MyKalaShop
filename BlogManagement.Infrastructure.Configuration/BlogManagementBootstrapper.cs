@@ -10,6 +10,7 @@ using BlogManagement.Infrastructure.EFCore.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MyKalaShopQuery.Contracts.Article;
+using MyKalaShopQuery.Contracts.ArticleCategory;
 using MyKalaShopQuery.Query;
 
 namespace BlogManagement.Infrastructure.Configuration
@@ -22,6 +23,7 @@ namespace BlogManagement.Infrastructure.Configuration
 
             services.AddTransient<IArticleCategoryRepository, ArticleCategoryRepository>();
             services.AddTransient<IArticleCategoryApplication, ArticleCategoryApplication>();
+            services.AddTransient<IArticleCategoryQuery, ArticleCategoryQuery>();
 
             services.AddTransient<IArticleRepository, ArticleRepository>();
             services.AddTransient<IArticleApplication, ArticleApplication>();

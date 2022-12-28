@@ -18,7 +18,25 @@ namespace ServiceHost.Controllers
         {
             model.CommentType = CommentType.ProductComment;
             var operationResult = _commentApplication.Create(model);
+
+            if (operationResult.IsSuccess)
+                return RedirectToAction("Details", "Product", new { Slug = productSlug });
+
+            ViewBag.ErrorMessage = operationResult.Message;
             return RedirectToAction("Details", "Product", new { Slug = productSlug });
+        }
+
+        [HttpPost]
+        public IActionResult CreateArticleComment(CreateComment model, string articleSlug)
+        {
+            model.CommentType = CommentType.ArticleComment;
+            var operationResult = _commentApplication.Create(model);
+
+            if (operationResult.IsSuccess)
+                return RedirectToAction("Details", "Article", new { Slug = articleSlug });
+
+            ViewBag.ErrorMessage = operationResult.Message;
+            return RedirectToAction("Details", "Article", new { Slug = articleSlug });
         }
     }
 }

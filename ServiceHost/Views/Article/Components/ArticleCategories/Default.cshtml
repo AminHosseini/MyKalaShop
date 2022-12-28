@@ -1,0 +1,17 @@
+﻿@using MyKalaShopQuery.Contracts.ArticleCategory
+@model List<ArticleCategoryQueryView>
+
+<div class="single-sidebar-widget">
+    <h4 class="single-sidebar-widget__title">گروه مقالات</h4>
+    <ul class="single-sidebar-widget__category-list">
+        @foreach (var articleCategory in Model)
+        {
+            <li>
+                <a asp-controller="ArticleCategory" asp-action="Index" asp-route-slug="@articleCategory.Slug">
+                    @articleCategory.Name
+                    <span class="counter">@articleCategory.ArticlesCount</span>
+                </a>
+            </li>
+        }
+    </ul>
+</div>

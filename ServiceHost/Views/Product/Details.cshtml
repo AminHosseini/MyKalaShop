@@ -22,7 +22,7 @@
                                 <a asp-controller="Home" asp-action="Index">صفحه اصلی</a>
                             </li>
                             <li>
-                                <a asp-controller="ProductCategory" asp-action="Index" asp-route-slug="@Model.ProductCategorySlug">محصولات : @Model.ProductCategory</a>
+                                <a asp-controller="ProductCategory" asp-action="Index" asp-route-slug="@Model.ProductCategorySlug">@Model.ProductCategory</a>
                             </li>
                             <li class="active">@Model.Name</li>
                         </ul>
@@ -35,6 +35,12 @@
     </div>
 </div>
 <!--====================  End of breadcrumb area  ====================-->
+
+@if (!string.IsNullOrWhiteSpace(ViewBag.ErrorMessage))
+{
+    <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+}
+
 <!--====================  page content area ====================-->
 <div class="page-content-area">
     <div class="container">

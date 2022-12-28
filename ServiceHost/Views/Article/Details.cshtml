@@ -1,0 +1,174 @@
+﻿@using CommentManagement.Application.Contracts.Comment
+@using MyKalaShopQuery.Contracts.Article
+@using MyKalaShopQuery.Contracts.Comment
+@model ArticleQueryView
+
+@{
+    ViewData["Title"] = "اطلاعات مقاله";
+}
+
+<!--=======  breadcrumb area  =======-->
+<div class="breadcrumb-area section-space--half">
+    <div class="container wide">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-wrapper breadcrumb-bg">
+                    <div class="breadcrumb-content">
+                        <h2 class="breadcrumb-content__title">@Model.Title</h2>
+                        <ul class="breadcrumb-content__page-map">
+                            <li>
+                                <a asp-controller="Home" asp-action="Index">صفحه اصلی</a>
+                            </li>
+                            <li>
+                                <a asp-controller="ArticleCategory" asp-action="Index" asp-route-slug="@Model.ArticleCategorySlug">@Model.ArticleCategory</a>
+                            </li>
+                            <li class="active">@Model.Title</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--=======  End of breadcrumb area  =======-->
+
+@if (!string.IsNullOrWhiteSpace(ViewBag.ErrorMessage))
+{
+    <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+}
+
+<!--=======  page content area  =======-->
+<div class="page-content-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <!--=======  page wrapper  =======-->
+                <div class="page-wrapper">
+                    <div class="page-content-wrapper">
+                        <div class="row">
+                            <div class="col-lg-9 order-1 order-lg-1">
+                                <!--=======  blog page content  =======-->
+                                <div class="blog-page-content">
+                                    <!--=======  blog post container  =======-->
+                                    <div class="blog-single-post-container">
+                                        <!--=======  post title  =======-->
+                                        <h3 class="post-title">@Model.Title</h3>
+                                        <!--=======  End of post title  =======-->
+                                        <!--=======  Post meta  =======-->
+                                        <div class="post-meta">
+                                            <p>
+                                                @*<span><i class="fa fa-user-circle"></i> Posted By: </span> <a href="#">admin</a> <span class="separator">|</span>*@
+                                                <span>
+                                                    <i class="fa fa-calendar"></i> پست شده در تاریخ: @Model.PublishDate @*<a href="#">24 August, 2019</a>*@
+                                                </span>
+                                            </p>
+                                        </div>
+                                        <!--=======  End of Post meta  =======-->
+                                        <!--=======  Post media  =======-->
+                                        <div class="single-blog-post-media">
+                                            <div class="image">
+                                                <img src="~/UploadedFiles/@Model.PicturePath" class="img-fluid"
+                                                     alt="@Model.PictureAlt" title="@Model.PictureTitle">
+                                            </div>
+                                        </div>
+                                        <!--=======  End of Post media  =======-->
+                                        <!--=======  Post content  =======-->
+                                        <div class="post-content">
+                                            @Html.Raw(Model.Description)
+                                        </div>
+                                        <!--=======  End of Post content  =======-->
+                                        <!--=======  Tags area  =======-->
+                                        <div class="tag-area">
+                                            <span>تگ ها: </span>
+                                            <ul>
+                                                @foreach (var keyword in Model.KeywordsList)
+                                                {
+                                                    <li><a asp-controller="Product" asp-action="Search" asp-route-key="@keyword">@keyword</a>,</li>
+                                                }
+                                            </ul>
+                                        </div>
+                                        <!--=======  End of Tags area  =======-->
+                                        <!--=======  Share post area  =======-->
+                                        <div class="social-share-buttons">
+                                            <h3>share this post</h3>
+                                            <ul>
+                                                <li>
+                                                    <a class="twitter" href="#">
+                                                        <i class="fa fa-twitter"></i>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="facebook" href="#">
+                                                        <i class="fa fa-facebook"></i>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="google-plus" href="#">
+                                                        <i class="fa fa-google-plus"></i>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="pinterest" href="#">
+                                                        <i class="fa fa-pinterest"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!--=======  End of blog post container  =======-->
+                                    <!--======================= Comment section =========================-->
+                                    <div class="comment-section">
+                                        <partial name="_DisplayCommentsSection" model="@Model.ArticleComments" />
+                                        <!--=======  End of comment container  =======-->
+                                        <!--=======  comment form container  =======-->
+                                        <div class="comment-form-container">
+                                            <h3 class="comment-form-title">کامنت بگزارید.</h3>
+                                            <p>
+                                                ایمیل شما نمایش داده نخواهد شد. پرکردن فیلدهایی که با علامت * مشخص شده اند اجباریست.
+                                            </p>
+                                            <!--=======  comment form  =======-->
+                                            <div class="comment-form">
+                                                <partial name="_CreateCommentSection" model="new CreateComment(){ OwnerRecordId = @Model.Id, ArticleSlug = @Model.Slug }" />
+                                            </div>
+                                            <!--=======  End of comment form  =======-->
+                                        </div>
+                                        <!--=======  End of comment form container  =======-->
+                                    </div>
+                                    <!--=====  End of Comment section  ======-->
+                                </div>
+                                <!--=======  End of blog page content  =======-->
+                            </div>
+                            <div class="col-lg-3 order-2 order-lg-2">
+                                <!--=======  page sidebar wrapper =======-->
+                                <div class="page-sidebar-wrapper">
+                                    <!--=======  single sidebar widget  =======-->
+                                    @await Component.InvokeAsync("ArticleCategories")
+                                    <!--=======  End of single sidebar widget  =======-->
+                                    <!--=======  single sidebar widget  =======-->
+                                    @await Component.InvokeAsync("LatestArticles")
+                                    <!--=======  End of single sidebar widget  =======-->
+                                    <!--=======  single sidebar widget  =======-->
+                                    <div class="single-sidebar-widget">
+                                        <h4 class="single-sidebar-widget__title">تگ ها</h4>
+                                        <ul class="single-sidebar-widget__tag-list">
+                                            @foreach (var keyword in Model.KeywordsList)
+                                            {
+                                                <li>
+                                                    <a asp-controller="Product" asp-action="Search" asp-route-key="@keyword">@keyword</a>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </div>
+                                    <!--=======  End of single sidebar widget  =======-->
+                                </div>
+                                <!--=======  End of page sidebar wrapper  =======-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--=======  End of page wrapper  =======-->
+            </div>
+        </div>
+    </div>
+</div>
+<!--=======  End of page content area =======-->

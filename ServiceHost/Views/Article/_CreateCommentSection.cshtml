@@ -1,0 +1,43 @@
+﻿@using CommentManagement.Application.Contracts.Comment
+@model CreateComment
+
+<form asp-controller="Comment" asp-action="CreateArticleComment" method="post">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group">
+                <label asp-for="Message">نظر شما</label>
+                <textarea asp-for="Message" placeholder="نظر خود را بنویسید..."></textarea>
+                <span asp-validation-for="Message" class="error"></span>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label asp-for="Name">نام <span class="required">*</span></label>
+                <input asp-for="Name" placeholder="مثال: امین حسینی">
+                <span asp-validation-for="Name" class="error"></span>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label asp-for="Email">ایمیل <span class="required">*</span></label>
+                <input asp-for="Email" placeholder="مثال: aminhosseini@yahoo.com">
+                <span asp-validation-for="Email" class="error"></span>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label asp-for="Website">وبسایت</label>
+                <input asp-for="Website" placeholder="http://www.google.com">
+                <span asp-validation-for="Website" class="error"></span>
+            </div>
+        </div>
+        <input type="hidden" asp-for="ArticleSlug" />
+        <input type="hidden" asp-for="OwnerRecordId" />
+        <input type="hidden" asp-for="ParentId" id="commentParentId" />
+        <div class="col-lg-12">
+            <button type="submit" class="comment-btn" name="submit">
+                ثبت
+            </button>
+        </div>
+    </div>
+</form>

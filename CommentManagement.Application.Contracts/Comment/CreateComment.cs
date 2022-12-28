@@ -20,5 +20,6 @@ namespace CommentManagement.Application.Contracts.Comment
         public long ParentId { get; set; }
 
         public string ProductSlug { get; set; }
+        public string ArticleSlug { get; set; }
     }
 }

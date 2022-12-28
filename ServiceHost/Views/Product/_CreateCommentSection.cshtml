@@ -8,14 +8,17 @@
             <div class="col-md-6 col-12 form-group">
                 <label asp-for="Name">نام:</label>
                 <input asp-for="Name" placeholder="نام" type="text">
+                <span asp-validation-for="Name" class="error"></span>
             </div>
             <div class="col-md-6 col-12 form-group">
                 <label asp-for="Email">ایمیل:</label>
                 <input asp-for="Email" placeholder="ایمیل" type="text">
+                <span asp-validation-for="Email" class="error"></span>
             </div>
             <div class="col-12 form-group">
                 <label asp-for="Message">نظر شما:</label>
                 <textarea asp-for="Message" placeholder="نظر شما"></textarea>
+                <span asp-validation-for="Message" class="error"></span>
             </div>
             <input asp-for="OwnerRecordId" type="hidden" />
             <input asp-for="ProductSlug" type="hidden" />
