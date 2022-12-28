@@ -1,0 +1,42 @@
+﻿@using AccountManagement.Application.Contracts.Account
+@{
+    ViewData["Title"] = "ورود/ثبت نام";
+}
+
+<!--====================  breadcrumb area ====================-->
+<div class="breadcrumb-area section-space--half">
+    <div class="container wide">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-wrapper breadcrumb-bg">
+                    <div class="breadcrumb-content">
+                        <h2 class="breadcrumb-content__title">ورود/ثبت نام</h2>
+                        <ul class="breadcrumb-content__page-map">
+                            <li><a asp-controller="Home" asp-action="Index">صفحه اصلی</a></li>
+                            <li class="active">ورود/ثبت نام</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--==================== end of breadcrumb area ====================-->
+<!--====================  page content area ====================-->
+<div class="page-content-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-wrapper">
+                    <div class="page-content-wrapper">
+                        <div class="row">
+                            <partial name="_Login" model="new LoginViewModel()" />
+                            <partial name="_Register" model="new RegisterViewModel()" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--==================== end of page content area ====================-->
