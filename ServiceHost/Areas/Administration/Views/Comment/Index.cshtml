@@ -74,13 +74,14 @@
                                             }
                                         </td>
                                         <td>
-                                            @if (!item.IsCanceled)
+                                            @if (!item.IsCanceled && item.IsConfirmed)
                                             {
                                                 <a class="btn btn-danger pull-right m-rl-5" asp-action="Cancel" asp-route-id="@item.Id">کنسل</a>
                                             }
                                             @if (!item.IsConfirmed && !item.IsCanceled)
                                             {
                                                 <a class="btn btn-success pull-right m-rl-5" asp-action="Confirm" asp-route-id="@item.Id">تایید</a>
+                                                <a class="btn btn-danger pull-right m-rl-5" asp-action="Cancel" asp-route-id="@item.Id">کنسل</a>
                                             }
                                             @if (item.IsCanceled)
                                             {

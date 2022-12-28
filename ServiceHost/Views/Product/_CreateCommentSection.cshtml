@@ -1,0 +1,27 @@
+﻿@using CommentManagement.Application.Contracts.Comment
+@model CreateComment
+
+<div class="rating-form-wrapper fix">
+    <h3>کامنت بگزارید.</h3>
+    <form asp-controller="Comment" asp-action="CreateProductComment" method="post">
+        <div class="rating-form row">
+            <div class="col-md-6 col-12 form-group">
+                <label asp-for="Name">نام:</label>
+                <input asp-for="Name" placeholder="نام" type="text">
+            </div>
+            <div class="col-md-6 col-12 form-group">
+                <label asp-for="Email">ایمیل:</label>
+                <input asp-for="Email" placeholder="ایمیل" type="text">
+            </div>
+            <div class="col-12 form-group">
+                <label asp-for="Message">نظر شما:</label>
+                <textarea asp-for="Message" placeholder="نظر شما"></textarea>
+            </div>
+            <input asp-for="OwnerRecordId" type="hidden" />
+            <input asp-for="ProductSlug" type="hidden" />
+            <div class="col-12">
+                <input value="ثبت نظر" type="submit">
+            </div>
+        </div>
+    </form>
+</div>

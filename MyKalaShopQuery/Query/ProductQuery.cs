@@ -1,8 +1,13 @@
 ﻿using _0_Framework.Application;
+using CommentManagement.Infrastructure.EFCore;
+using CommentManagement.Infrastructure.EFCore.Data;
 using DiscountManagement.Infrastructure.EFCore.Data;
+using InventoryManagement.Domain.ProductPictureAgg;
 using InventoryManagement.Infrastructure.EFCore.Data;
 using Microsoft.EntityFrameworkCore;
+using MyKalaShopQuery.Contracts.Comment;
 using MyKalaShopQuery.Contracts.Product;
+using MyKalaShopQuery.Contracts.ProductPicture;
 
 namespace MyKalaShopQuery.Query
 {
@@ -11,13 +16,15 @@ namespace MyKalaShopQuery.Query
         private readonly ShopContext _context;
         private readonly InventoryContext _inventoryContext;
         private readonly DiscountContext _discountContext;
+        private readonly CommentContext _commentContext;
 
-        public ProductQuery(ShopContext context,
-            InventoryContext inventoryContext, DiscountContext discountContext)
+        public ProductQuery(ShopContext context, InventoryContext inventoryContext,
+            DiscountContext discountContext, CommentContext commentContext)
         {
             _context = context;
             _inventoryContext = inventoryContext;
             _discountContext = discountContext;
+            _commentContext = commentContext;
         }
 
         public List<ProductQueryView> GetProductsWithProductCategory()
@@ -121,6 +128,88 @@ namespace MyKalaShopQuery.Query
             }
 
             return products.Where(x => x.IsAvailable).ToList();
+        }
+
+        public ProductQueryView GetProductBySlug(string slug)
+        {
+            var product = _context.Products
+                .Include(x => x.ProductCategory)
+                .Include(x => x.ProductPictures)
+                .Select(x => new ProductQueryView()
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Slug = x.Slug,
+                    PicturePath = x.PicturePath,
+                    PictureAlt = x.PictureAlt,
+                    PictureTitle = x.PictureTitle,
+                    ProductCategoryId = x.ProductCategoryId,
+                    ProductCategory = x.ProductCategory.Name,
+                    ProductCategorySlug = x.ProductCategory.Slug,
+                    Code = x.Code,
+                    Description = x.Description,
+                    Keywords = x.Keywords,
+                    MetaDescription = x.MetaDescription,
+                    ShortDescription = x.ShortDescription,
+                    ProductPictures = MapProductPictures(x.ProductPictures),
+                }).AsNoTracking().FirstOrDefault(x => x.Slug == slug);
+
+            if (product == null)
+                return new ProductQueryView();
+
+            var discount = _discountContext.CustomerDiscounts
+                .Where(x => x.StartDate <= DateTime.Now && x.EndDate >= DateTime.Now)
+                .Select(x => new { x.ProductId, x.DiscountRate, x.EndDate })
+                .AsNoTracking().FirstOrDefault(x => x.ProductId == product.Id);
+
+            var price = _inventoryContext.Inventory
+                .Select(x => new { x.ProductId, x.UnitPrice, x.IsAvailable })
+                .AsNoTracking().FirstOrDefault(x => x.ProductId == product.Id);
+
+            var comments = _commentContext.Comments
+                .Where(x => !x.IsCanceled && x.IsConfirmed)
+                .Where(x => x.Type == CommentType.ProductComment)
+                .Where(x => x.OwnerRecordId == product.Id)
+                .Select(x => new CommentQueryView()
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Message = x.Message
+                }).AsNoTracking().ToList();
+
+            if (comments != null)
+                product.ProductComments = comments;
+
+            if (price != null)
+            {
+                product.UnitPrice = price.UnitPrice;
+                product.IsAvailable = price.IsAvailable;
+
+                if (discount != null)
+                {
+                    product.DiscountRate = discount.DiscountRate;
+                    product.DiscountEndDate = discount.EndDate.ToDiscountFormat();
+                    product.HasDiscount = discount.DiscountRate > 0;
+
+                    var discountAmount = Math.Round(product.UnitPrice * product.DiscountRate) / 100;
+                    product.PriceWithDiscount = (product.UnitPrice - discountAmount);
+                }
+            }
+
+            return product;
+        }
+
+        private static List<ProductPictureQueryView> MapProductPictures(List<ProductPicture> productPictures)
+        {
+            return productPictures
+                .Where(x => !x.IsDeleted)
+                .Select(x => new ProductPictureQueryView()
+                {
+                    ProductId = x.ProductId,
+                    PicturePath = x.PicturePath,
+                    PictureAlt = x.PictureAlt,
+                    PictureTitle = x.PictureTitle
+                }).ToList();
         }
     }
 }

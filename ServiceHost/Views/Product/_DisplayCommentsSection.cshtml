@@ -1,0 +1,16 @@
+﻿@using MyKalaShopQuery.Contracts.Comment
+@model List<CommentQueryView>
+
+@foreach (var comment in Model)
+{
+    <div class="ratings-wrapper">
+        <div class="sin-ratings">
+            <div class="rating-author">
+                <h3>@comment.Name</h3>
+            </div>
+            <p>
+                @comment.Message
+            </p>
+        </div>
+    </div>
+}

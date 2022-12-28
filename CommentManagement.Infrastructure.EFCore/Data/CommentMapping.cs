@@ -14,7 +14,7 @@ namespace CommentManagement.Infrastructure.EFCore.Data
             builder.Property(x => x.Name).HasMaxLength(225).IsRequired();
             builder.Property(x => x.Email).HasMaxLength(225).IsRequired();
             builder.Property(x => x.Message).HasMaxLength(1000).IsRequired();
-            builder.Property(x => x.Website).HasMaxLength(500).IsRequired();
+            builder.Property(x => x.Website).HasMaxLength(500).IsRequired(required: false);
         }
     }
 }

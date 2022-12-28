@@ -9,5 +9,8 @@ namespace MyKalaShopQuery.Contracts.ProductCategory
         public string PicturePath { get; set; }
         public string PictureAlt { get; set; }
         public string PictureTitle { get; set; }
+        public string Keywords { get; set; }
+        public string MetaDescription { get; set; }
+        public List<ProductQueryView> Products { get; set; }
     }
 }

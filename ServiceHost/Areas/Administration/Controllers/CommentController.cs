@@ -36,7 +36,7 @@ namespace ServiceHost.Areas.Administration.Controllers
         [HttpGet]
         public IActionResult Cancel(long id)
         {
-            var operationResult = _commentApplication.Confirm(id);
+            var operationResult = _commentApplication.Cancel(id);
 
             if (operationResult.IsSuccess)
                 return RedirectToAction(nameof(Index));

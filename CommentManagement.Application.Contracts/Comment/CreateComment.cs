@@ -16,7 +16,9 @@ namespace CommentManagement.Application.Contracts.Comment
 
         public long OwnerRecordId { get; set; }
         public int CommentType { get; set; }
-        public string Website { get; set; }
+        public string? Website { get; set; }
         public long ParentId { get; set; }
+
+        public string ProductSlug { get; set; }
     }
 }
