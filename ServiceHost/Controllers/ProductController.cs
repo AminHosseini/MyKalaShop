@@ -12,9 +12,18 @@ namespace ServiceHost.Controllers
             _productQuery = productQuery;
         }
 
+        [HttpGet]
         public IActionResult Details(string slug)
         {
             var model = _productQuery.GetProductBySlug(slug);
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult Search(string key)
+        {
+            ViewBag.SearchValue = key;
+            var model = _productQuery.Search(key);
             return View(model);
         }
     }

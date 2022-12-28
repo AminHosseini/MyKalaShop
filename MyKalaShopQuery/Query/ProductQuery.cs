@@ -199,6 +199,61 @@ namespace MyKalaShopQuery.Query
             return product;
         }
 
+        public List<ProductQueryView> Search(string key)
+        {
+            var customerDiscounts = _discountContext.CustomerDiscounts
+                .Where(x => x.StartDate <= DateTime.Now && x.EndDate >= DateTime.Now)
+                .Select(x => new { x.ProductId, x.DiscountRate, x.EndDate })
+                .AsNoTracking().ToList();
+
+            var inventory = _inventoryContext.Inventory
+                .Select(x => new { x.ProductId, x.UnitPrice, x.IsAvailable })
+                .AsNoTracking().ToList();
+
+            var products = _context.Products
+                .Include(x => x.ProductCategory)
+                .Select(x => new ProductQueryView()
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Slug = x.Slug,
+                    ShortDescription = x.ShortDescription,
+                    PicturePath = x.PicturePath,
+                    PictureAlt = x.PictureAlt,
+                    PictureTitle = x.PictureTitle,
+                    ProductCategoryId = x.ProductCategoryId,
+                    ProductCategory = x.ProductCategory.Name,
+                    ProductCategorySlug = x.ProductCategory.Slug
+                }).AsNoTracking().ToList();
+
+            if (!string.IsNullOrWhiteSpace(key))
+                products = products.Where(x => x.Name.Contains(key) || x.ShortDescription.Contains(key)).ToList();
+
+            foreach (var product in products)
+            {
+                var price = inventory.FirstOrDefault(x => x.ProductId == product.Id);
+                var discount = customerDiscounts.FirstOrDefault(x => x.ProductId == product.Id);
+
+                if (price != null)
+                {
+                    product.UnitPrice = price.UnitPrice;
+                    product.IsAvailable = price.IsAvailable;
+
+                    if (discount != null)
+                    {
+                        product.DiscountRate = discount.DiscountRate;
+                        product.DiscountEndDate = discount.EndDate.ToDiscountFormat();
+                        product.HasDiscount = discount.DiscountRate > 0;
+
+                        var discountAmount = Math.Round(product.UnitPrice * product.DiscountRate) / 100;
+                        product.PriceWithDiscount = (product.UnitPrice - discountAmount);
+                    }
+                }
+            }
+
+            return products.Where(x => x.IsAvailable).ToList();
+        }
+
         private static List<ProductPictureQueryView> MapProductPictures(List<ProductPicture> productPictures)
         {
             return productPictures
