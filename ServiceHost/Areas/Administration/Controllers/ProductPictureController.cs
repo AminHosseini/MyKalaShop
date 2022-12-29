@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using InventoryManagement.Application.Contracts.Product;
-using InventoryManagement.Application.Contracts.ProductPicture;
 using Microsoft.AspNetCore.Authorization;
 using _0_Framework.Infrastructure;
-using InventoryManagement.Infrastructure.Configuration.Permissions;
+using ShopManagement.Infrastructure.Configuration.Permissions;
+using ShopManagement.Application.Contracts.Product;
+using ShopManagement.Application.Contracts.ProductPicture;
 
 namespace ServiceHost.Areas.Administration.Controllers
 {

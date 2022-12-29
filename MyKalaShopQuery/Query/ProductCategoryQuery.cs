@@ -1,10 +1,11 @@
 ﻿using _0_Framework.Application;
 using DiscountManagement.Infrastructure.EFCore.Data;
-using InventoryManagement.Domain.ProductAgg;
 using InventoryManagement.Infrastructure.EFCore.Data;
 using Microsoft.EntityFrameworkCore;
 using MyKalaShopQuery.Contracts.Product;
 using MyKalaShopQuery.Contracts.ProductCategory;
+using ShopManagement.Domain.ProductAgg;
+using ShopManagement.Infrastructure.EFCore.Data;
 
 namespace MyKalaShopQuery.Query
 {

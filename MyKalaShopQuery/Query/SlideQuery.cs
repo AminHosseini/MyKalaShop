@@ -1,6 +1,6 @@
-﻿using InventoryManagement.Infrastructure.EFCore.Data;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using MyKalaShopQuery.Contracts.Slide;
+using ShopManagement.Infrastructure.EFCore.Data;
 
 namespace MyKalaShopQuery.Query
 {

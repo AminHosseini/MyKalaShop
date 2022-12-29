@@ -1,11 +1,12 @@
 ﻿@using AccountManagement.Application.Contracts.Account
+@using AccountManagement.Infrastructure.Configuration.Permissions
 @model List<AccountViewModel>
 
 @{
     ViewData["Title"] = "مدیریت کاربران";
 }
 
-<div class="row">
+<div Permission="@AccountPermissions.CreateAccount" class="row">
     <div class="col-sm-12">
         <h4 class="page-title pull-right">@ViewData["Title"]</h4>
         <p class="pull-left">
@@ -14,7 +15,7 @@
     </div>
 </div>
 
-<div class="row">
+<div Permission="@AccountPermissions.SearchAccounts" class="row">
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -68,13 +69,13 @@
                                         <td>@item.Role</td>
                                         <td>@item.CreationDate</td>
                                         <td>
-                                            <a class="btn btn-warning pull-right m-rl-5" href="#showmodal=@Url.Action("Edit", new { id = item.Id})">
+                                            <a Permission="@AccountPermissions.EditAccount" class="btn btn-warning pull-right m-rl-5" href="#showmodal=@Url.Action("Edit", new { id = item.Id})">
                                                 <i class="fa fa-edit"></i> ویرایش
                                             </a>
-                                            <a class="btn btn-primary pull-right m-rl-5" href="#showmodal=@Url.Action("ChangePassword", new { id = item.Id})">
+                                            <a Permission="@AccountPermissions.ChangeAccountPassword" class="btn btn-primary pull-right m-rl-5" href="#showmodal=@Url.Action("ChangePassword", new { id = item.Id})">
                                                 <i class="fa fa-key"></i> تغییر رمز
                                             </a>
-                                            <a class="btn btn-purple pull-right m-rl-5" asp-action="SpecifyPermissions" asp-route-id="@item.Id">
+                                            <a  Permission="@AccountPermissions.SpecifyAccountPermissions" class="btn btn-purple pull-right m-rl-5" asp-action="SpecifyPermissions" asp-route-id="@item.Id">
                                                 <i class="fa fa-android"></i> دسترسی ها
                                             </a>
                                         </td>

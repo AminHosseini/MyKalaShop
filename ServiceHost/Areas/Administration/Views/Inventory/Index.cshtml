@@ -1,4 +1,5 @@
 ﻿@using InventoryManagement.Application.Contracts.Inventory
+@using InventoryManagement.Infrastructure.Configuration.Permissions
 @using _0_Framework.Application
 @model List<InventoryViewModel>
 
@@ -6,7 +7,7 @@
     ViewData["Title"] = "مدیریت انبار";
 }
 
-<div class="row">
+<div Permission="@InventoryPermissions.CreateInventory" class="row">
     <div class="col-sm-12">
         <h4 class="page-title pull-right">@ViewData["Title"]</h4>
         <p class="pull-left">
@@ -15,7 +16,7 @@
     </div>
 </div>
 
-<div class="row">
+<div Permission="@InventoryPermissions.SearchInventory" class="row">
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -69,16 +70,16 @@
                                         <td>@item.CurrentCount</td>
                                         <td>@item.CreationDate</td>
                                         <td>
-                                            <a class="btn btn-warning pull-right m-rl-5" href="#showmodal=@Url.Action("Edit", new { id = item.Id})">
+                                            <a Permission="@InventoryPermissions.EditInventory" class="btn btn-warning pull-right m-rl-5" href="#showmodal=@Url.Action("Edit", new { id = item.Id})">
                                                 <i class="fa fa-edit"></i> ویرایش
                                             </a>
-                                            <a class="btn btn-success pull-right m-rl-5" href="#showmodal=@Url.Action("Increase", new { id = item.Id})">
+                                            <a Permission="@InventoryPermissions.IncreaseInventory" class="btn btn-success pull-right m-rl-5" href="#showmodal=@Url.Action("Increase", new { id = item.Id})">
                                                 <i class="fa fa-plus"></i> افزایش موجودی
                                             </a>
-                                            <a class="btn btn-danger pull-right m-rl-5" href="#showmodal=@Url.Action("Decrease", new { id = item.Id})">
+                                            <a Permission="@InventoryPermissions.DecreaseInventory" class="btn btn-danger pull-right m-rl-5" href="#showmodal=@Url.Action("Decrease", new { id = item.Id})">
                                                 <i class="fa fa-minus"></i> کاهش موجودی
                                             </a>
-                                            <a class="btn btn-primary pull-right m-rl-5" href="#showmodal=@Url.Action("OperationsLog", new { id = item.Id})"
+                                            <a Permission="@InventoryPermissions.GetInventoryOperationsLog" class="btn btn-primary pull-right m-rl-5" href="#showmodal=@Url.Action("OperationsLog", new { id = item.Id})"
                                            onclick="$('.modal-dialog').css('width', '60%')">
                                                 <i class="fa fa-recycle"></i> مشاهده گردش انبار
                                             </a>

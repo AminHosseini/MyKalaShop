@@ -2,12 +2,13 @@
 using CommentManagement.Infrastructure.EFCore;
 using CommentManagement.Infrastructure.EFCore.Data;
 using DiscountManagement.Infrastructure.EFCore.Data;
-using InventoryManagement.Domain.ProductPictureAgg;
 using InventoryManagement.Infrastructure.EFCore.Data;
 using Microsoft.EntityFrameworkCore;
 using MyKalaShopQuery.Contracts.Comment;
 using MyKalaShopQuery.Contracts.Product;
 using MyKalaShopQuery.Contracts.ProductPicture;
+using ShopManagement.Domain.ProductPictureAgg;
+using ShopManagement.Infrastructure.EFCore.Data;
 
 namespace MyKalaShopQuery.Query
 {

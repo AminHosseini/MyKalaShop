@@ -1,7 +1,7 @@
 ﻿using _0_Framework.Domain;
-using InventoryManagement.Application.Contracts.Product;
+using ShopManagement.Application.Contracts.Product;
 
-namespace InventoryManagement.Domain.ProductAgg
+namespace ShopManagement.Domain.ProductAgg
 {
     public interface IProductRepository : IRepository<long, Product>
     {

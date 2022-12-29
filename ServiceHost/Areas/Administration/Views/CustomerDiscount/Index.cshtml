@@ -1,11 +1,12 @@
 ﻿@using DiscountManagement.Application.Contracts.CustomerDiscount
+@using DiscountManagement.Infrastructure.Configuration.Permissions
 @model List<CustomerDiscountViewModel>
 
 @{
     ViewData["Title"] = "مدیریت تخفیفات مشتریان";
 }
 
-<div class="row">
+<div Permission="@DiscountPermissions.CreateCustomerDiscount" class="row">
     <div class="col-sm-12">
         <h4 class="page-title pull-right">@ViewData["Title"]</h4>
         <p class="pull-left">
@@ -14,7 +15,7 @@
     </div>
 </div>
 
-<div class="row">
+<div Permission="@DiscountPermissions.SearchCustomerDiscounts" class="row">
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -61,7 +62,7 @@
                                         <td>@item.Reason</td>
                                         <td>@item.CreationDate</td>
                                         <td>
-                                            <a class="btn btn-warning pull-right m-rl-5" href="#showmodal=@Url.Action("Edit", new { id = item.Id})">
+                                            <a Permission="@DiscountPermissions.EditCustomerDiscount" class="btn btn-warning pull-right m-rl-5" href="#showmodal=@Url.Action("Edit", new { id = item.Id})">
                                                 <i class="fa fa-edit"></i> ویرایش
                                             </a>
                                         </td>

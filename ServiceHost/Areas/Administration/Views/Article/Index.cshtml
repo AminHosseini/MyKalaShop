@@ -1,11 +1,12 @@
 ﻿@using BlogManagement.Application.Contracts.Article
+@using BlogManagement.Infrastructure.Configuration.Permissions
 @model List<ArticleViewModel>
 
 @{
     ViewData["Title"] = "مدیریت مقالات";
 }
 
-<div class="row">
+<div Permission="@BlogPermissions.CreateArticle" class="row">
     <div class="col-sm-12">
         <h4 class="page-title pull-right">@ViewData["title"]</h4>
         <p class="pull-left">
@@ -14,7 +15,7 @@
     </div>
 </div>
 
-<div class="row">
+<div Permission="@BlogPermissions.SearchArticles" class="row">
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -66,7 +67,7 @@
                                         <td>@item.ShortDescription</td>
                                         <td>@item.PublishDate</td>
                                         <td>
-                                            <a class="btn btn-warning pull-right m-rl-5" asp-action="Edit" asp-route-id="@item.Id">
+                                            <a Permission="@BlogPermissions.EditArticle" class="btn btn-warning pull-right m-rl-5" asp-action="Edit" asp-route-id="@item.Id">
                                                 <i class="fa fa-edit"></i> ویرایش
                                             </a>
                                         </td>

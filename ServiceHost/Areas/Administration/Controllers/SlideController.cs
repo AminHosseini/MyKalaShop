@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using InventoryManagement.Application.Contracts.Slide;
 using Microsoft.AspNetCore.Authorization;
 using _0_Framework.Infrastructure;
-using InventoryManagement.Infrastructure.Configuration.Permissions;
+using ShopManagement.Infrastructure.Configuration.Permissions;
+using ShopManagement.Application.Contracts.Slide;
 
 namespace ServiceHost.Areas.Administration.Controllers
 {

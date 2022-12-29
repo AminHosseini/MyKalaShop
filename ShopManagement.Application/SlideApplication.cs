@@ -1,8 +1,8 @@
 ﻿using _0_Framework.Application;
-using InventoryManagement.Application.Contracts.Slide;
-using InventoryManagement.Domain.SlideAgg;
+using ShopManagement.Application.Contracts.Slide;
+using ShopManagement.Domain.SlideAgg;
 
-namespace InventoryManagement.Application
+namespace ShopManagement.Application
 {
     public class SlideApplication : ISlideApplication
     {

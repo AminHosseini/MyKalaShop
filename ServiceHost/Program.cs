@@ -6,6 +6,7 @@ using CommentManagement.Infrastructure.Configuration;
 using BlogManagement.Infrastructure.Configuration;
 using AccountManagement.Infrastructure.Configuration;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using ShopManagement.Infrastructure.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,10 +31,18 @@ builder.Services.AddSingleton<IAuthHelper, AuthHelper>();
 //builder.Services.AddSingleton(HtmlEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Arabic));
 
 builder.Services
+    .Configure<CookiePolicyOptions>(options =>
+    {
+        options.CheckConsentNeeded = context => true;
+        options.MinimumSameSitePolicy = SameSiteMode.Lax;
+    });
+
+builder.Services
     .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, x =>
     {
         x.LoginPath = new PathString("/Account/Index");
+        x.AccessDeniedPath = new PathString("/Home/AccessDenied");
     });
 
 builder.Services.AddAuthorization();

@@ -1,6 +1,6 @@
 ﻿using _0_Framework.Application;
 
-namespace InventoryManagement.Application.Contracts.ProductCategory
+namespace ShopManagement.Application.Contracts.ProductCategory
 {
     public interface IProductCategoryApplication
     {

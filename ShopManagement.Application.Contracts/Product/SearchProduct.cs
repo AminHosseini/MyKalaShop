@@ -1,4 +1,4 @@
-﻿namespace InventoryManagement.Application.Contracts.Product
+﻿namespace ShopManagement.Application.Contracts.Product
 {
     public class SearchProduct
     {

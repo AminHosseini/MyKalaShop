@@ -1,11 +1,12 @@
-﻿@using InventoryManagement.Application.Contracts.Slide
+﻿@using ShopManagement.Application.Contracts.Slide
+@using ShopManagement.Infrastructure.Configuration.Permissions
 @model List<SlideViewModel>
 
 @{
     ViewData["Title"] = "مدیریت اسلایدها";
 }
 
-<div class="row">
+<div Permission="@ShopPermissions.CreateSlide" class="row">
     <div class="col-sm-12">
         <h4 class="page-title pull-right">@ViewData["Title"]</h4>
         <p class="pull-left">
@@ -62,16 +63,16 @@
                                             }
                                         </td>
                                         <td>
-                                            <a class="btn btn-warning pull-right m-rl-5" href="#showmodal=@Url.Action("Edit", new { id = item.Id})">
+                                            <a Permission="@ShopPermissions.EditSlide" class="btn btn-warning pull-right m-rl-5" href="#showmodal=@Url.Action("Edit", new { id = item.Id})">
                                                 <i class="fa fa-edit"></i> ویرایش
                                             </a>
                                             @if (!item.IsDeleted)
                                             {
-                                                <a class="btn btn-danger pull-right m-rl-5" asp-action="Delete" asp-route-id="@item.Id">حذف</a>
+                                                <a Permission="@ShopPermissions.DeleteSlide" class="btn btn-danger pull-right m-rl-5" asp-action="Delete" asp-route-id="@item.Id">حذف</a>
                                             }
                                             else
                                             {
-                                                <a class="btn btn-success pull-right m-rl-5" asp-action="Restore" asp-route-id="@item.Id">بازگردانی</a>
+                                                <a Permission="@ShopPermissions.RestoreSlide" class="btn btn-success pull-right m-rl-5" asp-action="Restore" asp-route-id="@item.Id">بازگردانی</a>
                                             }
                                         </td>
                                     </tr>

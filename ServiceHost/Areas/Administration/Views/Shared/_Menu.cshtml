@@ -1,56 +1,71 @@
-﻿
+﻿@using AccountManagement.Application.Contracts.Account
+@using AccountManagement.Infrastructure.Configuration.Permissions
+@using BlogManagement.Infrastructure.Configuration.Permissions
+@using CommentManagement.Infrastructure.Configuration.Permissions
+@using DiscountManagement.Infrastructure.Configuration.Permissions
+@using InventoryManagement.Infrastructure.Configuration.Permissions
+@using ShopManagement.Infrastructure.Configuration.Permissions
+@using _0_Framework.Application
+@inject IAuthHelper _authHelper
+@inject IAccountApplication _accountApplication
+
+@{
+    var currentAccount = _authHelper.CurrentAccountInfo();
+    var accountPicture = _accountApplication.Search(new SearchAccount()).FirstOrDefault(x => x.Id == currentAccount.Id).PicturePath;
+}
+
 
 <div class="left side-menu">
     <div class="sidebar-inner slimscrollleft">
         <div class="user-details">
             <div class="pull-right">
-                <img src="~/AdminTheme/assets/images/users/avatar-1.jpg" alt="" class="thumb-md img-circle">
+                <img src="~/UploadedFiles/@accountPicture" alt="" class="thumb-md img-circle">
             </div>
             <div class="user-info">
-                <a href="#">امین حسینی</a>
-                <p class="text-muted m-0">مدیر سیستم</p>
+                <a href="#">@currentAccount.Fullname</a>
+                <p class="text-muted m-0">@currentAccount.Role</p>
             </div>
         </div>
         <!--- Divider -->
         <div id="sidebar-menu">
             <ul>
                 <li>
-                    <a asp-controller="Home" asp-action="Index" class="waves-effect"><i class="md md-home"></i><span> داشبورد </span></a>
+                    <a Permission="@ShopPermissions.AccessToAdminDashboard" asp-controller="Home" asp-action="Index" class="waves-effect"><i class="md md-home"></i><span> داشبورد </span></a>
                 </li>
                 <li class="has_sub">
-                    <a class="waves-effect"><i class="md md-shop"></i><span> سیستم فروشگاه </span><span class="pull-right"><i class="md md-add"></i></span></a>
+                    <a Permission="@ShopPermissions.AccessToShopManagement" class="waves-effect"><i class="md md-shop"></i><span> سیستم فروشگاه </span><span class="pull-right"><i class="md md-add"></i></span></a>
                     <ul class="list-unstyled">
-                        <li><a asp-controller="ProductCategory" asp-action="Index">گروه محصولات</a></li>
-                        <li><a asp-controller="Product" asp-action="Index">محصولات</a></li>
-                        <li><a asp-controller="ProductPicture" asp-action="Index">عکس محصولات</a></li>
-                        <li><a asp-controller="Slide" asp-action="Index">اسلاید ها</a></li>
+                        <li><a Permission="@ShopPermissions.AccessToProductCategories" asp-controller="ProductCategory" asp-action="Index">گروه محصولات</a></li>
+                        <li><a Permission="@ShopPermissions.AccessToProducts" asp-controller="Product" asp-action="Index">محصولات</a></li>
+                        <li><a Permission="@ShopPermissions.AccessToProductPictures" asp-controller="ProductPicture" asp-action="Index">عکس محصولات</a></li>
+                        <li><a Permission="@ShopPermissions.AccessToSlides" asp-controller="Slide" asp-action="Index">اسلاید ها</a></li>
                     </ul>
                 </li>
                 <li class="has_sub">
-                    <a class="waves-effect"><i class="ion-ios7-star"></i><span> سیستم تخفیفات </span><span class="pull-right"><i class="md md-add"></i></span></a>
+                    <a Permission="@DiscountPermissions.AccessToDiscountManagement" class="waves-effect"><i class="ion-ios7-star"></i><span> سیستم تخفیفات </span><span class="pull-right"><i class="md md-add"></i></span></a>
                     <ul class="list-unstyled">
-                        <li><a asp-controller="CustomerDiscount" asp-action="Index">تخفیفات مشتریان</a></li>
-                        <li><a asp-controller="ColleagueDiscount" asp-action="Index">تخفیفات همکاران</a></li>
+                        <li><a Permission="@DiscountPermissions.AccessToCustomerDiscounts" asp-controller="CustomerDiscount" asp-action="Index">تخفیفات مشتریان</a></li>
+                        <li><a Permission="@DiscountPermissions.AccessToColleagueDiscounts" asp-controller="ColleagueDiscount" asp-action="Index">تخفیفات همکاران</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a asp-controller="Inventory" asp-action="Index" class="waves-effect"><i class="ion-briefcase"></i><span> انبارداری </span></a>
+                    <a Permission="@InventoryPermissions.AccessToInventoryManagement" asp-controller="Inventory" asp-action="Index" class="waves-effect"><i class="ion-briefcase"></i><span> انبارداری </span></a>
                 </li>
                 <li>
-                    <a asp-controller="Comment" asp-action="Index" class="waves-effect"><i class="ion-at"></i><span> کامنت ها </span></a>
+                    <a Permission="@CommentPermissions.AccessToCommentManagement" asp-controller="Comment" asp-action="Index" class="waves-effect"><i class="ion-at"></i><span> کامنت ها </span></a>
                 </li>
                 <li class="has_sub">
-                    <a class="waves-effect"><i class="ion-compose"></i><span> سیستم بلاگینگ </span><span class="pull-right"><i class="md md-add"></i></span></a>
+                    <a Permission="@BlogPermissions.AccessToBlogManagement" class="waves-effect"><i class="ion-compose"></i><span> سیستم بلاگینگ </span><span class="pull-right"><i class="md md-add"></i></span></a>
                     <ul class="list-unstyled">
-                        <li><a asp-controller="ArticleCategory" asp-action="Index">گروه مقالات</a></li>
-                        <li><a asp-controller="Article" asp-action="Index">مقالات</a></li>
+                        <li><a Permission="@BlogPermissions.AccessToArticleCategories" asp-controller="ArticleCategory" asp-action="Index">گروه مقالات</a></li>
+                        <li><a Permission="@BlogPermissions.AccessToArticles" asp-controller="Article" asp-action="Index">مقالات</a></li>
                     </ul>
                 </li>
                 <li class="has_sub">
-                    <a class="waves-effect"><i class="ion-android-social"></i><span> سیستم کاربران </span><span class="pull-right"><i class="md md-add"></i></span></a>
+                    <a Permission="@AccountPermissions.AccessToAccountManagement" class="waves-effect"><i class="ion-android-social"></i><span> سیستم کاربران </span><span class="pull-right"><i class="md md-add"></i></span></a>
                     <ul class="list-unstyled">
-                        <li><a asp-controller="Account" asp-action="Index">کاربران</a></li>
-                        <li><a asp-controller="Role" asp-action="Index">نقش ها</a></li>
+                        <li><a Permission="@AccountPermissions.AccessToAccounts" asp-controller="Account" asp-action="Index">کاربران</a></li>
+                        <li><a Permission="@AccountPermissions.AccessToRoles" asp-controller="Role" asp-action="Index">نقش ها</a></li>
                     </ul>
                 </li>
             </ul>

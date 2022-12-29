@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
-namespace InventoryManagement.Application.Contracts.ProductCategory
+namespace ShopManagement.Application.Contracts.ProductCategory
 {
     public class CreateProductCategory
     {
@@ -13,7 +13,7 @@ namespace InventoryManagement.Application.Contracts.ProductCategory
         public string Slug { get; set; }
 
         [MaxFileSize(3 * 1024 * 1024, ErrorMessage = ValidationMessage.FileSizeOverExceeded)]
-        [FileExtentionLimitation(new string[] {".png", ".jpg", ".jpeg", ".PNG", ".JPG", ".JPEG" }, ErrorMessage = ValidationMessage.WrongFileFormat)]
+        [FileExtentionLimitation(new string[] { ".png", ".jpg", ".jpeg", ".PNG", ".JPG", ".JPEG" }, ErrorMessage = ValidationMessage.WrongFileFormat)]
         public IFormFile? PicturePath { get; set; }
 
         public string? PictureAlt { get; set; }

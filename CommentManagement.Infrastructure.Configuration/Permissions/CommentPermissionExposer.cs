@@ -13,6 +13,7 @@ namespace CommentManagement.Infrastructure.Configuration.Permissions
                     {
                         new PermissionDto(CommentPermissions.AccessToCommentManagement, "دسترسی به منو کامنت ها"),
                         new PermissionDto(CommentPermissions.ListComments, "لیست کردن کامنت ها"),
+                        new PermissionDto(CommentPermissions.SearchComments, "جستوجو کردن در کامنت ها"),
                         new PermissionDto(CommentPermissions.ConfirmComment, "تایید کردن کامنت"),
                         new PermissionDto(CommentPermissions.CancelComment, "کنسل کردن کامنت"),
                     }

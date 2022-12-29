@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using InventoryManagement.Infrastructure.EFCore.Data;
+using ShopManagement.Infrastructure.EFCore.Data;
 
 #nullable disable
 

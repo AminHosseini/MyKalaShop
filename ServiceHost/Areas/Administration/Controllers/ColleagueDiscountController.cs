@@ -1,10 +1,10 @@
 ﻿using DiscountManagement.Application.Contracts.ColleagueDiscount;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using InventoryManagement.Application.Contracts.Product;
 using Microsoft.AspNetCore.Authorization;
 using _0_Framework.Infrastructure;
 using DiscountManagement.Infrastructure.Configuration.Permissions;
+using ShopManagement.Application.Contracts.Product;
 
 namespace ServiceHost.Areas.Administration.Controllers
 {

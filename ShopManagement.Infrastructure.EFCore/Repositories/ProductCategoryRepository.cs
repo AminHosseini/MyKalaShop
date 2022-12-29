@@ -1,10 +1,10 @@
 ﻿using _0_Framework.Application;
 using _0_Framework.Infrastructure;
-using InventoryManagement.Application.Contracts.ProductCategory;
-using InventoryManagement.Domain.ProductCategoryAgg;
-using InventoryManagement.Infrastructure.EFCore.Data;
+using ShopManagement.Application.Contracts.ProductCategory;
+using ShopManagement.Domain.ProductCategoryAgg;
+using ShopManagement.Infrastructure.EFCore.Data;
 
-namespace InventoryManagement.Infrastructure.EFCore.Repositories
+namespace ShopManagement.Infrastructure.EFCore.Repositories
 {
     public class ProductCategoryRepository : RepositoryBase<long, ProductCategory>, IProductCategoryRepository
     {
@@ -33,7 +33,7 @@ namespace InventoryManagement.Infrastructure.EFCore.Repositories
         public List<ProductCategoryViewModel> GetProductCategories()
         {
             return _context.ProductCategories.Select(x => new ProductCategoryViewModel()
-            { 
+            {
                 Id = x.Id,
                 Name = x.Name
             }).ToList();

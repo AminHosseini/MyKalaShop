@@ -1,11 +1,12 @@
 ﻿@using AccountManagement.Application.Contracts.Role
+@using AccountManagement.Infrastructure.Configuration.Permissions
 @model List<RoleViewModel>
 
 @{
     ViewData["Title"] = "مدیریت نقش ها";
 }
 
-<div class="row">
+<div Permission="@AccountPermissions.CreateRole" class="row">
     <div class="col-sm-12">
         <h4 class="page-title pull-right">@ViewData["Title"]</h4>
         <p class="pull-left">
@@ -45,7 +46,7 @@
                                         <td>@item.Name</td>
                                         <td>@item.CreationDate</td>
                                         <td>
-                                            <a class="btn btn-warning pull-right m-rl-5 disabled" asp-action="Edit" asp-route-id="@item.Id">
+                                            <a Permission="@AccountPermissions.EditRole" class="btn btn-warning pull-right m-rl-5 disabled" asp-action="Edit" asp-route-id="@item.Id">
                                                 <i class="fa fa-edit"></i> ویرایش
                                             </a>
                                         </td>

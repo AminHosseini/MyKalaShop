@@ -1,6 +1,6 @@
 ﻿using _0_Framework.Application;
 
-namespace InventoryManagement.Application.Contracts.Slide
+namespace ShopManagement.Application.Contracts.Slide
 {
     public interface ISlideApplication
     {

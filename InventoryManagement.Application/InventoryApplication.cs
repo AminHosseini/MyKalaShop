@@ -7,10 +7,12 @@ namespace InventoryManagement.Application
     public class InventoryApplication : IInventoryApplication
     {
         private readonly IInventoryRepository _repository;
+        private readonly IAuthHelper _authHelper;
 
-        public InventoryApplication(IInventoryRepository repository)
+        public InventoryApplication(IInventoryRepository repository, IAuthHelper authHelper)
         {
             _repository = repository;
+            _authHelper = authHelper;
         }
 
         public OperationResult Create(CreateInventory model)
@@ -35,7 +37,8 @@ namespace InventoryManagement.Application
             if (inventory == null)
                 return operationResult.Failed(ValidationMessage.RecordNotFound);
 
-            inventory.Decrease(model.Count, 0, model.Description, 0);
+            var operatorId = _authHelper.CurrentAccountId();
+            inventory.Decrease(model.Count, operatorId, model.Description, 0);
 
             _repository.Save();
             return operationResult.Succeeded();
@@ -76,7 +79,8 @@ namespace InventoryManagement.Application
             if (inventory == null)
                 return operationResult.Failed(ValidationMessage.RecordNotFound);
 
-            inventory.Increase(model.Count, 0, model.Description);
+            var operatorId = _authHelper.CurrentAccountId();
+            inventory.Increase(model.Count, operatorId, model.Description);
 
             _repository.Save();
             return operationResult.Succeeded();

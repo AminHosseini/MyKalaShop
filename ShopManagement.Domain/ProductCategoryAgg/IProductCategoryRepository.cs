@@ -1,7 +1,7 @@
 ﻿using _0_Framework.Domain;
-using InventoryManagement.Application.Contracts.ProductCategory;
+using ShopManagement.Application.Contracts.ProductCategory;
 
-namespace InventoryManagement.Domain.ProductCategoryAgg
+namespace ShopManagement.Domain.ProductCategoryAgg
 {
     public interface IProductCategoryRepository : IRepository<long, ProductCategory>
     {

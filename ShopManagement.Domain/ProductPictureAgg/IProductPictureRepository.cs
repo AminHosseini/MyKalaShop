@@ -1,7 +1,7 @@
 ﻿using _0_Framework.Domain;
-using InventoryManagement.Application.Contracts.ProductPicture;
+using ShopManagement.Application.Contracts.ProductPicture;
 
-namespace InventoryManagement.Domain.ProductPictureAgg
+namespace ShopManagement.Domain.ProductPictureAgg
 {
     public interface IProductPictureRepository : IRepository<long, ProductPicture>
     {

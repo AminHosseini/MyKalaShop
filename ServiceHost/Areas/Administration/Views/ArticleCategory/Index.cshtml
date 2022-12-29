@@ -1,11 +1,12 @@
 ﻿@using BlogManagement.Application.Contracts.ArticleCategory
+@using BlogManagement.Infrastructure.Configuration.Permissions
 @model List<ArticleCategoryViewModel>
 
 @{
     ViewData["Title"] = "مدیریت گروه مقالات";
 }
 
-<div class="row">
+<div Permission="@BlogPermissions.CreateArticleCategory" class="row">
     <div class="col-sm-12">
         <h4 class="page-title pull-right">@ViewData["title"]</h4>
         <p class="pull-left">
@@ -14,7 +15,7 @@
     </div>
 </div>
 
-<div class="row">
+<div Permission="@BlogPermissions.SearchArticleCategories" class="row">
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -63,7 +64,7 @@
                                         <td>@item.ArticlesCount</td>
                                         <td>@item.CreationDate</td>
                                         <td>
-                                            <a class="btn btn-warning pull-right m-rl-5" href="#showmodal=@Url.Action("Edit", new { id = item.Id})">
+                                            <a Permission="@BlogPermissions.EditArticleCategory" class="btn btn-warning pull-right m-rl-5" href="#showmodal=@Url.Action("Edit", new { id = item.Id})">
                                                 <i class="fa fa-edit"></i> ویرایش
                                             </a>
                                         </td>

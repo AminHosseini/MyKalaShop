@@ -1,8 +1,8 @@
 ﻿using _0_Framework.Domain;
-using InventoryManagement.Domain.ProductCategoryAgg;
-using InventoryManagement.Domain.ProductPictureAgg;
+using ShopManagement.Domain.ProductCategoryAgg;
+using ShopManagement.Domain.ProductPictureAgg;
 
-namespace InventoryManagement.Domain.ProductAgg
+namespace ShopManagement.Domain.ProductAgg
 {
     public class Product : EntityBase
     {

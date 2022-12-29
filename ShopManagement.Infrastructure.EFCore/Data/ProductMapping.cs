@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using InventoryManagement.Domain.ProductAgg;
+using ShopManagement.Domain.ProductAgg;
 
-namespace InventoryManagement.Infrastructure.EFCore.Data
+namespace ShopManagement.Infrastructure.EFCore.Data
 {
     public class ProductMapping : IEntityTypeConfiguration<Product>
     {

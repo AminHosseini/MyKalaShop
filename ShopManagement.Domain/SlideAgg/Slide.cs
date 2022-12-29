@@ -1,6 +1,6 @@
 ﻿using _0_Framework.Domain;
 
-namespace InventoryManagement.Domain.SlideAgg
+namespace ShopManagement.Domain.SlideAgg
 {
     public class Slide : EntityBase
     {

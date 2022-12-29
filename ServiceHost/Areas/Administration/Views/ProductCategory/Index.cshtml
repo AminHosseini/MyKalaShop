@@ -1,11 +1,12 @@
-﻿@using InventoryManagement.Application.Contracts.ProductCategory
+﻿@using ShopManagement.Application.Contracts.ProductCategory
+@using ShopManagement.Infrastructure.Configuration.Permissions
 @model List<ProductCategoryViewModel>
 
 @{
     ViewData["Title"] = "مدیریت گروه محصولات";
 }
 
-<div class="row">
+<div Permission="@ShopPermissions.CreateProductCategory" class="row">
     <div class="col-sm-12">
         <h4 class="page-title pull-right">@ViewData["Title"]</h4>
         <p class="pull-left">
@@ -14,7 +15,7 @@
     </div>
 </div>
 
-<div class="row">
+<div Permission="@ShopPermissions.SearchProductCategories" class="row">
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -57,7 +58,7 @@
                                         <td>@item.Name</td>
                                         <td>@item.CreationDate</td>
                                         <td>
-                                            <a class="btn btn-warning pull-right m-rl-5" href="#showmodal=@Url.Action("Edit", new { id = item.Id})">
+                                            <a Permission="@ShopPermissions.EditProductCategory" class="btn btn-warning pull-right m-rl-5" href="#showmodal=@Url.Action("Edit", new { id = item.Id})">
                                                 <i class="fa fa-edit"></i> ویرایش
                                             </a>
                                         </td>
