@@ -63,6 +63,17 @@ namespace ShopManagement.Infrastructure.Configuration.Permissions
                         new PermissionDto(ShopPermissions.RestoreSlide, "بازگردانی اسلاید")
                     }
                 },
+                {
+                    "سفارش ها", new List<PermissionDto>
+                    {
+                        new PermissionDto(ShopPermissions.AccessToOrders, "دسترسی به منو سفارش ها"),
+                        new PermissionDto(ShopPermissions.ListOrders, "لیست کردن سفارش ها"),
+                        new PermissionDto(ShopPermissions.SearchOrders, "جستوجو در سفارش ها"),
+                        new PermissionDto(ShopPermissions.ConfirmOrder, "تایید کردن سفارش"),
+                        new PermissionDto(ShopPermissions.CancelOrder, "کنسل کردن سفارش"),
+                        new PermissionDto(ShopPermissions.GetOrderItems, "گرفتن لیست محصولات سفارش")
+                    }
+                },
             };
         }
     }

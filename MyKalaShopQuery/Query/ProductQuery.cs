@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using MyKalaShopQuery.Contracts.Comment;
 using MyKalaShopQuery.Contracts.Product;
 using MyKalaShopQuery.Contracts.ProductPicture;
+using ShopManagement.Application.Contracts.Order;
 using ShopManagement.Domain.ProductPictureAgg;
 using ShopManagement.Infrastructure.EFCore.Data;
 
@@ -266,6 +267,22 @@ namespace MyKalaShopQuery.Query
                     PictureAlt = x.PictureAlt,
                     PictureTitle = x.PictureTitle
                 }).ToList();
+        }
+
+        public List<CartItem> CheckInventoryStatus(List<CartItem> cartItems)
+        {
+            var inventory = _inventoryContext.Inventory.ToList();
+
+            foreach (var item in cartItems)
+            {
+                if (inventory.Any(x => x.ProductId == item.Id && x.IsAvailable))
+                {
+                    var inventoryProduct = inventory.FirstOrDefault(x => x.ProductId == item.Id);
+                    item.IsInStock = item.Count <= inventoryProduct.CalculateCurrentCount();
+                }
+            }
+
+            return cartItems;
         }
     }
 }

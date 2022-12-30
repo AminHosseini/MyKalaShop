@@ -45,7 +45,7 @@ namespace ServiceHost.Controllers
                 return RedirectToAction(nameof(Index), "Home");
 
             ViewBag.ErrorMessage = operationResult.Message;
-            return RedirectToAction(nameof(Index), "Home");
+            return RedirectToAction(nameof(Index), "Account");
         }
 
         [HttpGet]

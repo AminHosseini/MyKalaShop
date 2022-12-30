@@ -44,6 +44,24 @@ namespace InventoryManagement.Application
             return operationResult.Succeeded();
         }
 
+        public OperationResult Decrease(List<DecreaseInventory> model)
+        {
+            var operationResult = new OperationResult();
+            var operatorId = _authHelper.CurrentAccountId();
+
+            foreach (var item in model)
+            {
+                var inventory = _repository.GetInventoryByProductId(item.ProductId);
+                if (inventory == null)
+                    return operationResult.Failed(ValidationMessage.RecordNotFound);
+
+                inventory.Decrease(item.Count, operatorId, item.Description, item.OrderId);
+            }
+
+            _repository.Save();
+            return operationResult.Succeeded();
+        }
+
         public OperationResult Edit(EditInventory model)
         {
             var operationResult = new OperationResult();

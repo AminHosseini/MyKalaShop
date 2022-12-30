@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ShopManagement.Infrastructure.EFCore.Data;
 
@@ -11,9 +12,11 @@ using ShopManagement.Infrastructure.EFCore.Data;
 namespace InventoryManagement.Infrastructure.EFCore.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    partial class ShopContextModelSnapshot : ModelSnapshot
+    [Migration("20221230120753_OrdersAdded")]
+    partial class OrdersAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,6 +46,7 @@ namespace InventoryManagement.Infrastructure.EFCore.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("IssueTrackingNo")
+                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
@@ -55,8 +59,8 @@ namespace InventoryManagement.Infrastructure.EFCore.Migrations
                     b.Property<long>("RefId")
                         .HasColumnType("bigint");
 
-                    b.Property<double>("TotalDiscountAmount")
-                        .HasColumnType("float");
+                    b.Property<int>("TotalDiscount")
+                        .HasColumnType("int");
 
                     b.Property<double>("TotalPrice")
                         .HasColumnType("float");

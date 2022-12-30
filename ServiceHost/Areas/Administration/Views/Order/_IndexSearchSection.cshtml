@@ -1,0 +1,17 @@
+﻿@using ShopManagement.Application.Contracts.Order
+@model SearchOrders
+
+<form class="form-inline" role="form" method="get">
+    <div class="form-group">
+        <label asp-for="PaymentMethod" class="sr-only"></label>
+        <select asp-for="PaymentMethod" class="form-control" asp-items="@ViewBag.PaymentMethod">
+            <option value="0">انتخاب روش پرداخت...</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="SearchCanceled">جستجو در لغو شده ها</label>
+        <input asp-for="SearchCanceled" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-success waves-effect waves-light m-l-10">جستجو</button>
+    <a class="btn btn-primary waves-effect waves-light m-l-10" asp-action="Index">مشاهده همه</a>
+</form>

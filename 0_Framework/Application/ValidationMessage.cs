@@ -9,5 +9,6 @@
         public const string PasswordsNotMatched = "پسورد ها باید باهم یکی باشند.";
         public const string WrongUserPass = "نام کاربری یا کلمه عبور اشتباه وارد شده است.";
         public const string SuccessfullyRegistered = "ثبت نام با موفقیت انجام شد.";
+        public const string OperationFailed = "عملیات با موفقیت انجام نشد. لطفا دوباره امتحان کنید.";
     }
 }

@@ -31,5 +31,12 @@
         public const int EditSlide = 143;
         public const int DeleteSlide = 144;
         public const int RestoreSlide = 145;
+
+        public const int AccessToOrders = 150;
+        public const int ListOrders = 151;
+        public const int SearchOrders = 152;
+        public const int ConfirmOrder = 153;
+        public const int CancelOrder = 154;
+        public const int GetOrderItems = 155;
     }
 }

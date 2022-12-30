@@ -33,6 +33,11 @@ namespace InventoryManagement.Infrastructure.EFCore.Repositories
             }).FirstOrDefault(x => x.Id == id);
         }
 
+        public Inventory GetInventoryByProductId(long productId)
+        {
+            return _context.Inventory.FirstOrDefault(x => x.ProductId == productId);
+        }
+
         public List<InventoryOperationsLog> GetLog(long inventoryId)
         {
             var inventory = _context.Inventory

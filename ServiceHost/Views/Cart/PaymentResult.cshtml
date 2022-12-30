@@ -1,0 +1,56 @@
+﻿@using _0_Framework.Application.ZarinPal
+@model PaymentResult
+
+@{
+    ViewData["Title"] = "نتیجه پرداخت";
+}
+
+<div class="breadcrumb-area section-space--half">
+    <div class="container wide">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-wrapper breadcrumb-bg">
+                    <div class="breadcrumb-content">
+                        <h2 class="breadcrumb-content__title">نتیجه خرید</h2>
+                        <ul class="breadcrumb-content__page-map">
+                            <li>
+                                <a asp-controller="Home" asp-action="Index">صفحه اصلی</a>
+                            </li>
+                            <li class="active">نتیجه خرید</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-content-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                @if (Model.IsSuccessful)
+                {
+                    <div class="alert alert-success">
+                        <p>
+                            @Model.Message
+                        </p>
+                        @if (!string.IsNullOrWhiteSpace(Model.IssueTrackingNo))
+                        {
+                            <p>
+                                شماره پیگیری: <strong>@Model.IssueTrackingNo</strong>
+                            </p>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-danger">
+                        <p>
+                            @Model.Message
+                        </p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

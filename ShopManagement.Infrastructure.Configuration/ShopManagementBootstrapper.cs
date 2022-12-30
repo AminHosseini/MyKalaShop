@@ -17,6 +17,12 @@ using ShopManagement.Application.Contracts.ProductCategory;
 using ShopManagement.Application.Contracts.ProductPicture;
 using ShopManagement.Application.Contracts.Slide;
 using ShopManagement.Application;
+using ShopManagement.Domain.OrderAgg;
+using ShopManagement.Application.Contracts.Order;
+using ShopManagement.Domain.Services;
+using ShopManagement.Infrastructure.InventoryAcl;
+using MyKalaShopQuery.Contracts;
+using _0_Framework.Application.ZarinPal;
 
 namespace ShopManagement.Infrastructure.Configuration
 {
@@ -40,6 +46,15 @@ namespace ShopManagement.Infrastructure.Configuration
             services.AddTransient<ISlideRepository, SlideRepository>();
             services.AddTransient<ISlideApplication, SlideApplication>();
             services.AddTransient<ISlideQuery, SlideQuery>();
+
+            services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<IOrderApplication, OrderApplication>();
+
+            services.AddTransient<IShopInventoryAcl, ShopInventoryAcl>();
+
+            services.AddSingleton<ICartService, CartService>();
+            services.AddTransient<ICartCalculatorService, CartCalculatorService>();
+            services.AddTransient<IZarinPalFactory, ZarinPalFactory>();
 
             services.AddTransient<IPermissionExposer, ShopPermissionExposer>();
         }
