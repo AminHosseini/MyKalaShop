@@ -138,8 +138,8 @@ namespace ServiceHost.Controllers
             var result = new PaymentResult();
             if (status == "OK" && verificationResponse.Status >= 100)
             {
-                var operationResult = _orderApplication.PaymentSucceeded(oId, verificationResponse.RefID);
                 var issueTrackingNo = _orderApplication.SetIssueTrackingNo(oId);
+                var operationResult = _orderApplication.PaymentSucceeded(oId, verificationResponse.RefID);
                 Response.Cookies.Delete(CookieName);
                 result = result.Succeeded("پرداخت با موفقیت انجام شد.", issueTrackingNo);
                 return RedirectToAction(nameof(PaymentResult), result);

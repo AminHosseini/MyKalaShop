@@ -7,6 +7,7 @@ using BlogManagement.Infrastructure.Configuration;
 using AccountManagement.Infrastructure.Configuration;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using ShopManagement.Infrastructure.Configuration;
+using _0_Framework.Application.Sms;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +27,7 @@ BlogManagementBootstrapper.Configure(builder.Services, connectionString);
 AccountManagementBootstrapper.Configure(builder.Services, connectionString);
 
 builder.Services.AddTransient<IFileUploader, FileUploader>();
+builder.Services.AddTransient<ISmsService, SmsService>();
 builder.Services.AddSingleton<IPasswordHasher, PasswordHasher>();
 builder.Services.AddSingleton<IAuthHelper, AuthHelper>();
 //builder.Services.AddSingleton(HtmlEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Arabic));

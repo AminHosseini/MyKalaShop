@@ -23,6 +23,7 @@ using ShopManagement.Domain.Services;
 using ShopManagement.Infrastructure.InventoryAcl;
 using MyKalaShopQuery.Contracts;
 using _0_Framework.Application.ZarinPal;
+using ShopManagement.Infrastructure.AccountAcl;
 
 namespace ShopManagement.Infrastructure.Configuration
 {
@@ -51,6 +52,7 @@ namespace ShopManagement.Infrastructure.Configuration
             services.AddTransient<IOrderApplication, OrderApplication>();
 
             services.AddTransient<IShopInventoryAcl, ShopInventoryAcl>();
+            services.AddTransient<IShopAccountAcl, ShopAccountAcl>();
 
             services.AddSingleton<ICartService, CartService>();
             services.AddTransient<ICartCalculatorService, CartCalculatorService>();

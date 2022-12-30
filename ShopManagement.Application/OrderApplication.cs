@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Application;
+using _0_Framework.Application.Sms;
 using Microsoft.Extensions.Configuration;
 using ShopManagement.Application.Contracts.Order;
 using ShopManagement.Domain.OrderAgg;
@@ -12,14 +13,19 @@ namespace ShopManagement.Application
         private readonly IAuthHelper _authHelper;
         private readonly IConfiguration _configuration;
         private readonly IShopInventoryAcl _shopInventoryAcl;
+        private readonly ISmsService _smsService;
+        private readonly IShopAccountAcl _shopAccountAcl;
 
         public OrderApplication(IOrderRepository repository, IConfiguration configuration,
-            IShopInventoryAcl shopInventoryAcl, IAuthHelper authHelper)
+            IShopInventoryAcl shopInventoryAcl, IAuthHelper authHelper, ISmsService smsService, 
+            IShopAccountAcl shopAccountAcl)
         {
             _repository = repository;
             _configuration = configuration;
             _shopInventoryAcl = shopInventoryAcl;
             _authHelper = authHelper;
+            _smsService = smsService;
+            _shopAccountAcl = shopAccountAcl;
         }
 
         public List<OrderItemViewModel> GetOrderItems(long orderId)
@@ -70,7 +76,8 @@ namespace ShopManagement.Application
 
             _repository.Save();
 
-            // send sms
+            var account = _shopAccountAcl.GetAccountInfo(order.AccountId);
+            _smsService.Send(account.Mobile, $"خریدار محترم {account.FullName} عزیز. سفارش شما با شماره پیگیری {order.IssueTrackingNo} ثبت و به زودی ارسال خواهد شد.");
 
             return operationResult.Succeeded();
         }
