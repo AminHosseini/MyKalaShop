@@ -45,16 +45,29 @@
                                         }
                                     </ul>
                                 </li>
-                                <li>
-                                    @if (_authHelper.IsAuthenticated())
-                                    {
-                                        <a asp-controller="Account" asp-action="Logout">خروج</a>
-                                    }
-                                    else
-                                    {
+                                @if (_authHelper.IsAuthenticated())
+                                {
+                                    <li class="menu-item-has-children">
+                                        <a>@_authHelper.CurrentAccountInfo().Fullname</a>
+                                        <ul class="sub-menu">
+                                            <li>
+                                                <a asp-controller="Account" asp-action="Edit">ویرایش پروفایل</a>
+                                            </li>
+                                            <li>
+                                                <a asp-controller="Account" asp-action="ChangePassword">تغییر رمز عبور</a>
+                                            </li>
+                                            <li>
+                                                <a asp-controller="Account" asp-action="Logout">خروج</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
                                         <a asp-controller="Account" asp-action="Index">ورود/ثبت نام</a>
-                                    }
-                                </li>
+                                    </li>
+                                }
                             </ul>
                         </nav>
                     </div>

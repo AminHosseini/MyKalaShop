@@ -71,12 +71,12 @@ namespace ServiceHost.Areas.Administration.Controllers
         [NeedsPermission(AccountPermissions.ChangeAccountPassword)]
         public IActionResult ChangePassword(long id)
         {
-            return PartialView("_ChangePassword", new AccountChangePassword() { Id = id });
+            return PartialView("_ChangePassword", new ChangePassword() { Id = id });
         }
 
         [HttpPost]
         [NeedsPermission(AccountPermissions.ChangeAccountPassword)]
-        public JsonResult ChangePassword(AccountChangePassword model)
+        public JsonResult ChangePassword(ChangePassword model)
         {
             var operationResult = _accountApplication.ChangePassword(model);
             return new JsonResult(operationResult);

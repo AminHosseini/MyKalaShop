@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AccountManagement.Application.Contracts.Account
 {
-    public class LoginViewModel
+    public class Login
     {
         public string UserName { get; set; }
 

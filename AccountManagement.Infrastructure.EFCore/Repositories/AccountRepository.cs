@@ -80,5 +80,12 @@ namespace AccountManagement.Infrastructure.EFCore.Repositories
         {
             return _context.Accounts.FirstOrDefault(x => x.UserName == userName);
         }
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        public long GetAccountIdByMobile(string mobile)
+        {
+            var result = _context.Accounts.FirstOrDefault(x => x.Mobile == mobile);
+            return result == null ? 0 : result.Id;
+        }
     }
 }

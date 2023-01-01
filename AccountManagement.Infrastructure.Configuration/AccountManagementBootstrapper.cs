@@ -24,6 +24,8 @@ namespace AccountManagement.Infrastructure.Configuration
             services.AddTransient<IRoleRepository, RoleRepository>();
             services.AddTransient<IRoleApplication, RoleApplication>();
 
+            services.AddSingleton<IAccountService, AccountService>();
+
             services.AddTransient<IPermissionExposer, AccountPermissionExposer>();
         }
     }

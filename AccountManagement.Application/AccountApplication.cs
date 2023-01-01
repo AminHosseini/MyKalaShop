@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Application;
+using _0_Framework.Application.Sms;
 using AccountManagement.Application.Contracts.Account;
 using AccountManagement.Domain.AccountAgg;
 
@@ -10,14 +11,17 @@ namespace AccountManagement.Application
         private readonly IFileUploader _fileUploader;
         private readonly IPasswordHasher _passwordHasher;
         private readonly IAuthHelper _authHelper;
+        private readonly ISmsService _smsService;
 
         public AccountApplication(IAccountRepository repository,
-            IFileUploader fileUploader, IPasswordHasher passwordHasher, IAuthHelper authHelper)
+            IFileUploader fileUploader, IPasswordHasher passwordHasher, 
+            IAuthHelper authHelper, ISmsService smsService)
         {
             _repository = repository;
             _fileUploader = fileUploader;
             _passwordHasher = passwordHasher;
             _authHelper = authHelper;
+            _smsService = smsService;
         }
 
         public OperationResult Create(CreateAccount model)
@@ -59,7 +63,7 @@ namespace AccountManagement.Application
             return operationResult.Succeeded();
         }
 
-        public OperationResult ChangePassword(AccountChangePassword model)
+        public OperationResult ChangePassword(ChangePassword model)
         {
             var operationResult = new OperationResult();
             var account = _repository.Get(model.Id);
@@ -105,7 +109,7 @@ namespace AccountManagement.Application
             return operationResult.Succeeded();
         }
 
-        public OperationResult Login(LoginViewModel model)
+        public OperationResult Login(Login model)
         {
             var operationResult = new OperationResult();
 
@@ -127,6 +131,86 @@ namespace AccountManagement.Application
         public void Logout()
         {
             _authHelper.SignOut();
+        }
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        public EditAccount GetLoggedInUserDetails()
+        {
+            var accountId = _authHelper.CurrentAccountId();
+            return GetDetails(accountId);
+        }
+
+        public bool CheckMobile(string mobile)
+        {
+            return _repository.GetAccountIdByMobile(mobile) != 0 ? true : false;
+        }
+
+        public int SendChangePasswordCode(string mobile)
+        {
+            var rand = new Random();
+            var code = rand.Next(10000, 99999);
+
+            _smsService.Send(mobile, $"کد تغییر رمز عبور : {code}");
+            return code;
+        }
+
+        public bool CheckExpiration(DateTime codeGenerationTime)
+        {
+            if (DateTime.Now.Date == codeGenerationTime.Date)
+                if (DateTime.Now.Hour == codeGenerationTime.Hour)
+                    if (DateTime.Now.Minute - codeGenerationTime.Minute <= 2.0)
+                        return false;
+
+            return true;
+        }
+
+        public bool CheckCode(int generatedCode, int codeEnteredByUser)
+        {
+            return generatedCode == codeEnteredByUser;
+        }
+
+        public long GetAccountIdByMobile(string mobile)
+        {
+            return _repository.GetAccountIdByMobile(mobile);
+        }
+
+        public OperationResult ResetPassword(ResetPassword model)
+        {
+            var operationResult = new OperationResult();
+            var account = _repository.Get(model.Id);
+
+            if (account == null)
+                return operationResult.Failed(ValidationMessage.RecordNotFound);
+
+            var password = _passwordHasher.Hash(model.NewPassword);
+            account.ChangePassword(password);
+
+            _repository.Save();
+            return operationResult.Succeeded();
+        }
+
+        public long GetCurrentAccountId()
+        {
+            return _authHelper.CurrentAccountId();
+        }
+
+        public OperationResult ChangePassword(UserChangePassword model)
+        {
+            var operationResult = new OperationResult();
+            var account = _repository.Get(model.Id);
+
+            if (account == null)
+                return operationResult.Failed(ValidationMessage.RecordNotFound);
+
+            var oldPassword = _passwordHasher.Check(account.Password, model.OldPassword);
+            if (!oldPassword.Verified)
+                return operationResult.Failed(ValidationMessage.WrongOldPassword);
+
+            var password = _passwordHasher.Hash(model.NewPassword);
+            account.ChangePassword(password);
+
+            _repository.Save();
+            return operationResult.Succeeded();
         }
     }
 }

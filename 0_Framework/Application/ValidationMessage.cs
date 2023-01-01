@@ -10,5 +10,9 @@
         public const string WrongUserPass = "نام کاربری یا کلمه عبور اشتباه وارد شده است.";
         public const string SuccessfullyRegistered = "ثبت نام با موفقیت انجام شد.";
         public const string OperationFailed = "عملیات با موفقیت انجام نشد. لطفا دوباره امتحان کنید.";
+        public const string SmsSent = "کد برای شما ارسال شد.";
+        public const string CodeExpired = "کد منقضی شده است.";
+        public const string WrongCode = "کد اشتباه  وارد شده است.";
+        public const string WrongOldPassword = "رمز عبور قدیمی اشتباه وارد شده است.";
     }
 }

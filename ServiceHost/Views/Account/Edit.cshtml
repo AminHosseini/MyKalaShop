@@ -1,0 +1,78 @@
+﻿@using AccountManagement.Application.Contracts.Account
+@model EditAccount
+
+@{
+    ViewData["Title"] = "پروفایل";
+}
+
+<!--====================  breadcrumb area ====================-->
+<div class="breadcrumb-area section-space--half">
+    <div class="container wide">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-wrapper breadcrumb-bg">
+                    <div class="breadcrumb-content">
+                        <h2 class="breadcrumb-content__title">ویرایش پروفایل کاربری</h2>
+                        <ul class="breadcrumb-content__page-map">
+                            <li><a asp-controller="Home" asp-action="Index">صفحه اصلی</a></li>
+                            <li class="active">ویرایش پروفایل کاربری</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--==================== end of breadcrumb area ====================-->
+
+@if (!string.IsNullOrWhiteSpace(ViewBag.ErrorMessage))
+{
+    <p>@ViewBag.ErrorMessage</p>
+}
+
+<!--====================  page content area ====================-->
+<div class="page-content-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-wrapper">
+                    <div class="page-content-wrapper">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                                <form asp-controller="Account" asp-action="Edit" enctype="multipart/form-data" method="post">
+                                    <div class="login-form">
+                                        <h4 class="login-title">ویرایش پروفایل کاربری</h4>
+                                        <div class="row">
+                                            <div class="col-md-6 col-12 mb-20">
+                                                <label asp-for="FullName">نام و نام خانوادگی</label>
+                                                <input asp-for="FullName" placeholder="مثال: سیدامین حسینی">
+                                            </div>
+                                            <div class="col-md-6 col-12 mb-20">
+                                                <label asp-for="Mobile">موبایل</label>
+                                                <input asp-for="Mobile" placeholder="09** *** **** :مثال">
+                                            </div>
+                                            <div class="col-md-12 mb-20">
+                                                <label asp-for="UserName">نام کاربری</label>
+                                                <input asp-for="UserName" placeholder="نام کاربری خودتان را وارد کنید.">
+                                            </div>
+                                            <div class="col-md-6 mb-20">
+                                                <label asp-for="PicturePath">عکس</label>
+                                                <input type="file" asp-for="PicturePath">
+                                            </div>
+                                            <input type="hidden" asp-for="Id" />
+                                            <input type="hidden" asp-for="RoleId" />
+                                            <div class="col-12">
+                                                <button class="register-button mt-0">ذخیره</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--==================== end of page content area ====================-->

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AccountManagement.Application.Contracts.Account
 {
-    public class AccountChangePassword
+    public class ChangePassword
     {
         public long Id { get; set; }
 

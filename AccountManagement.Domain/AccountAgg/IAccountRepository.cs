@@ -9,5 +9,7 @@ namespace AccountManagement.Domain.AccountAgg
         EditAccount GetDetails(long id);
         SpecifyAccountPermissions GetPermissions(long id);
         Account GetAccountByUserName(string userName);
+        ///////////////////////////////////////////////////////////////////////////////////////////
+        long GetAccountIdByMobile(string mobile);
     }
 }
