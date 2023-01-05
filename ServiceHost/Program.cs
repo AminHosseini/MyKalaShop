@@ -8,12 +8,17 @@ using AccountManagement.Infrastructure.Configuration;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using ShopManagement.Infrastructure.Configuration;
 using _0_Framework.Application.Sms;
+using ShopManagement.Presentation.Api;
+using InventoryManagement.Presentation.Api;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews()
-    .AddMvcOptions(options => options.Filters.Add<SecurityControllerFilter>());
+    .AddMvcOptions(options => options.Filters.Add<SecurityControllerFilter>())
+    .AddApplicationPart(typeof(ProductApiController).Assembly)
+    .AddApplicationPart(typeof(InventoryApiController).Assembly)
+    .AddNewtonsoftJson();
 
 builder.Services.AddHttpContextAccessor();
 
@@ -76,8 +81,13 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+//app.MapControllerRoute(
+//    name: "default",
+//    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapDefaultControllerRoute();
+});
 
 app.Run();

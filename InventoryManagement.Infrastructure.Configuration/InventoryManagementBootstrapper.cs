@@ -7,6 +7,8 @@ using InventoryManagement.Infrastructure.EFCore.Data;
 using InventoryManagement.Infrastructure.EFCore.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using MyKalaShopQuery.Contracts.Inventory;
+using MyKalaShopQuery.Query;
 
 namespace InventoryManagement.Infrastructure.Configuration
 {
@@ -18,6 +20,8 @@ namespace InventoryManagement.Infrastructure.Configuration
 
             services.AddTransient<IInventoryRepository, InventoryRepository>();
             services.AddTransient<IInventoryApplication, InventoryApplication>();
+
+            services.AddTransient<IInventoryQuery, InventoryQuery>();
 
             services.AddTransient<IPermissionExposer, InventoryPermissionExposer>();
         }
