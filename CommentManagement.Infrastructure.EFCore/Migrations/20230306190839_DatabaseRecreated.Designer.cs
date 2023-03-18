@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CommentManagement.Infrastructure.EFCore.Migrations
 {
     [DbContext(typeof(CommentContext))]
-    [Migration("20221221111238_CommentsAdded")]
-    partial class CommentsAdded
+    [Migration("20230306190839_DatabaseRecreated")]
+    partial class DatabaseRecreated
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -67,7 +67,6 @@ namespace CommentManagement.Infrastructure.EFCore.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Website")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 

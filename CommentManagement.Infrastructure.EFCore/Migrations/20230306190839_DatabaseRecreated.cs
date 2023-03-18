@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CommentManagement.Infrastructure.EFCore.Migrations
 {
     /// <inheritdoc />
-    public partial class CommentsAdded : Migration
+    public partial class DatabaseRecreated : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -24,7 +24,7 @@ namespace CommentManagement.Infrastructure.EFCore.Migrations
                     IsCanceled = table.Column<bool>(type: "bit", nullable: false),
                     OwnerRecordId = table.Column<long>(type: "bigint", nullable: false),
                     Type = table.Column<int>(type: "int", nullable: false),
-                    Website = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    Website = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     ParentId = table.Column<long>(type: "bigint", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },

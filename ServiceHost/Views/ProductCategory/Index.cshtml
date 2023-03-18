@@ -42,9 +42,9 @@
                                 <!--=======  shop page header  =======-->
                                 <div class="shop-header">
                                     @*<div class="shop-header__left">
-                                        <div class="shop-header__left__message">
-                                            Showing 1 to 9 of 15 (2 Pages)
-                                        </div>
+                                    <div class="shop-header__left__message">
+                                    Showing 1 to 9 of 15 (2 Pages)
+                                    </div>
                                     </div>*@
                                     <div class="shop-header__right">
                                         <div class="single-select-block d-inline-block">
@@ -58,12 +58,12 @@
                                         </div>
                                         @*<div class="single-select-block d-inline-block">
                                         <span class="select-title">Sort By:</span>
-                                            <select class="pr-0">
-                                                <option value="1">Default</option>
-                                                <option value="2">Name (A-Z)</option>
-                                                <option value="3">Price (min - max)</option>
-                                                <option value="4">Color</option>
-                                            </select>
+                                        <select class="pr-0">
+                                        <option value="1">Default</option>
+                                        <option value="2">Name (A-Z)</option>
+                                        <option value="3">Price (min - max)</option>
+                                        <option value="4">Color</option>
+                                        </select>
                                         </div>*@
                                     </div>
                                 </div>
@@ -91,10 +91,10 @@
                                                         </a>
                                                     </div>
                                                     <div class="single-grid-product__content">
-                                                    @*<div class="single-grid-product__category-rating">
-                                                        <span class="category">
-                                                            <a asp-controller="ProductCategory" asp-action="Index" asp-route-slug="@Model.Slug">@Model.Name</a>
-                                                        </span>
+                                                        @*<div class="single-grid-product__category-rating">
+                                                    <span class="category">
+                                                    <a asp-controller="ProductCategory" asp-action="Index" asp-route-slug="@Model.Slug">@Model.Name</a>
+                                                    </span>
                                                     </div>*@
                                                         <h3 class="single-grid-product__title">
                                                             <a asp-controller="Product" asp-action="Details" asp-route-slug="@product.Slug">
@@ -106,13 +106,13 @@
                                                             {
                                                                 <span class="discounted-price">@product.UnitPrice.ToMoney() تومان</span>
                                                                 <span class="main-price discounted">@product.PriceWithDiscount.ToMoney() تومان</span>
+                                                                <div class="product-countdown" data-countdown="@product.DiscountEndDate"></div>
                                                             }
                                                             else
                                                             {
                                                                 <span class="main-price">@product.UnitPrice.ToMoney() تومان</span>
                                                             }
                                                         </p>
-                                                        <div class="product-countdown" data-countdown="@product.DiscountEndDate"></div>
                                                     </div>
                                                 </div>
                                                 <!--=======  End of product grid view  =======-->
@@ -123,17 +123,17 @@
                                 <!--=======  pagination area =======-->
                                 <div class="pagination-area">
                                     @*<div class="pagination-area__left">
-                                        Showing 1 to 9 of 11 (2 Pages)
+                                    Showing 1 to 9 of 11 (2 Pages)
                                     </div>
                                     <div class="pagination-area__right">
-                                        <ul class="pagination-section">
-                                            <li>
-                                                <a class="active" href="#">1</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">2</a>
-                                            </li>
-                                        </ul>
+                                    <ul class="pagination-section">
+                                    <li>
+                                    <a class="active" href="#">1</a>
+                                    </li>
+                                    <li>
+                                    <a href="#">2</a>
+                                    </li>
+                                    </ul>
                                     </div>*@
                                 </div>
                                 <!--=======  End of pagination area  =======-->

@@ -74,7 +74,7 @@
                             <div class="form-group no-margin">
                                 <label asp-for="ShortDescription" class="control-label">توضیحات کوتاه</label>
                                 <textarea class="form-control" asp-for="ShortDescription" onchange="fillField('ShortDescription', 'MetaDescription')"
-                                          style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;"></textarea>
+                                          style="overflow: hidden; word-wrap: break-word; resize: vertical; height: 104px;"></textarea>
                                 <span asp-validation-for="ShortDescription" class="error"></span>
                             </div>
                         </div>
@@ -84,7 +84,7 @@
                             <div class="form-group no-margin">
                                 <label asp-for="Description" class="control-label">توضیحات</label>
                                 <textarea class="form-control autogrow" asp-for="Description"
-                                          style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;" id="BodyContent"></textarea>
+                                          style="overflow: hidden; word-wrap: break-word; resize: vertical; height: 104px;" id="BodyContent"></textarea>
                                 <span asp-validation-for="Description" class="error"></span>
                             </div>
                         </div>
@@ -103,7 +103,7 @@
                             <div class="form-group no-margin">
                                 <label asp-for="MetaDescription" class="control-label">توضیحات متا</label>
                                 <textarea class="form-control autogrow" asp-for="MetaDescription"
-                                          style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;"></textarea>
+                                          style="overflow: hidden; word-wrap: break-word; resize: vertical; height: 104px;"></textarea>
                                 <span asp-validation-for="MetaDescription" class="error"></span>
                             </div>
                         </div>
@@ -113,7 +113,7 @@
                             <div class="form-group no-margin">
                                 <label asp-for="CanonicalAddress" class="control-label">Canonical Address</label>
                                 <textarea class="form-control autogrow" asp-for="CanonicalAddress"
-                                          style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;"></textarea>
+                                          style="overflow: hidden; word-wrap: break-word; resize: vertical; height: 104px;"></textarea>
                                 <span asp-validation-for="CanonicalAddress" class="error"></span>
                             </div>
                         </div>
@@ -127,8 +127,8 @@
 </div>
 
 @section Scripts{
-    <script src="https://cdn.tiny.cloud/1/54t53scd8mf2hklcaygdmy1azfs0likle6s1idj9aqdamil3/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>
+    @*<script src="https://cdn.tiny.cloud/1/54t53scd8mf2hklcaygdmy1azfs0likle6s1idj9aqdamil3/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>*@
+    @*<script>
         tinymce.init({
             selector: '#BodyContent',
             plugins: 'a11ychecker advcode casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tableofcontents tinycomments tinymcespellchecker',
@@ -136,6 +136,20 @@
             toolbar_mode: 'floating',
             tinycomments_mode: 'embedded',
             tinycomments_author: 'Author name',
+        });
+    </script>*@
+    <script src="https://cdn.tiny.cloud/1/zex32motkln2ykwm644hpyzzcoopua6jm8g5uedfm3yco975/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: '#BodyContent',
+            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+            ],
         });
     </script>
 }

@@ -63,16 +63,16 @@ namespace MyKalaShopQuery.Query
                 var customerDiscount = customerDiscounts.FirstOrDefault(x => x.ProductId == product.Id);
                 var price = inventory.FirstOrDefault(x => x.ProductId == product.Id);
 
-                if (customerDiscount != null)
+                if (price != null)
                 {
-                    product.DiscountRate = customerDiscount.DiscountRate;
-                    product.DiscountEndDate = customerDiscount.EndDate.ToDiscountFormat();
-                    product.HasDiscount = customerDiscount.DiscountRate > 0;
+                    product.UnitPrice = price.UnitPrice;
+                    product.IsAvailable = price.IsAvailable;
 
-                    if (price != null)
+                    if (customerDiscount != null)
                     {
-                        product.UnitPrice = price.UnitPrice;
-                        product.IsAvailable = price.IsAvailable;
+                        product.DiscountRate = customerDiscount.DiscountRate;
+                        product.DiscountEndDate = customerDiscount.EndDate.ToDiscountFormat();
+                        product.HasDiscount = customerDiscount.DiscountRate > 0;
 
                         var discountAmount = Math.Round(product.UnitPrice * product.DiscountRate) / 100;
                         product.PriceWithDiscount = product.UnitPrice - discountAmount;

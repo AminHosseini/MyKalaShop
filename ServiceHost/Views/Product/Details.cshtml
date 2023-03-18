@@ -159,7 +159,10 @@
                                         <p class="product-description">
                                             @Model.ShortDescription
                                         </p>
-                                        <div class="product-countdown" data-countdown="@Model.DiscountEndDate"></div>
+                                        @if (Model.HasDiscount)
+                                        {
+                                            <div class="product-countdown" data-countdown="@Model.DiscountEndDate"></div>
+                                        }
                                         <div class="product-actions">
                                             <div class="quantity-selection">
                                                 <label>تعداد</label>
