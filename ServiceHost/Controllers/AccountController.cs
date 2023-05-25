@@ -2,6 +2,10 @@
 using _0_Framework.Infrastructure;
 using AccountManagement.Application.Contracts.Account;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json.Linq;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace ServiceHost.Controllers
 {
@@ -9,12 +13,16 @@ namespace ServiceHost.Controllers
     {
         private readonly IAccountApplication _accountApplication;
         private readonly IAccountService _accountService;
+        private readonly IConfiguration _config;
+        private readonly ITokenService _tokenService;
 
         public AccountController(IAccountApplication accountApplication,
-            IAccountService accountService)
+            IAccountService accountService, IConfiguration config, ITokenService tokenService)
         {
             _accountApplication = accountApplication;
             _accountService = accountService;
+            _config = config;
+            _tokenService = tokenService;
         }
 
         [HttpGet]
@@ -84,20 +92,32 @@ namespace ServiceHost.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult RequestCode(ForgotPassword model)
-        {
-            if (_accountApplication.CheckMobile(model.Mobile))
-            {
-                var code = _accountApplication.SendChangePasswordCode(model.Mobile);
-                var codeGenerationTime = DateTime.Now;
-                _accountService.Set(model.Mobile, codeGenerationTime, code);
+        //[HttpPost]
+        //public IActionResult RequestCode(ForgotPassword model)
+        //{
+        //    if (_accountApplication.CheckMobile(model.Mobile))
+        //    {
+        //        var code = _accountApplication.SendChangePasswordCode(model.Mobile);
+        //        var codeGenerationTime = DateTime.Now;
+        //        _accountService.Set(model.Mobile, codeGenerationTime, code);
 
-                model.Message = ValidationMessage.SmsSent;
-                return RedirectToAction(nameof(ForgotPassword));
+        //        model.Message = ValidationMessage.SmsSent;
+        //        return RedirectToAction(nameof(ForgotPassword));
+        //    }
+
+        //    model.Message = ValidationMessage.RecordNotFound;
+        //    return RedirectToAction(nameof(ForgotPassword));
+        //}
+        [HttpGet]
+        public IActionResult RequestCode(string mobile)
+        {
+            if (_accountApplication.CheckMobile(mobile))
+            {
+                var code = _accountApplication.SendChangePasswordCode(mobile);
+                var codeGenerationTime = DateTime.Now;
+                _accountService.Set(mobile, codeGenerationTime, code);
             }
 
-            model.Message = ValidationMessage.RecordNotFound;
             return RedirectToAction(nameof(ForgotPassword));
         }
 
@@ -111,38 +131,65 @@ namespace ServiceHost.Controllers
                 if (_accountApplication.CheckCode(info.code, model.Code))
                 {
                     var accountId = _accountApplication.GetAccountIdByMobile(info.mobile);
-                    return RedirectToAction(nameof(ResetPassword), new { Id = accountId });
+                    string token = CreateToken(info.mobile);
+                    if (!string.IsNullOrWhiteSpace(token))
+                    {
+                        _tokenService.Set(token);
+                        return RedirectToAction(nameof(ResetPassword), new { Id = accountId, Token = token });
+                    }
                 }
 
-                model.Message = ValidationMessage.WrongCode;
-                return RedirectToAction(nameof(ForgotPassword));
+                else
+                    model.Message = ValidationMessage.WrongCode;
             }
 
-            model.Message = ValidationMessage.CodeExpired;
+            else
+                model.Message = ValidationMessage.CodeExpired;
+
             return RedirectToAction(nameof(ForgotPassword));
         }
 
         [HttpGet]
-        public IActionResult ResetPassword(long id)
+        public IActionResult ResetPassword(long id, string token)
         {
-            var model = new ResetPassword() { Id = id, RedirectionTime = DateTime.Now };
-            return View(model);
+            string mainToken = _tokenService.Get();
+
+            if (token != null && mainToken != null)
+            {
+                if (mainToken == token)
+                {
+                    var model = new ResetPassword() { Id = id, RedirectionTime = DateTime.Now, Token = token };
+                    return View(model);
+                }
+            }
+
+            return RedirectToAction(nameof(ForgotPassword));
         }
 
         [HttpPost]
         public IActionResult ResetPassword(ResetPassword model)
         {
-            if (!_accountApplication.CheckExpiration(model.RedirectionTime))
-            {
-                var operationResult = _accountApplication.ResetPassword(model);
-                if (operationResult.IsSuccess)
-                    return RedirectToAction(nameof(Index), "Home");
+            string mainToken = _tokenService.Get();
 
-                ViewBag.ErrorMessage = operationResult.Message;
-                return RedirectToAction(nameof(Index), "Home");
+            if (model.Token != null && mainToken != null)
+            {
+                if (mainToken == model.Token)
+                {
+                    if (!_accountApplication.CheckExpiration(model.RedirectionTime))
+                    {
+                        var operationResult = _accountApplication.ResetPassword(model);
+                        if (operationResult.IsSuccess)
+                            return RedirectToAction(nameof(Index), "Home");
+                        else
+                            ViewBag.ErrorMessage = operationResult.Message;
+                    }
+                    else
+                        ViewBag.ErrorMessage = ValidationMessage.CodeExpired;
+                }
+                else
+                    ViewBag.ErrorMessage = ValidationMessage.OperationFailed;
             }
 
-            ViewBag.ErrorMessage = ValidationMessage.CodeExpired;
             return RedirectToAction(nameof(Index), "Home");
         }
 
@@ -164,6 +211,28 @@ namespace ServiceHost.Controllers
 
             ViewBag.ErrorMessage = operationResult.Message;
             return RedirectToAction(nameof(Index), "Home");
+        }
+
+        private string CreateToken(string mobile)
+        {
+            var claims = new List<Claim>()
+            {
+                new Claim(ClaimTypes.MobilePhone, mobile)
+            };
+
+            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(
+                _config.GetSection("AppSettings:Token").Value));
+
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+
+            var token = new JwtSecurityToken(
+                claims: claims,
+                expires: DateTime.Now.AddSeconds(120),
+                signingCredentials: creds);
+
+            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
+
+            return jwt;
         }
     }
 }

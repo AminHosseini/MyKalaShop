@@ -18,5 +18,7 @@ namespace AccountManagement.Application.Contracts.Account
         public string ReNewPassword { get; set; }
 
         public DateTime RedirectionTime { get; set; }
+
+        public string Token { get; set; }
     }
 }

@@ -25,6 +25,7 @@ namespace AccountManagement.Infrastructure.Configuration
             services.AddTransient<IRoleApplication, RoleApplication>();
 
             services.AddSingleton<IAccountService, AccountService>();
+            services.AddSingleton<ITokenService, TokenService>();
 
             services.AddTransient<IPermissionExposer, AccountPermissionExposer>();
         }

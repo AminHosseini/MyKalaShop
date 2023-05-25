@@ -54,9 +54,13 @@ builder.Services
 
 builder.Services.AddAuthorization();
 
-
-
-
+//builder.Host.ConfigureLogging((context, logging) =>
+//{
+//    logging.ClearProviders();
+//    logging.AddConfiguration(context.Configuration.GetSection("Logging"));
+//    logging.AddDebug();
+//    logging.AddConsole();
+//});
 
 
 
